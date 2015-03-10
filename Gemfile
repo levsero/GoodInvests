@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt'
 gem 'addressable', '~> 2.3.7', require: 'addressable/uri'
-gem 'rest_client', require: 'rest-client'
+gem 'rest-client', require: 'rest-client'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

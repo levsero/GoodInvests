@@ -1,6 +1,6 @@
 class Company < ActiveRecord::Base
   validates :ticker, :name, :price, presence: true
-  after_initialize :ensure_price
+  before_validation :ensure_price
 
   def price
     read_attribute(:price).to_f
@@ -11,13 +11,11 @@ class Company < ActiveRecord::Base
     price
   end
 
-  def update_price!
+  def update_price
     # update prices
-    last_day = RestClient.get(get_updates(self.ticker)).split()[1]
+    last_day = RestClient.get(get_updates(ticker)).split()[1]
     self.price = last_day.split(",")[-1]
-
-    self.save
-    self.price
+    price
   end
 
   def get_updates(sym)
@@ -37,6 +35,6 @@ class Company < ActiveRecord::Base
   private
 
   def ensure_price
-    self.price || update_price!
+    self.price || update_price
   end
 end

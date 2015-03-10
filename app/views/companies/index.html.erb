@@ -1,0 +1,5 @@
+<% @companies.each do |company| %>
+<a href="<%= company_url(company) %>">Name: <%= company.name %> <br>
+Ticker: <%= company.ticker %></a>
+<br><br>
+<% end %>
