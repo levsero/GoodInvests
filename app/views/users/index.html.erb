@@ -1,0 +1,7 @@
+<% @users.each do |user| %>
+<a href="<%= user_url(user) %>"><%= "#{user.first_name} #{user.last_name}" %></a>
+<% if current_user == user %>
+  <a href="<%= edit_user_url(user) %>">Edit Profile</a>
+<% end %>
+<br>
+<% end %>

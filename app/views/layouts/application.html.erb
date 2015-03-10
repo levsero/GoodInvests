@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GoodInvests</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if session[:errors] %>
+  <% session[:errors].each do |error| %>
+    <%= error %>
+    <br>
+  <% end %>
+  <% session[:errors] = nil %>
+<% end %>
+
+<% if signed_in? %>
+  Hi <%= "#{current_user.first_name} #{current_user.last_name}" %>
+  <form class="" action="<%= session_url %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="delete">
+    <button>Log Out</button>
+  </form>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

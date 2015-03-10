@@ -1,0 +1,36 @@
+require 'addressable/uri'
+require 'rest-client'
+
+def read_file
+  arr = []
+  File.foreach("stocks.txt") do |line|
+  p line
+    arr << line
+  end
+  arr
+end
+
+def get_updates(sym)
+  url = Addressable::URI.new(
+    scheme: "https",
+    host: "quandl.com",
+    path: "/api/v1/datasets/WIKI/#{sym}.csv",
+    query_values: {
+      trim_start: "2015-03-03",
+      column: "4",
+      auth_token: "umr2yxGY6KM1QVWex3Jj" # YOUR API KEY HERE
+    }
+  ).to_s
+  url
+end
+
+def test
+  arr = read_file
+  arr.each do |sym|
+    begin
+      puts "#{sym}: #{RestClient.get(get_updates(sym)).split(":")[0]}"
+    rescue => e
+      e.response
+    end
+  end
+end

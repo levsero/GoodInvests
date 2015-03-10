@@ -1,0 +1,13 @@
+<p>
+  Name: <%= "#{@user.first_name} #{@user.last_name}" %>
+</p>
+
+<p>
+  Job Title: <%= @user.job_title || "not yet filled in:("  %>
+</p>
+
+<p>
+  Description: <%= @user.description || "not yet filled in:("%>
+</p>
+
+<a href="<%= users_url %>">Index</a>
