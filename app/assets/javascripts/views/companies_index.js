@@ -1,5 +1,5 @@
 GoodInvests.Views.CompaniesIndex = Backbone.View.extend ({
-  template:JST["companies_list"],
+  template:JST["sidebar/companies_list"],
 
   render: function () {
 

@@ -1,0 +1,3 @@
+name:<%= user.escape("first_name") + " " + user.escape("last_name") %>
+Job Title:<%= user.escape("job_title") || "not yet added :(" %>
+Description: <%= user.escape("description") || "not yet added :(" %>

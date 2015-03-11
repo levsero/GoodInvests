@@ -17,10 +17,24 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    "": "index"
+    "": "index",
+    "users/:id": "userShow"
   },
 
   index: function () {
 
   },
+
+  userShow: function (id) {
+    var user = this.Users.getOrFetch(id)
+    var content = GoodInvests.Views.ShowUser.render({model: user})
+  },
+
+  _swapViews: function (view) {
+    if (this.current_view) {
+      this.current_view.remove()
+    }
+    this.current_view = view;
+    this.$main.html(view.render().$el)
+  }
 })

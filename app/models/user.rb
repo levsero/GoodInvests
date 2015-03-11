@@ -1,16 +1,16 @@
-class EmailValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-      record.errors[attribute] << (options[:message] || "is not an email")
-    end
-  end
-end
-
 class User < ActiveRecord::Base
   validates :first_name, :last_name, :email, :session_token, :password_digest, presence: true
-
   validates :password, length: {minimum: 6, allow_nil: true}
   validate :email_validation
+
+  has_many :comments, as: :commentable
+  has_many(
+    :authored_comments,
+    class_name: "Comment",
+    foreign_key: :author_id,
+    primary_key: :id,
+    inverse_of: :author
+  )
 
   attr_reader :password
   after_initialize :ensure_session_token

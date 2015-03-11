@@ -2,6 +2,8 @@ class Company < ActiveRecord::Base
   validates :ticker, :name, :price, presence: true
   before_validation :ensure_price
 
+  has_many :comments, as: :commentable
+
   def price
     read_attribute(:price).to_f
   end

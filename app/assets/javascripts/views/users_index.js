@@ -1,9 +1,9 @@
 GoodInvests.Views.UsersIndex = Backbone.View.extend ({
-  template:JST["users_list"],
+  template:JST["sidebar/users_list"],
 
   render: function () {
 
-    this.$el.html(this.template({ users: this.collection }));    
+    this.$el.html(this.template({ users: this.collection }));
     return this;
   },
 

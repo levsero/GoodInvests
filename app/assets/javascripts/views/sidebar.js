@@ -1,5 +1,5 @@
 GoodInvests.Views.Sidebar = Backbone.CompositeView.extend ({
-  template:JST["sidebar"],
+  template:JST["sidebar/sidebar"],
 
   render: function () {
     this.$el.html(this.template());
