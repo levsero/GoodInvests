@@ -3,7 +3,7 @@ GoodInvests.Views.CompanyShow = Backbone.View.extend ({
 
   render: function () {
     this.$el.html(this.template({ company: this.model }));
-    var view = new GoodInvests.Views.CommentsShow({ collection: this.model.comments() })
+    var view = new GoodInvests.Views.CommentsShow({ model: this.model })
     this.$el.append( view.render().$el )
     return this;
   },

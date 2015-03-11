@@ -14,5 +14,5 @@ GoodInvests.Collections.Companies = Backbone.Collection.extend ({
 
   parse: function (payload) {
     return payload["companies"];
-  }
+  },
 })

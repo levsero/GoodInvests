@@ -15,5 +15,5 @@ GoodInvests.Collections.Users = Backbone.Collection.extend ({
 
   parse: function (payload) {
     return payload["users"];
-  }
+  },
 })

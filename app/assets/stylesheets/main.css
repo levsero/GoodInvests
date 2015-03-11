@@ -14,7 +14,7 @@
 .comments {
   display: block;
   margin-top: 10px;
-  padding: 10px;
+  padding: 10px 0;
   background: #dddddd;
   width: 500px;
 }
@@ -25,4 +25,27 @@
 
 .comments li {
   padding: 5px;
+}
+
+.comment-form {
+  width: calc(100% - 20px);
+  padding: 10px;
+}
+
+.profile input {
+  width: 100%;
+}
+
+.nav-list {
+  diplay: block;
+  float: right;
+  width: 100px;
+}
+
+.nav-list form {
+  position: absolute;
+  background: grey;
+  opacity: .9;
+  margin-left: -20px;
+  padding:10px;
 }

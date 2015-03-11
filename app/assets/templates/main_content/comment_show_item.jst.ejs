@@ -2,3 +2,9 @@
 </strong>
 <br>
 <%= comment.escape("body")  %>
+<br>
+<date>
+<% var date = new Date(comment.escape("created_at"))  %>
+<%= date.getMonth() + "/" + date.getDay() + " " + date.getHours() + ":" +
+date.getMinutes() + ":" + date.getSeconds() %>
+</date>

@@ -1,6 +1,6 @@
 GoodInvests.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
-    this.$rootEl = $("container");
+    this.$rootEl = $("#container");
     this.$sidebar = $(".sidebar");
     this.$main = $(".main");
 
@@ -23,7 +23,14 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
   routes: {
     "": "index",
     "users/:id": "userShow",
-    "companies/:id": "companyShow"
+    "companies/:id": "companyShow",
+    "profile": "profileShow",
+    "login": "login"
+  },
+
+  login: function () {
+    var view = new GoodInvests.Views.Login()
+    this.$rootEl.find(".nav-list").append(view.render().$el)
   },
 
   index: function () {
@@ -39,6 +46,10 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
     var company = this.companies.getOrFetch(id)
     var view = new GoodInvests.Views.CompanyShow({model: company})
     this._swapViews(view)
+  },
+
+  profileShow: function () {
+
   },
 
   _swapViews: function (view) {
