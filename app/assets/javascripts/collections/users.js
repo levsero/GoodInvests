@@ -7,13 +7,9 @@ GoodInvests.Collections.Users = Backbone.Collection.extend ({
     var user = this.get(id);
     if (!user) {
       user = new GoodInvests.Models.User({"id": id});
-      user.fetch()
     }
-    // user.fetch({
-    //   success: function () {
-    //     this.add(user, {merge: true})
-    //   }.bind(this)
-    // })
+    user.fetch()
+
     return user;
   },
 

@@ -4,16 +4,20 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
     this.$sidebar = $(".sidebar");
     this.$main = $(".main");
 
-    this.users = new GoodInvests.Collections.Users()
-    this.companies = new GoodInvests.Collections.Companies()
-    this.users.fetch();
-    this.companies.fetch();
+    this.fetchCollection();
 
     var view = new GoodInvests.Views.Sidebar({
       users: this.users, companies: this.companies
     });
 
     this.$sidebar.html(view.render().$el)
+  },
+
+  fetchCollection: function () {
+    this.users = new GoodInvests.Collections.Users()
+    this.companies = new GoodInvests.Collections.Companies()
+    this.users.fetch();
+    this.companies.fetch();
   },
 
   routes: {
@@ -23,11 +27,9 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
   },
 
   index: function () {
-    console.log("test")
   },
 
   userShow: function (id) {
-    console.log("test")
     var user = this.users.getOrFetch(id)
     var view = new GoodInvests.Views.UserShow({model: user})
     this._swapViews(view)

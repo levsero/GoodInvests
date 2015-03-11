@@ -12,5 +12,5 @@ GoodInvests.Views.CompaniesIndex = Backbone.View.extend ({
     this.$el.addClass("company-list")
   },
 
-  tagName: "article"
+  tagName: "ul"
 })

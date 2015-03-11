@@ -1,0 +1,51 @@
+.sidebar {
+  display: block;
+  float: left;
+  width: 300px;
+  padding: 10px;
+  background: #cccccc;
+}
+
+.click-headers>strong {
+  display: block;
+  width: calc(50% - 11px);
+  font-weight: bold;
+  float: left;
+  height: 20px;
+  padding: 5px 5px 0;
+  cursor: pointer;
+  border-bottom: 1px solid #aaaaaa;
+
+}
+
+.click-headers>strong:first-child {
+
+  border-right: 1px solid #aaaaaa;
+}
+
+strong:second-child {
+  float: right;
+}
+
+.click-headers {
+  text-align: center;
+  background: #dddddd;
+}
+
+ul.user-list ul.company-list {
+  padding: 10px 15px 0;
+
+}
+
+.user-list>li>a, .company-list>li>a{
+  display: block;
+  text-align: center;
+  margin: 5px 0;
+  padding: 5px 0;
+  background: #dddddd;
+  border-bottom: 1px solid #aaaaaa;
+}
+
+.user-list>li>a:hover, .company-list>li:hover>a, .click-headers>strong:hover {
+  background: #aaaaaa;
+}

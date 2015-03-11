@@ -1,5 +1,8 @@
-name:<%= user.escape("first_name") + " " + user.escape("last_name") %>
+<content class="profile">
+<strong class="header"> <%= user.escape("first_name") + " " + user.escape("last_name") %></strong>
 <br>
-Job Title:<%= user.escape("job_title") || "not yet added :(" %>
+<strong>Job Title:</strong> <%= user.escape("job_title") || "not yet added :(" %>
 <br>
-Description: <%= user.escape("description") || "not yet added :(" %>
+<strong>Description:</strong> <%= user.escape("description") || "not yet added :(" %>
+<br>
+</content>

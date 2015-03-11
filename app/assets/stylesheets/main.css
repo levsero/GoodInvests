@@ -1,0 +1,28 @@
+.profile {
+  display: block;
+  background: #dddddd;
+  width: 300px;
+  padding: 10px;
+  line-height: 20px;
+  box-shadow: 1px 1px 1px #aaaaaa;
+}
+
+.main strong {
+  font-weight: bold;
+}
+
+.comments {
+  display: block;
+  margin-top: 10px;
+  padding: 10px;
+  background: #dddddd;
+  width: 500px;
+}
+
+.header {
+  font-size: 24px;
+}
+
+.comments li {
+  padding: 5px;
+}

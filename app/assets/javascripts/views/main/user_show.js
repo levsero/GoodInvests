@@ -3,6 +3,8 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
 
   render: function () {
     this.$el.html(this.template({ user: this.model }));
+    var view = new GoodInvests.Views.CommentsShow({ collection: this.model.comments() })
+    this.$el.append( view.render().$el )
     return this;
   },
 

@@ -1,3 +1,3 @@
 json.(@company, :name, :price, :ticker)
 
-json.comments @user.comments, :title, :body, :created_at
+json.comments @company.comments, :title, :body, :created_at

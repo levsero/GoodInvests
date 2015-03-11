@@ -5,7 +5,7 @@ GoodInvests.Views.Sidebar = Backbone.CompositeView.extend ({
     this.$el.html(this.template());
     var view = new GoodInvests.Views.UsersIndex({ collection: this.users })
     this.current_view = view;
-    this.addSubview("ul", view)
+    this.addSubview("#display-list", view)
     return this;
   },
 
@@ -28,17 +28,17 @@ GoodInvests.Views.Sidebar = Backbone.CompositeView.extend ({
     this.removeSubview("#display-list", this.current_view)
     var view = new GoodInvests.Views.UsersIndex({ collection: this.users })
     this.current_view = view;
-    this.addSubview("ul", view)
+    this.addSubview("#display-list", view)
   },
 
   showCompanies: function (event) {
     if (this.current_view.$el.hasClass("company-list")) {
       return;
     }
-    this.removeSubview("ul", this.current_view)
+    this.removeSubview("#display-list", this.current_view)
     var view = new GoodInvests.Views.CompaniesIndex({ collection: this.companies })
     this.current_view = view;
-    this.addSubview("ul", view)
+    this.addSubview("#display-list", view)
   },
 
   tagName: "article"

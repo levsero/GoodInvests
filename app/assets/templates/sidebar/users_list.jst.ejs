@@ -1,4 +1,5 @@
 <% users.each( function (user) { %>
+  <li>
   <a href="#users/<%= user.id%>">user:<%= user.escape("first_name") + " " + user.escape("last_name") %></a>
-  <br>
+  </li>  
 <% }) %>
