@@ -13,7 +13,7 @@ GoodInvests.Views.Sidebar = Backbone.CompositeView.extend ({
     this.users = options.users;
     this.companies = options.companies;
 
-    // this.listenTo( this.model, "add delete sync", this.render)
+    // this.listenTo( this.content, "sync", this.render)
   },
 
   events: {
@@ -25,7 +25,7 @@ GoodInvests.Views.Sidebar = Backbone.CompositeView.extend ({
     if (this.current_view.$el.hasClass("user-list")) {
       return;
     }
-    this.removeSubview("ul", this.current_view)
+    this.removeSubview("#display-list", this.current_view)
     var view = new GoodInvests.Views.UsersIndex({ collection: this.users })
     this.current_view = view;
     this.addSubview("ul", view)

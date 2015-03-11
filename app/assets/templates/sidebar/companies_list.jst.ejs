@@ -1,4 +1,4 @@
 <% companies.each( function (company) { %>
-  <a href="#">company:<%= company.escape("name") + " " + company.escape("ticker") %></a>
+  <a href="#companies/<%=company.id%> ">company:<%= company.escape("name") + " " + company.escape("ticker") %></a>
   <br>
 <% }) %>

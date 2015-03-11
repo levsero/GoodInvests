@@ -18,16 +18,25 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
 
   routes: {
     "": "index",
-    "users/:id": "userShow"
+    "users/:id": "userShow",
+    "companies/:id": "companyShow"
   },
 
   index: function () {
-
+    console.log("test")
   },
 
   userShow: function (id) {
-    var user = this.Users.getOrFetch(id)
-    var content = GoodInvests.Views.ShowUser.render({model: user})
+    console.log("test")
+    var user = this.users.getOrFetch(id)
+    var view = new GoodInvests.Views.UserShow({model: user})
+    this._swapViews(view)
+  },
+
+  companyShow: function (id) {
+    var company = this.companies.getOrFetch(id)
+    var view = new GoodInvests.Views.CompanyShow({model: company})
+    this._swapViews(view)
   },
 
   _swapViews: function (view) {

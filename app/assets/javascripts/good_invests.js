@@ -4,8 +4,8 @@ window.GoodInvests = {
   Views: {},
   Routers: {},
   initialize: function() {
-    Backbone.history.start()
     var router = new GoodInvests.Routers.Router()
+    Backbone.history.start()
   }
 };
 

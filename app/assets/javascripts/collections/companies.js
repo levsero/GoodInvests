@@ -7,8 +7,8 @@ GoodInvests.Collections.Companies = Backbone.Collection.extend ({
     var company = this.get(id);
     if (!company) {
       company = new GoodInvests.Models.Company({"id": id});
-      company.fetch()
     }
+    company.fetch()
     return company;
   },
 
