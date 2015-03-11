@@ -1,0 +1,5 @@
+<p>testing 123</p>
+<% companies.each( function (company) { %>
+  <a href="#">company:<%= company.escape("name") + " " + company.escape("ticker") %></a>
+  <br>
+<% }) %>
