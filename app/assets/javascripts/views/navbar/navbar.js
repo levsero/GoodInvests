@@ -2,7 +2,7 @@ GoodInvests.Views.Navbar = Backbone.CompositeView.extend ({
   template:JST["navbar/navbar"],
 
   render: function () {
-    this.$el.html(this.template());
+    this.$el.html(this.template({user: this.model}));
     this.is_loggedIn()
 
     return this;
@@ -10,8 +10,8 @@ GoodInvests.Views.Navbar = Backbone.CompositeView.extend ({
 
   initialize: function (options) {
     this.$el.addClass("group");
-    this.listenTo(this.model, "loggedIn", this.signOut);
-    this.listenTo(this.model, "signedOut", this.login)
+    this.listenTo(this.model, "loggedIn", this.render);
+    this.listenTo(this.model, "signedOut", this.render)
   },
 
   is_loggedIn: function () {
@@ -19,7 +19,7 @@ GoodInvests.Views.Navbar = Backbone.CompositeView.extend ({
     if (!is_loggedIn){
       this.login()
     } else {
-      this.signedOut()
+      this.signOut()
     }
   },
 

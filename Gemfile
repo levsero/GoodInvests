@@ -24,6 +24,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt'
 gem 'addressable', '~> 2.3.7', require: 'addressable/uri'
 gem 'rest-client', require: 'rest-client'
+gem "figaro"
 
 # Use Unicorn as the app server
 # gem 'unicorn'

@@ -22,7 +22,8 @@ module Api
 
     def logged_in
       if signed_in?
-        render json: {name: "#{current_user.first_name} #{current_user.last_name}"}
+        @user = current_user
+        render :current
       else
         render json: false
       end

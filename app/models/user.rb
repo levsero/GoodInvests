@@ -12,6 +12,34 @@ class User < ActiveRecord::Base
     inverse_of: :author
   )
 
+  # allows other users to follow current user
+  has_many :followings, as: :followable
+
+  # returns all follow objects which belong to user
+  has_many(
+    :follows,
+    class_name: "Follow",
+    foreign_key: :follower_id,
+    primary_key: :id,
+    inverse_of: :follower
+  )
+
+  # gets all companies through follows relation with source type Company
+  has_many(
+    :followed_companies,
+    through: :follows,
+    source: :followable,
+    source_type: "Company"
+  )
+
+  # gets all users through follows realtion with source type User
+  has_many(
+    :followed_users,
+    through: :follows,
+    source: :followable,
+    source_type: "User"
+  )
+
   attr_reader :password
   after_initialize :ensure_session_token
 

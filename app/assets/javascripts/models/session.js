@@ -1,6 +1,7 @@
 GoodInvests.Models.Session = Backbone.Model.extend ({
   initialize: function () {
     this.is_loggedIn = false;
+    this.current_user = new GoodInvests.Models.User()
 
     $.ajax({
       url: "/api/logged_in",
@@ -9,6 +10,7 @@ GoodInvests.Models.Session = Backbone.Model.extend ({
         if(!data){
           this.is_loggedIn = false;
         } else {
+          this.current_user.set(data.user)
           this.is_loggedIn = true;
           this.trigger("loggedIn");
         }
@@ -21,8 +23,9 @@ GoodInvests.Models.Session = Backbone.Model.extend ({
     url: "/api/session",
     type: "post",
     data: attrs,
-    success: function () {
+    success: function (data) {
       $(".modal").removeClass("is-open");
+      this.current_user.set(data.user)
       this.is_loggedIn = true;
       this.trigger("loggedIn");
       }.bind(this)
@@ -35,6 +38,7 @@ GoodInvests.Models.Session = Backbone.Model.extend ({
       type: "delete",
       success: function () {
         this.is_loggedIn = false;
+        this.current_user = new GoodInvests.Models.User()
         this.trigger("signedOut");
       }.bind(this)
     });

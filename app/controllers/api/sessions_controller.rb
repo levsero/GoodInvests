@@ -5,7 +5,7 @@ module Api
 
       if @user
         sign_in!(@user)
-        render json: @user
+        render :current
       else
         render json: "Invalid email/password combination"
       end

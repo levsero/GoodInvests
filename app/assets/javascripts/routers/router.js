@@ -34,21 +34,27 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
     "users/profile": "profileShow",
     "users/:id": "userShow",
     "companies/:id": "companyShow",
+    "lists": "listsShow"
   },
 
   index: function () {
   },
 
+  listsShow: function () {
+    // var view = new GoodInvests.Views.ListsShow({model: user, session: this.session});
+    // this._swapViews(view);
+  },
+
   userShow: function (id) {
-    var user = this.users.getOrFetch(id)
-    var view = new GoodInvests.Views.UserShow({model: user, session: this.session})
-    this._swapViews(view)
+    var user = this.users.getOrFetch(id);
+    var view = new GoodInvests.Views.UserShow({model: user, session: this.session});
+    this._swapViews(view);
   },
 
   companyShow: function (id) {
-    var company = this.companies.getOrFetch(id)
-    var view = new GoodInvests.Views.CompanyShow({model: company, session: this.session})
-    this._swapViews(view)
+    var company = this.companies.getOrFetch(id);
+    var view = new GoodInvests.Views.CompanyShow({model: company, session: this.session});
+    this._swapViews(view);
   },
 
   profileShow: function () {
@@ -57,10 +63,10 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
 
   _swapViews: function (view) {
     if (this.current_view) {
-      this.current_view.remove()
+      this.current_view.remove();
     }
     this.current_view = view;
-    this.$main.html(view.render().$el)
+    this.$main.html(view.render().$el);
   }
 
 })
