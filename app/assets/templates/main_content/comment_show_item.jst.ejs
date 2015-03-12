@@ -1,3 +1,5 @@
+<a class="author" href="#users/<%= comment.escape("author_id") %>"><%= comment.escape("author") %> </a>
+commented:<br>
 <strong class="title"><%= comment.escape("title")%>
 </strong>
 <br>
@@ -7,4 +9,5 @@
 <% var date = new Date(comment.escape("created_at"))  %>
 <%= date.getMonth() + "/" + date.getDay() + " " + date.getHours() + ":" +
 date.getMinutes() + ":" + date.getSeconds() %>
+
 </date>

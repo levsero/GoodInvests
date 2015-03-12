@@ -8,6 +8,10 @@ class Company < ActiveRecord::Base
     read_attribute(:price).to_f
   end
 
+  def name
+    read_attribute(:name).split().map(&:capitalize).join(" ")
+  end
+
   def latest_price
     update if updated_at < 1.day.ago
     price

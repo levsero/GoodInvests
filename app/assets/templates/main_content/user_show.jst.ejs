@@ -9,5 +9,11 @@
   <li>
     <strong>Description:</strong><span data-type="description" class=".editable"><%= user.escape("description") %></span>
   </li>
+
+
+  <li>
+    <strong>Portfolio</strong>
+    <%= portfolio({companies: user.companies()}) %>
+  </li>
 </ul>
 </content>

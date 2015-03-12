@@ -1,1 +1,1 @@
-json.user @user, :first_name, :last_name, :job_title, :description, :id
+json.partial! 'api/users/user', user: @user

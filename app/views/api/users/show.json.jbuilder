@@ -1,6 +1,10 @@
-json.(@user, :first_name, :last_name, :job_title, :description)
+json.(@user, :first_name, :last_name, :job_title, :description, :email)
 
-json.comments @user.comments, :title, :body, :created_at
+json.partial! 'api/comments/comments', comments: @user.comments
+
+json.portfolio @user.followed_companies do |company|
+  json.(company, :name, :ticker, :id)
+end
 
 if :signed_in?
   json.logged_in true

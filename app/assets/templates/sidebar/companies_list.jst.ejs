@@ -1,5 +1,10 @@
 <% companies.each( function (company) { %>
   <li>
-  <a href="#companies/<%=company.id%> "><%= company.escape("ticker") + " :" + company.escape("name") %></a>
+  <a href="#companies/<%=company.id%> "><%= company.escape("ticker") + ": " + company.escape("name") %></a>
+  <% if (company.following) { %>
+    <button class="unfollow">Remove</button>
+  <% } else if ( GoodInvests.session.isLoggedIn ) { %>
+    <button class="follow">Add</button>
+  <% } %>
   </li>
 <% }) %>

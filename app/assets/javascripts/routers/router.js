@@ -7,7 +7,7 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
 
     this.fetchCollection();
 
-    this.session = new GoodInvests.Models.Session();
+    this.session = GoodInvests.session;
 
     // load sidebar
     var view = new GoodInvests.Views.Sidebar({

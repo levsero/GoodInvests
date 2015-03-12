@@ -3,7 +3,7 @@ GoodInvests.Views.Navbar = Backbone.CompositeView.extend ({
 
   render: function () {
     this.$el.html(this.template({user: this.model}));
-    this.is_loggedIn()
+    this.isLoggedIn()
 
     return this;
   },
@@ -14,9 +14,9 @@ GoodInvests.Views.Navbar = Backbone.CompositeView.extend ({
     this.listenTo(this.model, "signedOut", this.render)
   },
 
-  is_loggedIn: function () {
-    var is_loggedIn = this.model.is_loggedIn;
-    if (!is_loggedIn){
+  isLoggedIn: function () {
+    var isLoggedIn = this.model.isLoggedIn;
+    if (!isLoggedIn){
       this.login()
     } else {
       this.signOut()

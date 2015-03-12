@@ -4,6 +4,7 @@ window.GoodInvests = {
   Views: {},
   Routers: {},
   initialize: function() {
+    GoodInvests.session = new GoodInvests.Models.Session();
     var router = new GoodInvests.Routers.Router()
     Backbone.history.start()
   }

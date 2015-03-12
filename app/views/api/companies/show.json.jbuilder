@@ -1,6 +1,6 @@
 json.(@company, :name, :price, :ticker)
 
-json.comments @company.comments, :title, :body, :created_at
+json.partial! 'api/comments/comments', comments: @company.comments
 
 if :signed_in?
   json.logged_in true

@@ -40,6 +40,14 @@ class User < ActiveRecord::Base
     source_type: "User"
   )
 
+  def first_name
+    read_attribute(:first_name).split().map(&:capitalize).join(" ")
+  end
+
+  def last_name
+    read_attribute(:last_name).split().map(&:capitalize).join(" ")
+  end
+
   attr_reader :password
   after_initialize :ensure_session_token
 

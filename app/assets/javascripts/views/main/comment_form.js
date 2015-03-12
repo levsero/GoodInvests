@@ -5,7 +5,7 @@ GoodInvests.Views.CommentForm = Backbone.View.extend ({
     this.$el.addClass("comment-form")
     // this.$el.html(this.template());
 
-    if (this.session.is_loggedIn) {
+    if (this.session.isLoggedIn) {
       this.$el.addClass("comment-form")
       this.$el.html(this.template());
     } else {

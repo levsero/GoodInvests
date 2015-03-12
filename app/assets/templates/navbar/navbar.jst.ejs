@@ -1,9 +1,9 @@
-<% if ( user.is_loggedIn ) { %>
+<% if ( user.isLoggedIn ) { %>
   <li class="profile none"> <a href="#users/<%= user.current_user.id %>"> Profile</a></li>
 <% }%>
 <li id="signs" class="signs"></li>
-<li class="name">welcome
-<% if ( user.is_loggedIn ) { %>
+<li class="name">Welcome
+<% if ( user.isLoggedIn ) { %>
   <%= user.current_user.escape("first_name") %>
 <% } %>
 </li>
