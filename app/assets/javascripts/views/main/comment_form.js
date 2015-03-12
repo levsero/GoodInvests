@@ -3,12 +3,24 @@ GoodInvests.Views.CommentForm = Backbone.View.extend ({
 
   render: function () {
     this.$el.addClass("comment-form")
-    this.$el.html(this.template());
+    // this.$el.html(this.template());
+
+    if (this.session.is_loggedIn) {
+      this.$el.addClass("comment-form")
+      this.$el.html(this.template());
+    } else {
+      this.$el.html('<p class "message">Log in to join the conversation.</p>');
+    }
+
     return this;
   },
 
-  initialize: function () {
-    this.$el.addClass("comments")
+  initialize: function (options) {
+    this.$el.addClass("comments");
+    this.session = options.session;
+
+        this.listenTo(this.session, "loggedIn", this.render);
+        this.listenTo(this.session, "signedOut", this.render);
   },
 
   events: {

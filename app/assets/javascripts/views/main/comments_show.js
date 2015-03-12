@@ -9,17 +9,14 @@ GoodInvests.Views.CommentsShow = Backbone.View.extend ({
       this.$el.find("ul").append(view.render().$el)
     }.bind(this))
 
-    if (this.model.logged_in) {
-      var view = new GoodInvests.Views.CommentForm({model: this.model});
-      this.$el.find("ul").append(view.render().$el);
-    } else {
-      this.$el.find("ul").append('<p class "message">Log in to join the conversation.</p>');
-    }
+    var view = new GoodInvests.Views.CommentForm({model: this.model, session: this.session});
+    this.$el.find("ul").append(view.render().$el);
 
     return this;
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.session = options.session;
     this.listenTo( this.model, "sync", this.render);
     this.listenTo( this.model.comments(), "add", this.render);
     this.$el.addClass("comments")

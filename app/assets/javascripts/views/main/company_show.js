@@ -3,12 +3,13 @@ GoodInvests.Views.CompanyShow = Backbone.View.extend ({
 
   render: function () {
     this.$el.html(this.template({ company: this.model }));
-    var view = new GoodInvests.Views.CommentsShow({ model: this.model })
+    var view = new GoodInvests.Views.CommentsShow({ model: this.model, session: this.session })
     this.$el.append( view.render().$el )
     return this;
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.session = options.session;
     this.listenTo( this.model, "sync", this.render);
     this.$el.addClass("company-article")
   },

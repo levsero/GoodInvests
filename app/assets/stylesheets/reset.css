@@ -59,4 +59,5 @@ input, textarea{
   margin: 5px 0 10px 0;
   background: white;
   border: 1px solid black;
+  padding: 5px;
 }

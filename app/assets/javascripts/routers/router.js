@@ -3,16 +3,23 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
     this.$rootEl = $("#container");
     this.$sidebar = $(".sidebar");
     this.$main = $(".main");
+    this.$navbar = $(".navbar")
 
     this.fetchCollection();
 
-    this.loggedIn();
+    this.session = new GoodInvests.Models.Session();
 
+    // load sidebar
     var view = new GoodInvests.Views.Sidebar({
       users: this.users, companies: this.companies
     });
-
     this.$sidebar.html(view.render().$el)
+
+    // load navbar
+    this.nav = new GoodInvests.Views.Navbar({
+      model: this.session
+    });
+    this.$navbar.html(this.nav.render().$el)
   },
 
   fetchCollection: function () {
@@ -24,54 +31,28 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
 
   routes: {
     "": "index",
+    "users/profile": "profileShow",
     "users/:id": "userShow",
     "companies/:id": "companyShow",
-    "profile": "profileShow",
   },
 
   index: function () {
-    console.log("index")
-    this.loggedIn();
   },
 
   userShow: function (id) {
     var user = this.users.getOrFetch(id)
-    var view = new GoodInvests.Views.UserShow({model: user})
+    var view = new GoodInvests.Views.UserShow({model: user, session: this.session})
     this._swapViews(view)
   },
 
   companyShow: function (id) {
     var company = this.companies.getOrFetch(id)
-    var view = new GoodInvests.Views.CompanyShow({model: company})
+    var view = new GoodInvests.Views.CompanyShow({model: company, session: this.session})
     this._swapViews(view)
   },
 
   profileShow: function () {
 
-  },
-
-  loggedIn: function () {
-    $.ajax({
-      url: "/api/logged_in",
-      type: "get",
-      success: function (data) {
-        if (data){
-          this.logOut()
-        } else {
-          this.login()
-        }
-      }.bind(this)
-    });
-  },
-
-  login: function () {
-    var view = new GoodInvests.Views.Login()
-    this.$rootEl.find(".nav-list").html(view.render().$el)
-  },
-
-  logOut: function () {
-    var view = new GoodInvests.Views.SignOut()
-    this.$rootEl.find(".nav-list").html(view.render().$el)
   },
 
   _swapViews: function (view) {

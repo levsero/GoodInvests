@@ -1,4 +1,4 @@
-.profile {
+.main .profile {
   display: block;
   background: #eeeeee;
   width: 300px;
@@ -33,7 +33,7 @@
 }
 
 .profile input {
-  width: 100%;
+  width: 90%%;
 }
 
 .nav-list {

@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out!
+    render json: {logged_out: "success"}
   end
 
   private
