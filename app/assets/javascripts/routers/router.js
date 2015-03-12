@@ -6,6 +6,8 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
 
     this.fetchCollection();
 
+    this.loggedIn();
+
     var view = new GoodInvests.Views.Sidebar({
       users: this.users, companies: this.companies
     });
@@ -25,15 +27,11 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
     "users/:id": "userShow",
     "companies/:id": "companyShow",
     "profile": "profileShow",
-    "login": "login"
-  },
-
-  login: function () {
-    var view = new GoodInvests.Views.Login()
-    this.$rootEl.find(".nav-list").append(view.render().$el)
   },
 
   index: function () {
+    console.log("index")
+    this.loggedIn();
   },
 
   userShow: function (id) {
@@ -52,6 +50,30 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
 
   },
 
+  loggedIn: function () {
+    $.ajax({
+      url: "/api/logged_in",
+      type: "get",
+      success: function (data) {
+        if (data){
+          this.logOut()
+        } else {
+          this.login()
+        }
+      }.bind(this)
+    });
+  },
+
+  login: function () {
+    var view = new GoodInvests.Views.Login()
+    this.$rootEl.find(".nav-list").html(view.render().$el)
+  },
+
+  logOut: function () {
+    var view = new GoodInvests.Views.SignOut()
+    this.$rootEl.find(".nav-list").html(view.render().$el)
+  },
+
   _swapViews: function (view) {
     if (this.current_view) {
       this.current_view.remove()
@@ -59,4 +81,5 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
     this.current_view = view;
     this.$main.html(view.render().$el)
   }
+
 })

@@ -8,5 +8,8 @@ Rails.application.routes.draw do
     resources :companies, only: [:index, :show]
     resources :users
     resources :comments, only: [:create, :destroy, :update]
+    resource :session, only: [:create, :destroy, :new]
+    
+    get 'logged_in', :to => 'users#logged_in'
   end
 end

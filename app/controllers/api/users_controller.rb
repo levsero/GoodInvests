@@ -20,6 +20,14 @@ module Api
       end
     end
 
+    def logged_in
+      if signed_in?
+        render json: true
+      else
+        render json: false
+      end
+    end
+
     private
 
     def user_params
