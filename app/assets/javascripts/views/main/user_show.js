@@ -1,9 +1,11 @@
 GoodInvests.Views.UserShow = Backbone.View.extend ({
   template:JST["main_content/user_show"],
-  listTemplate:JST["sidebar/companies_list"],
 
   render: function () {
-    this.$el.html(this.template({ user: this.model, portfolio: this.listTemplate }));
+    var listView = new GoodInvests.Views.CompaniesIndex({collection: this.model.companies()});
+    var list = listView.render().$el.html()
+
+    this.$el.html(this.template({ user: this.model, portfolio: list }));
     var view = new GoodInvests.Views.CommentsShow({ model: this.model, session: this.session })
     this.$el.append( view.render().$el )
     return this;

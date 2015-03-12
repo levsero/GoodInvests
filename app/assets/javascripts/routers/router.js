@@ -41,8 +41,7 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
   },
 
   listsShow: function () {
-    // var view = new GoodInvests.Views.ListsShow({model: user, session: this.session});
-    // this._swapViews(view);
+
   },
 
   userShow: function (id) {
