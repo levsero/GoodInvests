@@ -31,9 +31,9 @@ File.foreach(Rails.root.to_s + "/db/companies/companies.txt") do |line|
 end
 
 User.first.authored_comments.create({title: "nah, yeh",
-  body: "looks like a solid portfolio you have over there", commentable_id: 2,
+  body: "looks like a solid portfolio you have over there", commentable_id: User.last,
   commentable_type: "User"})
 
 User.second.authored_comments.create({title: "fair'd inkum",
-  body: "no doubt he's the real mccoy", commentable_id: 1,
+  body: "no doubt he's the real mccoy", commentable_id: User.first,
   commentable_type: "User"})

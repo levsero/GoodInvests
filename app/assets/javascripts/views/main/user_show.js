@@ -2,14 +2,16 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
   template:JST["main_content/user_show"],
 
   render: function () {
+
+
+    this.$el.html(this.template({ user: this.model}));
+
     var listView = new GoodInvests.Views.CompaniesIndex({collection: this.model.companies()});
     var list = listView.render().$el.html()
+    this.$el.find(".portfolio").append(commentsView.render().$el)
 
     var commentsView = new GoodInvests.Views.CommentsShow({ model: this.model, session: this.session })
-    var comments = commentsView.render().$el.html()
-
-    this.$el.html(this.template({ user: this.model, portfolio: list, comments: comments  }));
-
+    this.$el.find("ul").append(commentsView.render().$el)
     return this;
   },
 
@@ -22,7 +24,7 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
   events: {
     "dblclick .profile li.edit": "editField",
     "blur .edit input": "saveProfile",
-    "submit form": "savePicture",
+    "submit form.img": "savePicture",
     "change #input-picture-file": "changePicture"
   },
 

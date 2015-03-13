@@ -27,7 +27,7 @@
 
     <% if ( user.escape("current_user") ) { %>
       <li>
-        <form>
+        <form id="img">
           <strong>Upload new Picture</strong>
           <input id="input-picture-file" type="file" name="picture">
           <button id="update-pic">Save</button>
@@ -37,10 +37,12 @@
 
     <% } %>
 
-  <li>
+  <li class="portfolio">
     <strong>Portfolio</strong>
     <%= portfolio %>
   </li>
+
+
 </ul>
 </content>
 <div class="picture-div">
