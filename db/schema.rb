@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312182437) do
+ActiveRecord::Schema.define(version: 20150313162403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,16 +48,28 @@ ActiveRecord::Schema.define(version: 20150312182437) do
 
   add_index "follows", ["followable_id", "follower_id"], name: "index_follows_on_followable_id_and_follower_id", using: :btree
 
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string   "email",           null: false
-    t.string   "first_name",      null: false
-    t.string   "last_name",       null: false
-    t.string   "password_digest", null: false
+    t.string   "email",                null: false
+    t.string   "first_name",           null: false
+    t.string   "last_name",            null: false
+    t.string   "password_digest",      null: false
     t.string   "job_title"
     t.text     "description"
-    t.string   "session_token",   null: false
+    t.string   "session_token",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   add_index "users", ["email", "session_token"], name: "index_users_on_email_and_session_token", unique: true, using: :btree

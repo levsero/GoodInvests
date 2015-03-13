@@ -1,4 +1,8 @@
-.main .profile {
+.user-article content{
+  float:left;
+}
+
+.user-article .profile {
   display: block;
   background: #eeeeee;
   width: 300px;
@@ -7,7 +11,13 @@
   box-shadow: 1px 1px 1px #aaaaaa;
 }
 
-.main strong {
+.user-article li {
+  border-bottom: 1px solid #999999;
+  border-radius: 0;
+  padding: 10px 5px 5px;
+}
+
+.user-article strong {
   font-weight: bold;
 }
 
@@ -34,6 +44,10 @@
 
 .profile input {
   width: 90%;
+}
+
+input.img-input {
+  width: 200px;
 }
 
 .nav-list {
@@ -110,4 +124,44 @@ form>button {
 form>label {
   display: block;
   width: 150px;
+}
+
+.picture-div {
+  float: left;
+}
+
+.image {
+  height: 150px;
+  width: 150px;
+}
+
+.user-article li.list-item {
+  background: #ffffff;
+  border-bottom: 0;
+  border-right: 1px solid #999999;
+  border-left: 1px solid #999999;
+  border-bottom: 1px solid #dddddd;
+}
+
+.user-article li.list-item:hover {
+  background: #dddddd;
+}
+
+.user-article li a{
+  display:block;
+  width: 100%;
+  height: 100%;
+}
+
+.user-article ul {
+  border-bottom: 1px solid #999999;
+}
+
+.company-article .profile {
+  width: 100%
+}
+
+.company-article {
+  background: #eeeeee;
+  padding: 10px;
 }

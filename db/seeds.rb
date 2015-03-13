@@ -13,6 +13,8 @@ User.create!({email: "testing@gmail.com", first_name: "lev", last_name: "ser",
 User.create!({email: "example@gmail.com", first_name: "Warren", last_name: "Buffet",
   job_title: "Chief Executive Officer", description: "A proven record in buying solid shares",
   password: "password"})
+User.create!({email: "testing@gmail.com", first_name: "google", last_name: "fox",
+  password: "password"})
 
 File.foreach(Rails.root.to_s + "/db/companies/companies.txt") do |line|
   line = line.chomp
@@ -33,5 +35,5 @@ User.first.authored_comments.create({title: "nah, yeh",
   commentable_type: "User"})
 
 User.second.authored_comments.create({title: "fair'd inkum",
-  body: "no doubt he's the real maccoy", commentable_id: 1,
+  body: "no doubt he's the real mccoy", commentable_id: 1,
   commentable_type: "User"})

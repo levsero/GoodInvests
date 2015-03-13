@@ -4,6 +4,9 @@ class Company < ActiveRecord::Base
 
   has_many :comments, as: :commentable
 
+  include PgSearch
+  multisearchable :against => [:ticker, :name]
+
   def price
     read_attribute(:price).to_f
   end

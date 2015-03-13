@@ -8,6 +8,7 @@ GoodInvests.Views.CompaniesIndexItem = Backbone.View.extend ({
 
   initialize: function () {
     this.listenTo( this.model, "change sync", this.render);
+    this.$el.addClass("list-item")
   },
 
   events: {
@@ -31,7 +32,6 @@ GoodInvests.Views.CompaniesIndexItem = Backbone.View.extend ({
   },
 
   unfollowCompany: function (event) {
-    console.log("remvoe")
     event.preventDefault();
     var followable_id = $(event.currentTarget).attr("data-id");
     var id = GoodInvests.session.current_user.id

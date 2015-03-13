@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
     delete "follows/:id/:followable_id/:followable_type", to: "follows#destroy"
     get 'logged_in', :to => 'users#logged_in'
+    get "/search", to: "searches#search"
   end
 end

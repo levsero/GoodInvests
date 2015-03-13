@@ -1,16 +1,41 @@
 <content class="profile">
+<% if ( user.escape("current_user") ) { %>
+  <header class="header">
+    Profile
+  </header>
+<% } %>
+
 <ul>
   <li>
-    <strong class="header"> <%= user.escape("first_name") + " " + user.escape("last_name") %></strong>
-  </li>
-  
-  <li>
-    <strong>Job Title:</strong><span data-type="job_title" class=".editable"><%= user.escape("job_title") %></span>
+    <strong> <%= user.escape("first_name") + " " + user.escape("last_name") %></strong>
   </li>
 
-  <li>
-    <strong>Description:</strong><span data-type="description" class=".editable"><%= user.escape("description") %></span>
+  <% if ( user.escape("current_user") ) { %>
+    <li>
+      <strong>Email: </strong><%= user.escape("email") %>
+    </li>
+  <% } %>
+
+  <li class="edit">
+    <strong>Job Title:</strong><span data-type="job_title" class="editable"><%= user.escape("job_title") %></span>
   </li>
+
+  <li class="edit">
+    <strong>Description:</strong><span data-type="description" class="editable data"><%= user.escape("description") %></span>
+  </li>
+
+
+    <% if ( user.escape("current_user") ) { %>
+      <li>
+        <form>
+          <strong>Upload new Picture</strong>
+          <input id="input-picture-file" type="file" name="picture">
+          <button id="update-pic">Save</button>
+        </form>
+      </li>
+
+
+    <% } %>
 
   <li>
     <strong>Portfolio</strong>
@@ -18,3 +43,7 @@
   </li>
 </ul>
 </content>
+<div class="picture-div">
+  <img class="image" src="<%= user.escape("picture_url") %>" alt="profile" />
+
+</div>
