@@ -3,24 +3,20 @@ GoodInvests.Views.CompaniesIndex = Backbone.View.extend ({
 
   render: function () {
     this.$el.html(this.template({ companies: this.collection }));
+    this.collection.each( function (item) {
+      var view = new GoodInvests.Views.CompaniesIndexItem({
+        collection: this.collection, model: item
+      })
+      this.$el.append(view.render().$el)
+    }.bind(this))
     return this;
   },
 
   initialize: function () {
-    this.listenTo( this.collection, "sync", this.render);
-    this.listenTo( GoodInvests.session, "sync", this.render);
+    this.listenTo( this.collection, "sync change", this.render);
+    this.listenTo(GoodInvests.session, "loggedIn", this.render);
+    this.listenTo(GoodInvests.session, "signedOut", this.render);
     this.$el.addClass("company-list")
-  },
-
-  events: {
-    "click button.follow": "followCompany",
-    "click button.unfollow": "followCompany",
-  },
-
-  followCompany: function (event) {
-    event.preventDefault();
-    $(event.currentTarget).parent().attr("data-id");
-
   },
 
   tagName: "ul"

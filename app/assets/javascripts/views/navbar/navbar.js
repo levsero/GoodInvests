@@ -11,7 +11,7 @@ GoodInvests.Views.Navbar = Backbone.CompositeView.extend ({
   initialize: function (options) {
     this.$el.addClass("group");
     this.listenTo(this.model, "loggedIn", this.render);
-    this.listenTo(this.model, "signedOut", this.render)
+    this.listenTo(this.model, "signedOut", this.render);
   },
 
   isLoggedIn: function () {

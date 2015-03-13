@@ -1,0 +1,6 @@
+<a href="#companies/<%=item.id%>"><%= item.escape("ticker") + ": " + item.escape("name") %></a>
+<% if (item.get("following") == true) { %>
+  <button class="unfollow" data-id="<%= item.id %>">Remove</button>
+<% } else if ( GoodInvests.session.isLoggedIn  && item.get("following") != "none") { %>
+  <button class="follow" data-id="<%= item.id %>">Add</button>
+<% } %>

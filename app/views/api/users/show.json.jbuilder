@@ -4,6 +4,7 @@ json.partial! 'api/comments/comments', comments: @user.comments
 
 json.portfolio @user.followed_companies do |company|
   json.(company, :name, :ticker, :id)
+  json.following "none"
 end
 
 if :signed_in?
