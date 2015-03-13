@@ -7,11 +7,10 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
     this.$el.html(this.template({ user: this.model}));
 
     var listView = new GoodInvests.Views.CompaniesIndex({collection: this.model.companies()});
-    var list = listView.render().$el.html()
-    this.$el.find(".portfolio").append(commentsView.render().$el)
+    this.$el.find(".portfolio").append(listView.render().$el)
 
     var commentsView = new GoodInvests.Views.CommentsShow({ model: this.model, session: this.session })
-    this.$el.find("ul").append(commentsView.render().$el)
+    this.$el.find("#profile-items").append(commentsView.render().$el)
     return this;
   },
 

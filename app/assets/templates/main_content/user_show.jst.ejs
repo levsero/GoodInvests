@@ -5,7 +5,7 @@
   </header>
 <% } %>
 
-<ul>
+<ul id="profile-items">
   <li>
     <strong> <%= user.escape("first_name") + " " + user.escape("last_name") %></strong>
   </li>
@@ -24,7 +24,6 @@
     <strong>Description:</strong><span data-type="description" class="editable data"><%= user.escape("description") %></span>
   </li>
 
-
     <% if ( user.escape("current_user") ) { %>
       <li>
         <form id="img">
@@ -33,15 +32,11 @@
           <button id="update-pic">Save</button>
         </form>
       </li>
-
-
     <% } %>
 
   <li class="portfolio">
     <strong>Portfolio</strong>
-    <%= portfolio %>
   </li>
-
 
 </ul>
 </content>

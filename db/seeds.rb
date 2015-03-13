@@ -9,11 +9,13 @@ User.delete_all
 Company.delete_all
 
 User.create!({email: "testing@gmail.com", first_name: "lev", last_name: "ser",
+  job_title: "Senior Developer", description: "Whatever",
   password: "password"})
 User.create!({email: "example@gmail.com", first_name: "Warren", last_name: "Buffet",
   job_title: "Chief Executive Officer", description: "A proven record in buying solid shares",
   password: "password"})
-User.create!({email: "testing@gmail.com", first_name: "google", last_name: "fox",
+User.create!({email: "whatever@gmail.com", first_name: "google", last_name: "fox",
+  job_title: "Senior Admin", description: "Code ninja",
   password: "password"})
 
 File.foreach(Rails.root.to_s + "/db/companies/companies.txt") do |line|
@@ -31,9 +33,9 @@ File.foreach(Rails.root.to_s + "/db/companies/companies.txt") do |line|
 end
 
 User.first.authored_comments.create({title: "nah, yeh",
-  body: "looks like a solid portfolio you have over there", commentable_id: User.last,
+  body: "looks like a solid portfolio you have over there", commentable_id: User.last.id,
   commentable_type: "User"})
 
 User.second.authored_comments.create({title: "fair'd inkum",
-  body: "no doubt he's the real mccoy", commentable_id: User.first,
+  body: "no doubt he's the real mccoy", commentable_id: User.first.id,
   commentable_type: "User"})
