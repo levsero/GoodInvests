@@ -41,16 +41,22 @@ strong:second-child {
 
 ul.user-list ul.company-list, ul.user-list ul.search-list {
   padding: 10px 15px 0;
-
 }
 
-.user-list>li>a, .company-list>li>a, .search-list>li>a{
+.sidebar li>a.company, .sidebar li>a.user{
   display: block;
   text-align: center;
   margin: 5px 0;
   padding: 5px 0;
-  background: #eeeeee;
   border-bottom: 1px solid #aaaaaa;
+}
+
+.sidebar li>a.company {
+  background: #ACE5EE;
+}
+
+.sidebar li>a.user {
+  background: #98FB98;
 }
 
 .user-list>li>a:hover, .company-list>li:hover>a, .click-headers>strong:hover, .company-list>li>a:hover {

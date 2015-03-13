@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 6, allow_nil: true}
   validate :email_validation
 
-  has_attached_file :picture, :styles => { :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.jpg"
+  has_attached_file :picture, :styles => { :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/:style/missing2.jpg"
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 
   include PgSearch
