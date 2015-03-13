@@ -4,6 +4,12 @@ GoodInvests.Views.Sidebar = Backbone.CompositeView.extend ({
   render: function () {
     this.$el.html(this.template());
     var view = new GoodInvests.Views.UsersIndex({ collection: this.users })
+
+    if (this.current_view) {
+
+      this.removeSubview(this.current_view)
+    }
+
     this.current_view = view;
     this.addSubview("#display-list", view)
     return this;
@@ -45,7 +51,8 @@ GoodInvests.Views.Sidebar = Backbone.CompositeView.extend ({
   },
 
   showSearch: function (event) {
-
+    console.log("search")
+    
     this.removeSubview("#display-list", this.current_view)
     var view = new GoodInvests.Views.CollectionList({ collection: this.searchResults })
     this.current_view = view;

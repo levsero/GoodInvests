@@ -1,7 +1,7 @@
 GoodInvests.Views.CollectionList = Backbone.View.extend ({
 
   render: function () {
-    this.$el.html();
+    this.$el.empty();
     this.collection.each( function (item) {
       var view = new GoodInvests.Views.CompaniesIndexItem({
         collection: this.collection, model: item
