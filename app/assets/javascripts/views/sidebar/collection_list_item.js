@@ -1,4 +1,4 @@
-GoodInvests.Views.CompaniesIndexItem = Backbone.View.extend ({
+GoodInvests.Views.CollectionListItem = Backbone.View.extend ({
   template:JST["sidebar/index_list_item"],
 
   render: function () {

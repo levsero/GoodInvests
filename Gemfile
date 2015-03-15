@@ -20,7 +20,7 @@ gem 'rest-client', require: 'rest-client'
 
 gem "figaro"
 gem "paperclip", "~> 4.2"
-gem "aws-sdk"
+gem 'aws-sdk', '< 2.0'
 
 gem 'pg_search'
 gem 'kaminari'

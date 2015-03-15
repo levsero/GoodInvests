@@ -5,7 +5,7 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
     this.$main = $(".main");
     this.$navbar = $(".navbar")
 
-    this.fetchCollection();
+    this.fetchCollections();
 
     this.session = GoodInvests.session;
 
@@ -22,11 +22,19 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
     this.$navbar.html(this.nav.render().$el)
   },
 
-  fetchCollection: function () {
+  fetchCollections: function () {
     this.users = new GoodInvests.Collections.Users()
     this.companies = new GoodInvests.Collections.Companies()
-    this.users.fetch();
-    this.companies.fetch();
+    this.users.fetch({
+      data: {
+				page: 1
+			}
+    });
+    this.companies.fetch({
+      data: {
+				page: 1
+			}
+    });
   },
 
   routes: {

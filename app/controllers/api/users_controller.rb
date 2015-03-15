@@ -3,7 +3,10 @@ module Api
     before_action :require_signed_in!, only: [:update]
 
     def index
-      @users = User.all
+      page = User.page(params[:page])
+      @page_info = {num_pages: page.total_pages, current: params[:page].to_i,
+        num_items: page.total_count}
+      @users = page
     end
 
     def show
@@ -14,7 +17,7 @@ module Api
       @user = User.find(params[:id])
 
       if correct_user && @user.update(user_params)
-        render json: @user
+        render json: show
       else
         render json: @user.errors.full_messages, status: :unprocessable_entity
       end
@@ -33,7 +36,7 @@ module Api
 
     def user_params
       params.require(:user).permit(:email, :first_name, :last_name, :session_token,
-          :password, :job_title, :description)
+          :password, :job_title, :description, :picture)
     end
 
     def correct_user

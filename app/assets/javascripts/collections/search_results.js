@@ -2,6 +2,9 @@ GoodInvests.Collections.SearchResults = Backbone.Collection.extend({
   url: "api/search",
 
   parse: function (payload) {
+    this.pageInfo = payload.page;
+    delete payload.page;
+    
     return payload.results;
   },
 

@@ -62,3 +62,15 @@ ul.user-list ul.company-list, ul.user-list ul.search-list {
 .user-list>li>a:hover, .company-list>li:hover>a, .click-headers>strong:hover, .company-list>li>a:hover {
   background: #aaaaaa;
 }
+
+.prev-page {
+  float: left;
+}
+
+.next-page {
+  float: right;
+}
+
+.sidebar p {
+  text-align: center;
+}

@@ -14,6 +14,8 @@ GoodInvests.Collections.Users = Backbone.Collection.extend ({
   },
 
   parse: function (payload) {
+    this.pageInfo = payload.page;
+    delete payload.page;
     return payload["users"];
   },
 })

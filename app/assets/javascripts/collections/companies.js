@@ -13,6 +13,8 @@ GoodInvests.Collections.Companies = Backbone.Collection.extend ({
   },
 
   parse: function (payload) {
+    this.pageInfo = payload.page;
+    delete payload.page;
     return payload["companies"];
   },
 })

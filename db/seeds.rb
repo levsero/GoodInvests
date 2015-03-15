@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.delete_all
 Company.delete_all
+PgSearch::Document.delete_all
 
 User.create!({email: "testing@gmail.com", first_name: "lev", last_name: "ser",
   job_title: "Senior Developer", description: "Whatever",

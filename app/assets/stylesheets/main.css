@@ -161,3 +161,14 @@ form>label {
   background: #eeeeee;
   padding: 10px;
 }
+
+.comments {
+  background: #dddddd;
+  padding: 5px;
+  border-radius: 7px;
+}
+
+.comments li{
+  /*background: #ffffff;*/
+  border-radius: 7px;
+}

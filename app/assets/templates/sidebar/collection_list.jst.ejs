@@ -1,0 +1,13 @@
+<% if (!userShow && page) { %>
+  <p>
+    <%= page.num_items %> results
+  </p>
+<arrows class="group">
+<a class="prev-page" id="prev" href="javascript:void(0)">< prev</a>
+
+<a class="next-page" id="next" href="javascript:void(0)">next ></a>
+<arrows>
+  <p>
+    page <%= page.current %> of <%= page.num_pages %>
+  </p>
+<% } %>

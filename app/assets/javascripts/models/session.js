@@ -10,7 +10,7 @@ GoodInvests.Models.Session = Backbone.Model.extend ({
         if(!data){
           this.isLoggedIn = false;
         } else {
-          this.current_user.set(data.user)
+          this.current_user.set(data)
           this.isLoggedIn = true;
           this.trigger("loggedIn");
         }
@@ -25,7 +25,7 @@ GoodInvests.Models.Session = Backbone.Model.extend ({
     data: attrs,
     success: function (data) {
       $(".modal").removeClass("is-open");
-      this.current_user.set(data.user)
+      this.current_user.set(data)
       this.isLoggedIn = true;
       this.trigger("loggedIn");
       }.bind(this)

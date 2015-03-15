@@ -12,6 +12,12 @@ GoodInvests.Models.User = Backbone.Model.extend ({
     return payload;
   },
 
+  toJSON: function () {
+    return {
+      user: _.clone(this.attributes)
+    };
+  },
+
   comments: function () {
     if (!this._comments) {
       this._comments = new GoodInvests.Collections.Comments();

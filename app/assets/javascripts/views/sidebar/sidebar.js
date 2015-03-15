@@ -3,29 +3,26 @@ GoodInvests.Views.Sidebar = Backbone.CompositeView.extend ({
 
   render: function () {
     this.$el.html(this.template());
-    var view = new GoodInvests.Views.UsersIndex({ collection: this.users })
-
+    var view = new GoodInvests.Views.CollectionList({ collection: this.users })
     if (this.current_view) {
-
       this.removeSubview(this.current_view)
     }
-
     this.current_view = view;
     this.addSubview("#display-list", view)
     return this;
   },
 
   initialize: function (options) {
+    this.page = 1
     this.users = options.users;
     this.companies = options.companies;
+
     this.searchResults = new GoodInvests.Collections.SearchResults();
     this.listenTo( this.searchResults, "sync", this.showSearch)
   },
 
   events: {
     "change #query": "search",
-    "click .next-page": "nextPage",
-    "click .prev-page": "prevPage",
     "click #show-users": "showUsers",
     "click #show-companies": "showCompanies"
   },
@@ -34,29 +31,18 @@ GoodInvests.Views.Sidebar = Backbone.CompositeView.extend ({
     if (this.current_view.$el.hasClass("user-list")) {
       return;
     }
-    this.removeSubview("#display-list", this.current_view)
-    var view = new GoodInvests.Views.UsersIndex({ collection: this.users })
-    this.current_view = view;
-    this.addSubview("#display-list", view)
+    this.swap_views( this.users )
   },
 
   showCompanies: function (event) {
     if (this.current_view.$el.hasClass("company-list")) {
       return;
     }
-    this.removeSubview("#display-list", this.current_view)
-    var view = new GoodInvests.Views.CompaniesIndex({ collection: this.companies })
-    this.current_view = view;
-    this.addSubview("#display-list", view)
+    this.swap_views( this.companies )
   },
 
   showSearch: function (event) {
-    console.log("search")
-    
-    this.removeSubview("#display-list", this.current_view)
-    var view = new GoodInvests.Views.CollectionList({ collection: this.searchResults })
-    this.current_view = view;
-    this.addSubview("#display-list", view)
+    this.swap_views( this.searchResults )
   },
 
   search: function (event) {
@@ -66,10 +52,17 @@ GoodInvests.Views.Sidebar = Backbone.CompositeView.extend ({
     this.$("#query").val("")
     this.searchResults.fetch({
       data: {
-        query: query //,
-        // page: 1
+        query: query,
+        page: 1
       }
     });
+  },
+
+  swap_views: function (collection) {
+    this.removeSubview("#display-list", this.current_view)
+    var view = new GoodInvests.Views.CollectionList({ collection: collection })
+    this.current_view = view;
+    this.addSubview("#display-list", view)
   },
 
   tagName: "article"

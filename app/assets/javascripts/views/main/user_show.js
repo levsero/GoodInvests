@@ -1,29 +1,31 @@
 GoodInvests.Views.UserShow = Backbone.View.extend ({
   template:JST["main_content/user_show"],
 
-  render: function () {
-
-
-    this.$el.html(this.template({ user: this.model}));
-
-    var listView = new GoodInvests.Views.CompaniesIndex({collection: this.model.companies()});
-    this.$el.find(".portfolio").append(listView.render().$el)
-
-    var commentsView = new GoodInvests.Views.CommentsShow({ model: this.model, session: this.session })
-    this.$el.find("#profile-items").append(commentsView.render().$el)
-    return this;
-  },
-
   initialize: function (options) {
     this.session = options.session
     this.listenTo( this.model, "sync", this.render);
     this.$el.addClass("user-article");
   },
 
+  render: function () {
+    this.$el.html(this.template({ user: this.model}));
+
+    var portfolio = new GoodInvests.Views.CollectionList({
+      model: this.model,
+      collection: this.model.companies()}
+      );
+    this.$el.find(".portfolio").append(portfolio.render().$el);
+
+    var commentsView = new GoodInvests.Views.CommentsShow({ model: this.model, session: this.session })
+    this.$el.find("#profile-items").append(commentsView.render().$el);
+
+    return this;
+  },
+
   events: {
     "dblclick .profile li.edit": "editField",
     "blur .edit input": "saveProfile",
-    "submit form.img": "savePicture",
+    "submit form#img": "savePicture",
     "change #input-picture-file": "changePicture"
   },
 
@@ -41,6 +43,8 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
   },
 
   saveProfile: function (event) {
+    event.preventDefault();
+    console.log("save")
     var type = $(event.currentTarget).parent().attr("data-type")
     var value = $(event.currentTarget).val();
     var attrs = {};
@@ -50,12 +54,9 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
 
   changePicture: function (event) {
     var file = event.currentTarget.files[0];
-
     var fileReader = new FileReader();
-    console.log("loading")
 
     fileReader.onloadend = function () {
-      console.log("loaded")
       this.model.set("picture", fileReader.result);
       // this.previewPic(fileReader.result);
     }.bind(this);
@@ -67,7 +68,6 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
     event.preventDefault();
 
     var data = $(event.currentTarget).serializeJSON
-    console.log("save")
     this.model.save(data)
   },
 

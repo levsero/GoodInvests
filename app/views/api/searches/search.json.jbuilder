@@ -11,3 +11,4 @@ json.results do
     end
   end
 end
+json.page @page_info

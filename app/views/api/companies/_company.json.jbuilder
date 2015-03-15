@@ -1,4 +1,4 @@
-json.extract! company, :name, :price, :ticker
+json.extract! company, :name, :price, :ticker, :id
 
 # json.partial! 'api/comments/comments', comments: company.comments
 json.following (@user && @user.followed_companies.include?(company)) ? true : false

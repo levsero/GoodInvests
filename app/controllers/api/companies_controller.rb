@@ -2,7 +2,12 @@ module Api
   class CompaniesController < ApplicationController
     def index
       @user = current_user
-      @companies = Company.all
+
+      page = Company.page(params[:page])
+      @page_info = {num_pages: page.total_pages, current: params[:page].to_i,
+        num_items: page.total_count}
+
+      @companies = page
     end
 
     def show
