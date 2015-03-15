@@ -5,6 +5,7 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
     this.session = options.session
     this.listenTo( this.model, "sync", this.render);
     this.$el.addClass("user-article");
+    this.$el.addClass("group");
   },
 
   render: function () {

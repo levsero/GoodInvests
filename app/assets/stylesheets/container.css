@@ -3,16 +3,31 @@
   float: right;
   width: 600px;
   padding: 20px;
-  background: #cccccc;
+  background: #fff;
 }
+
+/*body {
+  background: #ccc;
+}*/
 
 .container {
   width: 1000px;
   margin: auto;
+  background: #eee;
+  padding: 5px 20px;
 }
 
 .navbar {
   display: block;
-  background: #888888;
+  background: red;
+  color: white;
   margin: 10px 0;
+}
+
+.sidebar {
+  display: block;
+  float: left;
+  width: 300px;
+  padding: 10px;
+  background: #fff;
 }

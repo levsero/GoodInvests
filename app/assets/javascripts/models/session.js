@@ -1,7 +1,7 @@
 GoodInvests.Models.Session = Backbone.Model.extend ({
   initialize: function () {
     this.isLoggedIn = false;
-    this.current_user = new GoodInvests.Models.User()
+    this.current_user = new GoodInvests.Models.User();
 
     $.ajax({
       url: "/api/logged_in",
@@ -19,6 +19,7 @@ GoodInvests.Models.Session = Backbone.Model.extend ({
   },
 
   login: function (attrs) {
+    console.log(attrs)
     $.ajax({
     url: "/api/session",
     type: "post",
@@ -42,5 +43,9 @@ GoodInvests.Models.Session = Backbone.Model.extend ({
         this.trigger("signedOut");
       }.bind(this)
     });
+  },
+
+  newUser: function () {
+    this.trigger("newUser");
   }
 })

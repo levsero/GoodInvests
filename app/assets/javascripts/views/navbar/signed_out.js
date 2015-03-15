@@ -17,7 +17,7 @@ GoodInvests.Views.SignedOut = Backbone.View.extend ({
   },
 
   signOut: function (event) {
-    this.model.signOut()
+    GoodInvests.session.signOut()
   },
 
   tagName: "button"

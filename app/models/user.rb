@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :email, :session_token, :password_digest, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
   validate :email_validation
+  validates :email, uniqueness: true
 
   has_attached_file :picture, :styles => { :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/:style/missing2.jpg"
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/

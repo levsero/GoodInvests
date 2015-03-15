@@ -16,9 +16,7 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
     this.$sidebar.html(view.render().$el)
 
     // load navbar
-    this.nav = new GoodInvests.Views.Navbar({
-      model: this.session
-    });
+    this.nav = new GoodInvests.Views.Navbar();
     this.$navbar.html(this.nav.render().$el)
   },
 

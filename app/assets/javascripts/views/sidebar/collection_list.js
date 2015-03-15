@@ -5,6 +5,7 @@ GoodInvests.Views.CollectionList = Backbone.View.extend ({
     this.pageInfo = this.collection.pageInfo;
     this.listenTo( this.collection, "sync change", this.render);
     this.listenTo(GoodInvests.session, "loggedIn", this.render);
+    this.listenTo(GoodInvests.session, "newUser", this.refetch);
     this.listenTo(GoodInvests.session, "signedOut", this.render);
     this.$el.addClass("search-list")
   },
@@ -18,6 +19,10 @@ GoodInvests.Views.CollectionList = Backbone.View.extend ({
       this.$el.append(view.render().$el)
     }.bind(this))
     return this;
+  },
+
+  refetch: function () {
+    this.collection.fetch();
   },
 
   events: {
@@ -42,7 +47,7 @@ GoodInvests.Views.CollectionList = Backbone.View.extend ({
 
   prevPage: function (event) {
     this.pageInfo = this.collection.pageInfo;
-  
+
     if (this.pageInfo.current === 1 ) {
       return;
     }

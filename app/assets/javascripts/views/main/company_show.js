@@ -11,7 +11,8 @@ GoodInvests.Views.CompanyShow = Backbone.View.extend ({
   initialize: function (options) {
     this.session = options.session;
     this.listenTo( this.model, "sync", this.render);
-    this.$el.addClass("company-article")
+    this.$el.addClass("company-article");
+    this.$el.addClass("group");
   },
 
   tagName: "article"

@@ -1,18 +1,21 @@
+article.user-article, article.main-article {
+  background: #eee;
+  padding: 20px;
+}
+
 .user-article content{
   float:left;
 }
 
 .user-article .profile {
   display: block;
-  background: #eeeeee;
-  width: 300px;
+  width: 350px;
   padding: 10px;
   line-height: 20px;
-  box-shadow: 1px 1px 1px #aaaaaa;
 }
 
 .user-article li {
-  border-bottom: 1px solid #999999;
+  border-bottom: 1px solid #fff;
   border-radius: 0;
   padding: 10px 5px 5px;
 }
@@ -46,7 +49,7 @@
   width: 90%;
 }
 
-input.img-input {
+#input-picture-file {
   width: 200px;
 }
 
@@ -116,7 +119,7 @@ input.img-input {
 form>button {
   background: white;
   border-radius: 8px;
-  border: 1px solid #888888;
+  border: 1px solid #fff;
   padding: 4px;
   font-size: 15px;
 }
