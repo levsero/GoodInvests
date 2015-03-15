@@ -28,7 +28,8 @@ GoodInvests.Views.RegisterForm = Backbone.View.extend ({
 
     user.save(attrs.user, {
       success: function () {
-        GoodInvests.session.login(attrs)
+        GoodInvests.session.login(attrs);
+        GoodInvests.session.newUser();
       }.bind(this),
 
       failure: function (data) {
