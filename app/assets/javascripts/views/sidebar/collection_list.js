@@ -35,29 +35,24 @@ GoodInvests.Views.CollectionList = Backbone.View.extend ({
     if (this.pageInfo.current === this.pageInfo.num_pages ) {
       return;
     }
+
     this.collection.fetch({
       data: {
         page: this.pageInfo.current + 1
-      },
-      success: function () {
-        this.pageInfo.current++;
-      }.bind(this)
+      }
     });
   },
 
   prevPage: function (event) {
     this.pageInfo = this.collection.pageInfo;
-
     if (this.pageInfo.current === 1 ) {
       return;
     }
+
     this.collection.fetch({
       data: {
-        page: this.pageInfo - 1
-      },
-      success: function () {
-        this.pageInfo.current--;
-      }.bind(this)
+        page: this.pageInfo.current - 1
+      }
     });
   },
 
