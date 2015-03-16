@@ -1,13 +1,15 @@
 module Api
   class SessionsController < ApplicationController
-      def create
+    def create
       @user = User.find_by_credentials(params[:user])
 
       if @user
         sign_in!(@user)
+        puts "CURRENT USER"
+        puts current_user
         render :current
       else
-        render json: "Invalid email/password combination"
+        render json: "Invalid email/password combination", status: :unprocessable_entity
       end
     end
 

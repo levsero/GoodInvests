@@ -24,12 +24,12 @@ GoodInvests.Views.RegisterForm = Backbone.View.extend ({
     // TODO refactor to remove parents
     var form = $(event.currentTarget).parent().parent()
     var attrs = form.serializeJSON();
-    user = new GoodInvests.Models.User();
+    var user = new GoodInvests.Models.User();
 
     user.save(attrs.user, {
       success: function () {
-        GoodInvests.session.login(attrs);
-        GoodInvests.session.newUser();
+        GoodInvests.session.login(attrs, GoodInvests.session.newUser.bind(GoodInvests.session) );
+
       }.bind(this),
 
       failure: function (data) {

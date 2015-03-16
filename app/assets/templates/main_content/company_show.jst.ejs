@@ -1,7 +1,19 @@
 <content class="profile">
+  <ul>
+    <li>
 Company: <%= company.escape("name")%>
-<br>
+</li>
+<li>
 Ticker: <%= company.escape("ticker")%>
-<br>
+</li>
+<li>
 Price: <%= company.escape("price")%>
+</li>
+</ul>
+
+<% if (GoodInvests.session.isLoggedIn && company.get("following") == true) { %>
+  <button class="unfollow" data-id="<%= company.id %>">Remove from Portfolio</button>
+<% } else if ( GoodInvests.session.isLoggedIn && company.get("following") != "none") { %>
+  <button class="follow" data-id="<%= company.id %>">Add to Portfolio</button>
+<% } %>
 </content>

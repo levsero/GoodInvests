@@ -45,10 +45,10 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
 
   saveProfile: function (event) {
     event.preventDefault();
-    console.log("save")
     var type = $(event.currentTarget).parent().attr("data-type")
     var value = $(event.currentTarget).val();
     var attrs = {};
+
     attrs[type] = value;
     this.model.save(attrs);
   },
@@ -71,6 +71,6 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
     var data = $(event.currentTarget).serializeJSON
     this.model.save(data)
   },
-
+  
   tagName: "article"
 })

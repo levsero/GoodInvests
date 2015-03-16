@@ -1,7 +1,10 @@
+<li><a href="#">GoodInvests</a></li>
+
 <% if ( user.isLoggedIn ) { %>
   <%  %>
   <li class="profile none"> <a href="#users/<%= user.current_user.id %>"> Profile</a></li>
 <% }%>
+
 <li id="signs" class="signs"></li>
 <li class="name">Welcome
 <% if ( user.isLoggedIn ) { %>

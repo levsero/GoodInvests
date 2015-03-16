@@ -4,6 +4,7 @@ GoodInvests.Views.CollectionList = Backbone.View.extend ({
   initialize: function () {
     this.pageInfo = this.collection.pageInfo;
     this.listenTo( this.collection, "sync change", this.render);
+    this.listenTo( this.collection, "add", this.add);
     this.listenTo(GoodInvests.session, "loggedIn", this.render);
     this.listenTo(GoodInvests.session, "newUser", this.refetch);
     this.listenTo(GoodInvests.session, "signedOut", this.render);
@@ -16,13 +17,32 @@ GoodInvests.Views.CollectionList = Backbone.View.extend ({
       var view = new GoodInvests.Views.CollectionListItem({
         collection: this.collection, model: item
       })
-      this.$el.append(view.render().$el)
+      this.$el.prepend(view.render().$el)
     }.bind(this))
     return this;
   },
 
   refetch: function () {
-    this.collection.fetch();
+    console.log("user added called")
+
+    if (this.collection instanceof GoodInvests.Collections.Users) {
+      console.log("user added refetch")
+      this.collection.fetch({
+        data: {
+          page: this.collection.pageInfo.num_pages
+        }
+      });
+    }
+  },
+
+  add: function () {
+    this.$el.html(this.template({userShow : this.model, page: this.collection.pageInfo }));
+    this.collection.each( function (item) {
+      var view = new GoodInvests.Views.CollectionListItem({
+        collection: this.collection, model: item
+      })
+      this.$el.prepend(view.render().$el)
+    }.bind(this))
   },
 
   events: {

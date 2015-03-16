@@ -11,6 +11,7 @@
 
 .search>input {
   text-align: left;
+  width: 90%;
 }
 
 .search {
@@ -43,17 +44,29 @@ ul.user-list ul.company-list, ul.user-list ul.search-list {
   border-bottom: 1px solid #aaaaaa;
 }
 
-.sidebar li>a.company {
+.sidebar li>a.company:hover {
   background: #ACE5EE;
 }
 
-.sidebar li>a.user {
+.sidebar li>a.company {
+  background: #00BFFF;
+}
+
+
+.sidebar li>a.user:hover {
+
   background: #98FB98;
 }
 
-.user-list>li>a:hover, .company-list>li:hover>a, .click-headers>strong:hover, .company-list>li>a:hover {
+.sidebar li>a.user {
+  background: #7FFF00;
+}
+
+.click-headers>strong:hover {
   background: #aaaaaa;
 }
+
+.company-list>li:hover>a,
 
 .prev-page {
   float: left;
@@ -65,4 +78,9 @@ ul.user-list ul.company-list, ul.user-list ul.search-list {
 
 .sidebar p {
   text-align: center;
+}
+
+.sidebar .following {
+  border-color: #FFD700;
+  box-shadow: 2px 2px 2px #FFD700;
 }

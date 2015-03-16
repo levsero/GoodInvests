@@ -14,10 +14,16 @@ article.user-article, article.main-article {
   line-height: 20px;
 }
 
-.user-article li {
+
+
+.user-article li, .company-article li {
   border-bottom: 1px solid #fff;
   border-radius: 0;
   padding: 10px 5px 5px;
+}
+
+.company-article li {
+  width: 250px;
 }
 
 .user-article strong {
@@ -53,69 +59,6 @@ article.user-article, article.main-article {
   width: 200px;
 }
 
-.nav-list {
-  diplay: block;
-  float: right;
-  width: 100px;
-}
-
-/*.nav-list form {
-  position: absolute;
-  background: grey;
-  opacity: .9;
-  margin-left: -20px;
-  padding:10px;
-}*/
-
-.modalDialog {
-  position: fixed;
-  font-family: Arial, Helvetica, sans-serif;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: 99999;
-  opacity:0;
-  -webkit-transition: opacity 400ms ease-in;
-  -moz-transition: opacity 400ms ease-in;
-  transition: opacity 400ms ease-in;
-  pointer-events: none;
-}
-
-.modalDialog:target {
-  opacity:1;
-  pointer-events: auto;
-}
-
-.modalDialog > div {
-  width: 200px;
-  position: relative;
-  margin: 10% auto;
-  padding: 5px 20px 13px 20px;
-  border-radius: 10px;
-  background: #cccccc;
-}
-
-.close {
-  background: #606061;
-  color: #FFFFFF;
-  line-height: 25px;
-  position: absolute;
-  right: -12px;
-  text-align: center;
-  top: -10px;
-  width: 24px;
-  text-decoration: none;
-  font-weight: bold;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  border-radius: 12px;
-  box-shadow: 1px 1px 3px #000;
-}
-
-.close:hover { background: #00d9ff; }
-
 form>button {
   background: white;
   border-radius: 8px;
@@ -139,21 +82,31 @@ form>label {
 }
 
 .user-article li.list-item {
-  background: #ffffff;
-  border-bottom: 0;
-  border-right: 1px solid #999999;
-  border-left: 1px solid #999999;
-  border-bottom: 1px solid #dddddd;
+  padding: 0px;
 }
 
-.user-article li.list-item:hover {
+.user-article li.list-item a{
+  padding: 8px 0 5px;
+  background: #ffffff;
+  border-bottom: 0;
+  /*border-right: 1px solid #999999;
+  border-left: 1px solid #999999;*/
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.user-article ul.search-list {
+  border: 1px solid #FFD700;
+}
+
+.user-article li.list-item a:hover {
   background: #dddddd;
 }
 
 .user-article li a{
   display:block;
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
 }
 
 .company-article .profile {
@@ -174,4 +127,88 @@ form>label {
 .comments li{
   /*background: #ffffff;*/
   border-radius: 7px;
+}
+
+.main button.follow, .main button.unfollow {
+  display: block;
+  background: white;
+  padding: 5px 10px;
+  border: 1px solid #ACE5EE;
+}
+.main button.follow {
+  border: 1px solid #FFD700;
+}
+
+.main button.follow:hover, .main button.unfollow:hover {
+  background: #ACE5EE;
+  /*color: white;*/
+}
+
+.main .image {
+  border: 2px solid #7FFF00;
+  border-radius: 20px;
+}
+
+
+/* INDEX page */
+.index {
+  text-align: center;
+}
+
+.index header h1 {
+  font-size: 24px;
+}
+
+.index h3 {
+  font-size: 16px;
+}
+
+.index h1, .index h3 {
+  font-weight: bold;
+}
+
+.index p {
+  padding: 10px;
+  font-size: 18px;
+}
+
+.index description {
+  line-height: 24px;
+  background: orange;
+}
+
+ul.most-followed, ul.most-commented {
+  border: 1px solid #00BFFF;;
+  width: 260px;
+  float: left;
+}
+
+.index li a {
+  display: block;
+  border-bottom: 1px solid #00BFFF;;
+  border-radius: 0;
+  padding: 10px 5px 5px;
+  width: 250px;
+  text-align: center;
+}
+
+li.header {
+  padding: 10px 5px 5px;
+  text-align: center;
+  background: #00BFFF;;
+  border-bottom: 1px solid #fff;
+
+}
+
+.index li a:hover {
+  background: #00BFFF;;
+}
+
+.index {
+  background: #eee;
+  padding: 20px;
+}
+
+ul.most-commented {
+  margin-left: 20px;
 }

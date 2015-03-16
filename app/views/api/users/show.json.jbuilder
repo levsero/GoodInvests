@@ -7,7 +7,7 @@ json.portfolio @user.followed_companies do |company|
   json.following "none"
 end
 
-if :signed_in?
+if signed_in?
   json.logged_in true
 end
 

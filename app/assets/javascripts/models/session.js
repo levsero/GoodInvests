@@ -18,8 +18,8 @@ GoodInvests.Models.Session = Backbone.Model.extend ({
     });
   },
 
-  login: function (attrs) {
-    console.log(attrs)
+  login: function (attrs, callback) {
+
     $.ajax({
     url: "/api/session",
     type: "post",
@@ -29,7 +29,12 @@ GoodInvests.Models.Session = Backbone.Model.extend ({
       this.current_user.set(data)
       this.isLoggedIn = true;
       this.trigger("loggedIn");
-      }.bind(this)
+      callback();
+    }.bind(this),
+    error: function (data) {
+        console.log("failure")
+        callback(data)
+      }
     });
   },
 

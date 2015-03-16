@@ -1,10 +1,15 @@
 <% if (item && item.type == "Company") {%>
   <a class="company" href="#companies/<%=item.id%>"><%= item.escape("ticker") + ": " + item.escape("name") %></a>
+
+  <% if (false) { %>
   <% if (GoodInvests.session.isLoggedIn  && item.get("following") == true) { %>
-    <button class="unfollow" data-id="<%= item.id %>">Remove</button>
+    <!-- <tick class="following"></tick> -->
+    <!-- <button class="unfollow" data-id="<%= item.id %>">Remove</button> -->
   <% } else if ( GoodInvests.session.isLoggedIn  && item.get("following") != "none") { %>
-    <button class="follow" data-id="<%= item.id %>">Add</button>
+    <!-- <button class="follow" data-id="<%= item.id %>">Add</button> -->
   <% } %>
+  <% } %>
+
 <%} else {%>
 
   <a class="user" href="#users/<%= item.id%>"><%= item.escape("first_name") + " " + item.escape("last_name") %></a>

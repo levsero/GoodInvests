@@ -13,6 +13,7 @@ module Api
       @user = User.new(user_params)
 
       if @user.save
+        # AuthMailer.signup_email(@user).deliver
         # sign_in!(@user)
         render :show
       else
@@ -46,7 +47,7 @@ module Api
     private
 
     def user_params
-      params.require(:user).permit(:email, :first_name, :last_name, :session_token,
+      params.require(:user).permit(:email, :first_name, :last_name,
           :password, :job_title, :description, :picture)
     end
 

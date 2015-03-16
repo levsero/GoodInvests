@@ -1,15 +1,14 @@
 GoodInvests.Views.SignedOut = Backbone.View.extend ({
-  template:JST["navbar/signed_out"],
+
+  initialize: function (options) {
+    this.$el.addClass("sign-out");
+    // this.name = options.name;
+  },
 
   render: function () {
     this.$el.html("Sign Out");
     this.$el.addClass("sign-out")
     return this;
-  },
-
-  initialize: function (options) {
-    this.$el.addClass("sign-out");
-    // this.name = options.name;
   },
 
   events: {

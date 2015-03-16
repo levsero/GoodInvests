@@ -68,8 +68,9 @@ class User < ActiveRecord::Base
   end
 
   def reset_session_token!
+    puts "resest session token"
     self.session_token = SecureRandom.base64
-    self.save
+    self.save!
     self.session_token
   end
 
@@ -81,6 +82,8 @@ class User < ActiveRecord::Base
   protected
 
   def ensure_session_token
+    puts "USERS SESSION TOKEN"
+    puts self.session_token
     self.session_token ||= SecureRandom.base64
   end
 

@@ -40,14 +40,11 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
     "users/profile": "profileShow",
     "users/:id": "userShow",
     "companies/:id": "companyShow",
-    "lists": "listsShow"
   },
 
   index: function () {
-  },
-
-  listsShow: function () {
-
+    var view = new GoodInvests.Views.Index({});
+    this._swapViews(view);
   },
 
   userShow: function (id) {
