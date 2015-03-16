@@ -84,3 +84,8 @@ ul.user-list ul.company-list, ul.user-list ul.search-list {
   border-color: #FFD700;
   box-shadow: 2px 2px 2px #FFD700;
 }
+
+li.list-nav {
+  padding: 5px;
+  line-height: 20px;
+}

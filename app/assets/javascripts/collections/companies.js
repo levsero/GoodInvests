@@ -19,13 +19,12 @@ GoodInvests.Collections.Companies = Backbone.Collection.extend ({
   },
 
   parse: function (payload) {
-    if (payload.comparator) {
-      this.comparator = payload.comparator
-      delete payload.comparator
-    }
-
     this.pageInfo = payload.page;
     delete payload.page;
     return payload["companies"];
   },
+
+  initialize: function (options) {
+    this.comparator = options ? options.comparator : "name"
+  }
 })

@@ -4,12 +4,14 @@ GoodInvests.Views.Index = Backbone.View.extend ({
   initialize: function (options) {
     this.$el.addClass("index group");
     // this.$el.addClass("group");
-    this.followedCompanies = new GoodInvests.Collections.Companies();
+    this.followedCompanies = new GoodInvests.Collections.Companies({comparator: "count"});
+    this.commentedCompanies = new GoodInvests.Collections.Companies({comparator: "count"});
     $.ajax({
       url: "/api/most_followed",
       type: "get",
       success: function (data) {
         this.followedCompanies.set(data.most_followed);
+        this.commentedCompanies.set(data.most_commented);
       }.bind(this)
     });
   },
@@ -18,6 +20,9 @@ GoodInvests.Views.Index = Backbone.View.extend ({
     this.$el.html(this.template());
     var view = new GoodInvests.Views.CollectionList({ collection: this.followedCompanies })
     this.$el.find("ul.most-followed").append(view.render().$el)
+
+    view = new GoodInvests.Views.CollectionList({ collection: this.commentedCompanies })
+    this.$el.find("ul.most-commented").append(view.render().$el)
     return this;
   },
 

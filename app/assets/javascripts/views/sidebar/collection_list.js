@@ -23,10 +23,7 @@ GoodInvests.Views.CollectionList = Backbone.View.extend ({
   },
 
   refetch: function () {
-    console.log("user added called")
-
     if (this.collection instanceof GoodInvests.Collections.Users) {
-      console.log("user added refetch")
       this.collection.fetch({
         data: {
           page: this.collection.pageInfo.num_pages

@@ -1,13 +1,15 @@
 <% if (!userShow && page) { %>
+  <li class="list-nav">
   <p>
-    <%= page.num_items %> results
+    <%= page.num_items %> total results
   </p>
-<arrows class="group">
-<a class="prev-page" id="prev" href="javascript:void(0)">< prev</a>
+  <arrows class="group">
+  <a class="prev-page" id="prev" href="javascript:void(0)">< prev</a>
 
-<a class="next-page" id="next" href="javascript:void(0)">next ></a>
-<arrows>
+  <a class="next-page" id="next" href="javascript:void(0)">next ></a>
+  <arrows>
   <p>
     page <%= page.current %> of <%= page.num_pages %>
   </p>
+</li>
 <% } %>

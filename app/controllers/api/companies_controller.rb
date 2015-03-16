@@ -22,12 +22,9 @@ module Api
       @companies = Company.joins("inner join follows ON companies.id = follows.followable_id AND follows.followable_type = 'Company'")
         .select("name, ticker, companies.id, count(*) as count").group("companies.id")
 
-      # render json: @companies
+      @commented = Company.joins("inner join comments ON companies.id = comments.commentable_id AND comments.commentable_type = 'Company'")
+        .select("name, ticker, companies.id, count(*) as count").group("companies.id")
 
-      # can join company table with comments table on commentable_id = id
-      # and commentable_type = "Company". group by company_id sort by count
-      # Company.select(:id).where(followable_type: "Company").
-      #   group(:followable_id).count(:id)
     end
   end
 end
