@@ -1,4 +1,5 @@
 <profile class="profile group">
+
   <ul class="company-info">
     <li>
       <strong class="name"> <%= company.escape("name")%> </strong>
@@ -9,19 +10,19 @@
     <li>
       Price: <%= company.escape("price")%>
     </li>
-</ul>
+  </ul>
 
-<div class="company-extras">
+  <div class="company-extras">
+    <div class="holder">
+        <message class="flash"> </message>
+    </div>
+    <strong>Rating:</strong>
+    <div class="raty"></div>
 
-  <strong>Rating:</strong>
-  <div class="raty"></div>
-
-
-  <% if (GoodInvests.session.isLoggedIn && company.get("following") == true) { %>
-    <button class="unfollow" data-id="<%= company.id %>">Remove from Portfolio</button>
-  <% } else if ( GoodInvests.session.isLoggedIn && company.get("following") != "none") { %>
-    <button class="follow" data-id="<%= company.id %>">Add to Portfolio</button>
-  <% } %>
-
-</div>
+    <% if (GoodInvests.session.isLoggedIn && company.get("following") == true) { %>
+      <button class="unfollow" data-id="<%= company.id %>">Remove from Portfolio</button>
+    <% } else if ( GoodInvests.session.isLoggedIn && company.get("following") != "none") { %>
+      <button class="follow" data-id="<%= company.id %>">Add to Portfolio</button>
+    <% } %>
+  </div>
 </profile>

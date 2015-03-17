@@ -46,8 +46,6 @@ GoodInvests.Views.CommentForm = Backbone.View.extend ({
         })
       }
     })
-
-
   },
 
   tagName: "form",

@@ -21,6 +21,8 @@ GoodInvests.Views.RegisterForm = Backbone.View.extend ({
 
   register: function (event) {
     event.preventDefault();
+    var that = this;
+
     // TODO refactor to remove parents
     var form = $(event.currentTarget).parent().parent()
     var attrs = form.serializeJSON();
@@ -29,11 +31,14 @@ GoodInvests.Views.RegisterForm = Backbone.View.extend ({
     user.save(attrs.user, {
       success: function () {
         GoodInvests.session.login(attrs, GoodInvests.session.newUser.bind(GoodInvests.session) );
-
       }.bind(this),
 
-      failure: function (data) {
-        console.log(data)
+      error: function (model, response, options) {
+        _.each(response.responseJSON, function(error) {
+          that.$el.find("#errors").append(error + "<br>" );
+          var errorHeight = $("#errors").height() + 20;
+          $(".modal-form").height(366 + errorHeight);
+        })
       }
     })
   },

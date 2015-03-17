@@ -21,12 +21,15 @@ GoodInvests.Views.LogInForm = Backbone.View.extend ({
 
   login: function (event) {
     event.preventDefault();
+    this.$el.find("#errors").empty();
 
     // TODO refactor to remove parents
     var form = $(event.currentTarget).parent().parent()
     var attrs = form.serializeJSON();
-    GoodInvests.session.login(attrs, function (message) {
-      this.$el.find("errors").append(message);
+    GoodInvests.session.login(attrs, _, function (response) {
+      this.$el.find("#errors").append(response.responseText);
+      var errorHeight = $("#errors").height() + 20;
+      $(".modal-form").height(166 + errorHeight)
     }.bind(this));
   },
 

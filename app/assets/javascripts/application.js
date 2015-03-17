@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui.min.js
 //= require jquery.serializejson
 //= require jquery.raty
 //= require underscore

@@ -341,3 +341,20 @@ div.comment-form-body label {
 errors {
   color: #f00;
 }
+
+message.flash {
+  background: #81C784;
+  position: absolute;
+  width: 150px;
+  top: -40px;
+  right: 0;
+  opacity: .7;
+}
+
+.holder {
+  position: relative;
+}
+
+profile.profile {
+  /*position: relative;*/
+}

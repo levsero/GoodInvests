@@ -32,7 +32,7 @@ GoodInvests.Views.CompanyShow = Backbone.View.extend ({
         data: { rating: { rateable_id: id, rateable_type: "Company", rating: score}},
         success: function () {
           that.model.set({ rating: score });
-          // this.model.trigger("sync");
+          that.message("Thank you for rating this company")
         }.bind(this)
       });
     }
@@ -58,17 +58,25 @@ GoodInvests.Views.CompanyShow = Backbone.View.extend ({
     var id = this.model.id;
 
     var callback = function(score) {
-        // custom route to update current users rating of model
-        $.ajax({
-          url: "api/ratings/",
-          type: "post",
-          data: { rateable_id: id, rateable_type: "Company", rating: score},
-          success: function () {
-            this.model.set({ rating: score });
-            // this.model.trigger("sync");
-          }.bind(this)
-        });
-      }
+      // custom route to update current users rating of model
+      $.ajax({
+        url: "api/ratings/",
+        type: "post",
+        data: { rateable_id: id, rateable_type: "Company", rating: score},
+        success: function () {
+          this.model.set({ rating: score });
+        }.bind(this)
+      });
+    }
+  },
+
+  message: function(message) {
+    this.$el.find(".flash").html(message);
+    var that = this;
+
+
+    setTimeout( function(){that.$el.find(".flash").hide("blind", 500)}, 3000);
+
   },
 
   followCompany: function (event) {

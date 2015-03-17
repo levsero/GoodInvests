@@ -164,6 +164,23 @@ img.nav-profile-image {
   overflow: hidden;
 }
 
+.modal-form input {
+  padding: 5px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.modal #errors{
+  display: block;
+  color: #FFEB3B;
+  /*text-shadow: 0px 0px 10px #000;*/
+  padding: 10px 0;
+}
+
+.modal .none {
+  display: none;
+}
+
 .close:hover { background: #00d9ff; }
 
 /*

@@ -27,7 +27,7 @@
   <li>
     <strong>Rating <div class="raty"></div></strong>
   </li>
-  
+
     <% if ( user.escape("current_user") ) { %>
       <li>
         <form id="img">
@@ -44,6 +44,5 @@
 
 </ul>
 </content>
-<div class="picture-div">
-  <img class="image" src="<%= user.escape("picture_url") %>" alt="profile" />
-</div>
+
+<img class="image" src="<%= user.escape("picture_url") %>" alt="profile" />

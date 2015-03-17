@@ -18,22 +18,22 @@ GoodInvests.Models.Session = Backbone.Model.extend ({
     });
   },
 
-  login: function (attrs, callback) {
-
+  login: function (attrs, callback, errorCallback) {
     $.ajax({
-    url: "/api/session",
-    type: "post",
-    data: attrs,
-    success: function (data) {
-      $(".modal").removeClass("is-open");
-      this.current_user.set(data)
-      this.isLoggedIn = true;
-      this.trigger("loggedIn");
-      callback();
-    }.bind(this),
-    error: function (data) {
-        console.log("failure")
-        callback(data)
+      url: "/api/session",
+      type: "post",
+      data: attrs,
+
+      success: function (data) {
+        $(".modal").removeClass("is-open");
+        this.current_user.set(data)
+        this.isLoggedIn = true;
+        this.trigger("loggedIn");
+        callback();
+      }.bind(this),
+
+      error: function (response) {
+        errorCallback(response)
       }
     });
   },

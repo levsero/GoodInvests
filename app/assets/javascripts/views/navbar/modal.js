@@ -21,23 +21,32 @@ GoodInvests.Views.Modal = Backbone.View.extend ({
 
   toggleModal: function (event) {
     event.preventDefault();
+    var errorHeight = $("#errors").height();
+    $("#errors").empty();
+
     $(".modal").toggleClass("is-open");
-    var height = $(".modal-form").height();
+    var height = $(".modal-form").height() - errorHeight;
     $(".modal-form").height(height);
   },
 
   logIn: function (event) {
     event.preventDefault();
     this.view.remove();
-    $(".modal-form").height(166);
+
     this.view = new GoodInvests.Views.LogInForm();
     this.$el.find("form").append(this.view.render().$el);
+
+    var errorHeight = $("#errors").height() + 20;
+    $(".modal-form").height(166 + errorHeight);
   },
 
   register: function (event) {
     event.preventDefault();
     this.view.remove();
-    $(".modal-form").height(336);
+
+    var errorHeight = $("#errors").height();
+    $(".modal-form").height(386 + errorHeight);
+
     this.view = new GoodInvests.Views.RegisterForm();
     this.$el.find("form").append(this.view.render().$el);
   },
