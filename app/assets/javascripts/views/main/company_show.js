@@ -54,7 +54,6 @@ GoodInvests.Views.CompanyShow = Backbone.View.extend ({
   },
 
   setStars: function (event) {
-    console.log("clicked")
     var that = this;
     var id = this.model.id;
 

@@ -1,16 +1,35 @@
 .navbar li{
-  display: block;
   float: left;
-  padding: 5px 10px;
+  padding: 10px 10px;
+  height: 100%;
 }
 .navbar li.signs{
-  display: block;
-  float: right;
-  padding: 5px 10px;
 }
 
-.navbar ul {
-  /*float: right;*/
+header.logo {
+  float: left;
+  padding: 10px 10px;
+  font-weight: bold;
+  height: 100%;
+  display: block;
+}
+
+img.nav-profile-image {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  display: inline;
+  position: absolute;
+  top: 2px;
+}
+
+.profile > a {
+  padding-left: 40px;
+}
+
+.navbar ul.nav-list {
+  float: right;
+  height: inherit;
 }
 
 .modal {
@@ -42,7 +61,7 @@
   margin-left: -220px;
   width: 360px;
   padding: 20px;
-  background: red;
+  background: #2196F3;
   z-index: 3;
   border-radius: 5px;
   border: 1px solid #000;
@@ -76,19 +95,21 @@
   cursor: pointer;
 }
 
-.nav-list {
-  diplay: block;
-  float: right;
-  width: 100px;
+.modal-form button {
+  background: #43A047;
+  padding: 5px 10px;
+  box-shadow: 2px 2px 0px #000;
+  margin-bottom: 2px;
+  margin-right: 2px;
 }
 
-/*.nav-list form {
-  position: absolute;
-  background: grey;
-  opacity: .9;
-  margin-left: -20px;
-  padding:10px;
-}*/
+.modal-form button:active {
+  box-shadow: 0px 0px 0px #000;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-top: 2px;
+  margin-left: 2px;
+}
 
 .modalDialog {
   position: fixed;
@@ -137,4 +158,17 @@
   box-shadow: 1px 1px 3px #000;
 }
 
+.modal-form {
+  transition-property: height;
+  transition-duration: .5s;
+  overflow: hidden;
+}
+
 .close:hover { background: #00d9ff; }
+
+/*
+#2196F3 - 500
+#1976D2 - 700
+#64b5f6 - 300
+#ff8a65 - deep orange 300
+*/

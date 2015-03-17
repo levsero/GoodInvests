@@ -1,24 +1,27 @@
-<content class="profile">
-  <ul>
+<profile class="profile group">
+  <ul class="company-info">
     <li>
-Company: <%= company.escape("name")%>
-</li>
-<li>
-Ticker: <%= company.escape("ticker")%>
-</li>
-<li>
-Price: <%= company.escape("price")%>
-</li>
-<li>
-<strong>Rating: <%= company.escape("rating") %></strong>
-<div class="raty"></div>
-</li>
-
+      <strong class="name"> <%= company.escape("name")%> </strong>
+    </li>
+    <li>
+      Ticker: <%= company.escape("ticker")%>
+    </li>
+    <li>
+      Price: <%= company.escape("price")%>
+    </li>
 </ul>
 
-<% if (GoodInvests.session.isLoggedIn && company.get("following") == true) { %>
-  <button class="unfollow" data-id="<%= company.id %>">Remove from Portfolio</button>
-<% } else if ( GoodInvests.session.isLoggedIn && company.get("following") != "none") { %>
-  <button class="follow" data-id="<%= company.id %>">Add to Portfolio</button>
-<% } %>
-</content>
+<div class="company-extras">
+
+  <strong>Rating:</strong>
+  <div class="raty"></div>
+
+
+  <% if (GoodInvests.session.isLoggedIn && company.get("following") == true) { %>
+    <button class="unfollow" data-id="<%= company.id %>">Remove from Portfolio</button>
+  <% } else if ( GoodInvests.session.isLoggedIn && company.get("following") != "none") { %>
+    <button class="follow" data-id="<%= company.id %>">Add to Portfolio</button>
+  <% } %>
+
+</div>
+</profile>

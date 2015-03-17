@@ -4,4 +4,5 @@ json.comments comments do |comment|
   json.title comment.title
   json.body comment.body
   json.created_at comment.created_at
+  json.picture image_url(comment.author.picture.url(:thumb))
 end

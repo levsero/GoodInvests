@@ -7,7 +7,7 @@
 
 <ul id="profile-items">
   <li>
-    <strong> <%= user.escape("first_name") + " " + user.escape("last_name") %></strong>
+    <strong class="name"> <%= user.escape("first_name") + " " + user.escape("last_name") %></strong>
   </li>
 
   <% if ( user.escape("current_user") ) { %>
@@ -26,10 +26,8 @@
 
   <li>
     <strong>Rating <div class="raty"></div></strong>
-
-
   </li>
-
+  
     <% if ( user.escape("current_user") ) { %>
       <li>
         <form id="img">
@@ -48,5 +46,4 @@
 </content>
 <div class="picture-div">
   <img class="image" src="<%= user.escape("picture_url") %>" alt="profile" />
-
 </div>

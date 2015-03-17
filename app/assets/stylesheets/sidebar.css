@@ -45,21 +45,20 @@ ul.user-list ul.company-list, ul.user-list ul.search-list {
 }
 
 .sidebar li>a.company:hover {
-  background: #ACE5EE;
+  background: #4CAF50;
 }
 
 .sidebar li>a.company {
-  background: #00BFFF;
+  background: #81C784;
 }
 
 
 .sidebar li>a.user:hover {
-
-  background: #98FB98;
+  background: #FF5722;
 }
 
 .sidebar li>a.user {
-  background: #7FFF00;
+  background: #ff8a65;
 }
 
 .click-headers>strong:hover {
@@ -93,3 +92,11 @@ li.list-nav {
 content.sidebar {
   min-height: 530px;
 }
+
+/*
+#2196F3 - 500
+#1976D2 - 700
+#64b5f6 - 300
+#ff8a65 - deep orange 300- user
+#81C784 - company 300 - green
+*/

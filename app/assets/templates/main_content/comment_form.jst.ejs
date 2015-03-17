@@ -1,7 +1,17 @@
+<img class="comment-thumb" src="<%= GoodInvests.session.current_user.get("picture_url")%>" alt="" />
+
+<div class="comment-form-body">
+<errors id="errors"></errors>
+
 <label for="comment_title">Title:</label>
-<input type="text" name="comment[title]" id="comment_title" value="">
-<br>
+<input type="text" name="comment[title]" id="comment_title" value=""
+placeholder="title is required">
+
+
 <label for="comment_body">Body:</label>
-<textarea name="comment[body]" id="comment_body"></textarea>
+<textarea name="comment[body]" id="comment_body" placeholder="required field, be positive, be constructive:)">
+</textarea>
 <br>
 <button>Comment</button>
+
+</div>

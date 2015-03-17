@@ -34,5 +34,5 @@ GoodInvests.Views.Navbar = Backbone.CompositeView.extend ({
     this.$el.find(".signs").html(view.render().$el)
   },
 
-  tagName: "ul"
+  tagName: "div"
 })

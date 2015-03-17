@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   validate :email_validation
   validates :email, uniqueness: true
 
-  has_attached_file :picture, :styles => { :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/:style/missing2.jpg"
+  has_attached_file :picture, :styles => { :medium => "200x200>", :thumb => "50x50>" }, :default_url => "/images/:style/missing2.jpg"
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 
   include PgSearch
@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
     read_attribute(:last_name).split().map(&:capitalize).join(" ")
   end
 
-  def rating    
+  def rating
     (ratings.pluck(:rating).inject(:+) / ratings.count).to_f.round(2)
   end
 

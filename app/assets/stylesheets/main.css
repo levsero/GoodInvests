@@ -14,20 +14,22 @@ article.user-article, article.main-article {
   line-height: 20px;
 }
 
-
-
 .user-article li, .company-article li {
   border-bottom: 1px solid #fff;
   border-radius: 0;
-  padding: 10px 5px 5px;
+  padding: 10px 5px 5px 10px;
 }
 
 .company-article li {
   width: 250px;
 }
 
-.user-article strong {
+.user-article strong, .company-article strong {
   font-weight: bold;
+}
+
+strong.name {
+  font-size: 24px;
 }
 
 .comments {
@@ -59,15 +61,38 @@ article.user-article, article.main-article {
   width: 200px;
 }
 
-form>button {
-  background: white;
-  border-radius: 8px;
-  border: 1px solid #fff;
-  padding: 4px;
-  font-size: 15px;
+form > button {
+  padding: 5px 10px;
+  box-shadow: 2px 2px 0px #000;
+  margin-bottom: 2px;
+  margin-right: 2px;
 }
 
-form>label {
+form > button:active {
+  box-shadow: 0px 0px 0px #000;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+.user-article form > button:active {
+  background: #FF5722;
+}
+
+.user-article form > button {
+  background: #ff8a65;
+}
+
+.company-article form > button:active {
+  background: #4CAF50;
+}
+
+.company-article form > button {
+  background: #81C784;
+}
+
+form > label {
   display: block;
   width: 150px;
 }
@@ -89,18 +114,16 @@ form>label {
   padding: 8px 0 5px;
   background: #ffffff;
   border-bottom: 0;
-  /*border-right: 1px solid #999999;
-  border-left: 1px solid #999999;*/
   border-bottom: 1px solid #eee;
   text-align: center;
 }
 
 .user-article ul.search-list {
-  border: 1px solid #FFD700;
+  border: 1px solid #81C784;
 }
 
 .user-article li.list-item a:hover {
-  background: #dddddd;
+  background: #81C784;
 }
 
 .user-article li a{
@@ -115,7 +138,8 @@ form>label {
 
 .company-article {
   background: #eeeeee;
-  padding: 10px;
+  padding: 30px 20px;
+  line-height: 20px;
 }
 
 .comments {
@@ -129,26 +153,37 @@ form>label {
   border-radius: 7px;
 }
 
+.main .company-info {
+  float: left;
+}
+
 .main button.follow, .main button.unfollow {
   display: block;
   background: white;
   padding: 5px 10px;
-  border: 1px solid #ACE5EE;
+  border: 1px solid #81C784;
+  margin-top: 20px;
 }
-.main button.follow {
-  border: 1px solid #FFD700;
+
+.main .company-extras {
+  padding-top: 10px;
+  margin: 0 auto;
+  float: left;
+  padding-left: 50px;
 }
 
 .main button.follow:hover, .main button.unfollow:hover {
-  background: #ACE5EE;
-  /*color: white;*/
+  background: #81C784;
 }
 
 .main .image {
-  border: 2px solid #7FFF00;
+  border: 2px solid #FF8A65;
   border-radius: 20px;
 }
 
+content.profile {
+  padding-bottom: 20px;
+}
 
 /* INDEX page */
 .index {
@@ -211,4 +246,98 @@ li.header {
 
 ul.most-commented {
   margin-left: 20px;
+}
+
+/* commentS */
+
+.comment-thumb {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #FF8A65;
+  float: left;
+}
+
+.comment-article .comment-body {
+  float: left;
+  width: 375px;
+  padding: 0 20px 20px 20px;
+}
+
+.comments ul li.comment-article  {
+  padding-top: 20px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  width: 500px;
+}
+
+.comment-article date {
+  font-size: 14px;
+  color: #333;
+}
+
+.comment-article .author {
+  font-size: 14px;
+  color: #333;
+}
+
+.comment-article .comment-title {
+  display: block;
+  font-size: 16px;
+}
+
+.comment-article .comment-content {
+  display: block;
+}
+
+.comments {
+  background: #fff;
+}
+
+div.comment-form-body {
+  background: #eee;
+  padding: 20px;
+  display: block;
+  float: left;
+  width: 355px;
+  margin-left: 20px;
+}
+
+div.comment-form-body label {
+  display: block;
+  font-weight: bold;
+}
+
+.comment-form input {
+  margin-bottom: 20px;
+}
+
+.comment-form input, .comment-form textarea {
+  margin-top: 5px;
+  width: 320px;
+  padding: 10px;
+}
+
+.comment-form textarea {
+  height: 100px;
+}
+
+.comment-form button {
+  background: #2196F3;
+  padding: 5px 10px;
+  font-weight: bold;
+  box-shadow: 2px 2px 0px #000;
+  margin-bottom: 2px;
+  margin-right: 2px;
+  color: white;
+}
+
+.comment-form button:active {
+  background: #1976D2;
+  box-shadow: 0 0 0 #000;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+errors {
+  color: #f00;
 }

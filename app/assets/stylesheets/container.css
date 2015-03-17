@@ -2,32 +2,37 @@
   display: block;
   float: right;
   width: 600px;
-  padding: 20px;
+  padding: 20px 10px;
   background: #fff;
 }
 
-/*body {
-  background: #ccc;
-}*/
-
 .container {
-  width: 1000px;
+  width: 950px;
   margin: auto;
-  background: #eee;
-  padding: 5px 20px;
+  background: #fff;
+  /*padding: 5px 20px;*/
 }
 
 .navbar {
   display: block;
-  background: red;
-  color: white;
-  margin: 10px 0;
+  background: #2196F3;
+  color: #fff;
+  margin: 0 auto;
+  width: 950px;
+  padding: 0 25px;
 }
 
 .sidebar {
   display: block;
   float: left;
   width: 300px;
-  padding: 10px;
+  padding: 20px 10px;
   background: #fff;
 }
+
+/*
+#2196F3 - 500
+#1976D2 - 700
+#64b5f6 - 300
+#ff8a65 - deep orange 300
+*/

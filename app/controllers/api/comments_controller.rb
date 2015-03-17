@@ -4,12 +4,12 @@ module Api
     before_action :owns_comment, only: [:update, :destroy]
 
     def create
-      @comments = current_user.authored_comments.new(comment_params)
+      @comment = current_user.authored_comments.new(comment_params)
 
-      if @comments.save
-        render json: @comments
+      if @comment.save
+        render :show
       else
-        render json: @comments.errors.full_messages, status: :unprocessable_entity
+        render json: @comment.errors.full_messages, status: :unprocessable_entity
       end
     end
 
@@ -32,10 +32,10 @@ module Api
     end
 
     def owns_comment
-      if !current_user.comments.include(@comment)
+      if !current_user.comments.include(comment)
         render json: "User does not match", status: 404
       end
     end
-    
+
   end
 end

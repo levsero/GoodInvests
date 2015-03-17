@@ -1,7 +1,7 @@
 html, body, header, nav, h1, h3, a,
 ul, li, strong, main, button,
 section, img, div, h4, p, form,
-fieldset, label, input, textarea,
+fieldset, label, input, textarea, label,
 span, article, footer, time, content{
   margin: 0;
   padding: 0;
@@ -15,7 +15,7 @@ span, article, footer, time, content{
   box-sizing: inherit;
   background: transparent;
   font-family: sans-serif;
-  border-radius: 5px;
+  border-radius: 0;
 }
 
 ul {
@@ -66,4 +66,8 @@ input:focus, textarea:focus {
     outline: none;
     border-color: #8db9dc;
     box-shadow: 0 0 10px #9ecaed;
+}
+
+body {
+  background: #eee;
 }

@@ -7,7 +7,7 @@ GoodInvests.Views.CommentShowItem = Backbone.View.extend ({
   },
 
   initialize: function () {
-    this.$el.addClass("user-article")
+    this.$el.addClass("comment-article group")
   },
 
   tagName: "li"

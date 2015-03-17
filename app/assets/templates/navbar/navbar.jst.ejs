@@ -1,13 +1,19 @@
-<li><a href="#">GoodInvests</a></li>
+<header class="logo"><a href="#">GoodInvests</a></header>
 
-<% if ( user.isLoggedIn ) { %>
-  <%  %>
-  <li class="profile none"> <a href="#users/<%= user.current_user.id %>"> Profile</a></li>
-<% }%>
+<ul class="nav-list group">
+  <li class="name">Welcome
+  <% if ( user.isLoggedIn ) { %>
+    <%= user.current_user.escape("first_name") %>
+  <% } %>
+  </li>
 
-<li id="signs" class="signs"></li>
-<li class="name">Welcome
-<% if ( user.isLoggedIn ) { %>
-  <%= user.current_user.escape("first_name") %>
-<% } %>
-</li>
+  <% if ( user.isLoggedIn ) { %>
+    <li class="profile none">
+      <a href="#users/<%= user.current_user.id %>"> Profile
+      <img class="nav-profile-image" src="<%= user.current_user.get("picture_url") %>" alt="profile" />
+  </a></li>
+  <% }%>
+
+  <li id="signs" class="signs"></li>
+
+</ul>
