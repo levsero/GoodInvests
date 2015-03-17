@@ -31,6 +31,15 @@ class User < ActiveRecord::Base
     inverse_of: :follower
   )
 
+  has_many :ratings, as: :rateable
+  has_many(
+    :rated_objects,
+    class_name: "Rating",
+    foreign_key: :rater_id,
+    primary_key: :id,
+    inverse_of: :rater
+  )
+
   # gets all companies through follows relation with source type Company
   has_many(
     :followed_companies,
@@ -55,6 +64,10 @@ class User < ActiveRecord::Base
     read_attribute(:last_name).split().map(&:capitalize).join(" ")
   end
 
+  def rating    
+    (ratings.pluck(:rating).inject(:+) / ratings.count).to_f.round(2)
+  end
+
   attr_reader :password
   after_initialize :ensure_session_token
 
@@ -68,7 +81,6 @@ class User < ActiveRecord::Base
   end
 
   def reset_session_token!
-    puts "resest session token"
     self.session_token = SecureRandom.base64
     self.save!
     self.session_token
@@ -79,11 +91,9 @@ class User < ActiveRecord::Base
     user.try(:is_password?, user_params[:password]) ? user : nil
   end
 
-  protected
+  private
 
   def ensure_session_token
-    puts "USERS SESSION TOKEN"
-    puts self.session_token
     self.session_token ||= SecureRandom.base64
   end
 

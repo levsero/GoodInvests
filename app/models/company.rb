@@ -4,11 +4,13 @@ class Company < ActiveRecord::Base
 
   has_many :comments, as: :commentable
 
+  has_many :ratings, as: :rateable
+
   include PgSearch
   multisearchable :against => [:ticker, :name]
 
   def price
-    read_attribute(:price).to_f
+    read_attribute(:price).to_f.round(2)
   end
 
   def name
@@ -18,6 +20,11 @@ class Company < ActiveRecord::Base
   def latest_price
     update if updated_at < 1.day.ago
     price
+  end
+
+  def rating
+    return 0 if ratings.count == 0
+    (ratings.pluck(:rating).inject(:+) / ratings.count).to_f.round(2)
   end
 
   def update_price

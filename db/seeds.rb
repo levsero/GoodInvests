@@ -7,6 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.delete_all
 Company.delete_all
+Comment.delete_all
+Rating.delete_all
+Follow.delete_all
+
 PgSearch::Document.delete_all
 
 User.create!({email: "testing@gmail.com", first_name: "lev", last_name: "ser",
@@ -40,3 +44,66 @@ User.first.authored_comments.create({title: "nah, yeh",
 User.second.authored_comments.create({title: "fair'd inkum",
   body: "no doubt he's the real mccoy", commentable_id: User.first.id,
   commentable_type: "User"})
+
+30.times do
+  fname, lname = Faker::Name.name.split
+  email = Faker::Internet.email
+  description = Faker::Hacker.say_something_smart
+  job = Faker::Lorem.sentence(2)
+  password = Faker::Lorem.characters(10)
+  picture = Faker::Avatar.image
+
+  User.create!({email: email, first_name: fname, last_name: lname,
+    job_title: job, description: description, password: password, picture: picture})
+
+end
+
+50.times do
+  title = Faker::Lorem.sentence(3)
+  body = Faker::Lorem.paragraph
+  id =  User.all.sample.id
+  random = User.all.sample.id
+  type = "User"
+
+  User.find(id).authored_comments.create({title: title, body: body,
+    commentable_id: random, commentable_type: type})
+end
+
+50.times do
+  title = Faker::Lorem.sentence(3)
+  body = Faker::Lorem.paragraph
+  id =  User.all.sample.id
+  random = Company.all.sample.id
+  type = "Company"
+
+  User.find(id).authored_comments.create({title: title, body: body,
+    commentable_id: random, commentable_type: type})
+end
+
+50.times do
+  id =  User.all.sample.id
+  rating = Random.rand(1..5)
+  random = Company.all.sample.id
+  type = "Company"
+
+  User.find(id).rated_objects.create({rateable_id: random,
+    rateable_type: type, rating: rating})
+end
+
+50.times do
+  id =  User.all.sample.id
+  rating = Random.rand(1..5)
+  random = User.all.sample.id
+  type = "User"
+
+  User.find(id).rated_objects.create({rateable_id: random,
+    rateable_type: type, rating: rating})
+end
+
+50.times do
+  id =  User.all.sample.id
+  random = Company.all.sample.id
+  type = "Company"
+
+  User.find(id).follows.create({followable_id: random, followable_type: type})
+end

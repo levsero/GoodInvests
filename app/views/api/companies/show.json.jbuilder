@@ -1,4 +1,5 @@
 json.(@company, :name, :price, :ticker)
+json.rating @company.rating
 
 json.following (@user && @user.followed_companies.include?(@company)) ? true : false
 

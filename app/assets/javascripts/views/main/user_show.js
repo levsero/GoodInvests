@@ -4,6 +4,8 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
   initialize: function (options) {
     this.session = options.session
     this.listenTo( this.model, "sync", this.render);
+    this.listenTo( GoodInvests.session, "loggedIn", this.raty);
+    this.listenTo( GoodInvests.session, "signedOut", this.raty);
     this.$el.addClass("user-article");
     this.$el.addClass("group");
   },
@@ -20,6 +22,8 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
     var commentsView = new GoodInvests.Views.CommentsShow({ model: this.model, session: this.session })
     this.$el.find("#profile-items").append(commentsView.render().$el);
 
+    this.raty();
+
     return this;
   },
 
@@ -27,7 +31,8 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
     "dblclick .profile li.edit": "editField",
     "blur .edit input": "saveProfile",
     "submit form#img": "savePicture",
-    "change #input-picture-file": "changePicture"
+    "change #input-picture-file": "changePicture",
+    "click div.raty": "setStars"
   },
 
   editField: function (event) {
@@ -71,6 +76,32 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
     var data = $(event.currentTarget).serializeJSON
     this.model.save(data)
   },
-  
+
+  raty: function () {
+    var that = this;
+    var id = this.model.id;
+
+    var callback = function(score) {
+      // custom route to update current users rating of model
+      $.ajax({
+        url: "api/ratings/",
+        type: "post",
+        data: { rating: { rateable_id: id, rateable_type: "User", rating: score}},
+        success: function () {
+          that.model.set({ rating: score });
+        }.bind(this)
+      });
+    }
+
+    $('div.raty').raty({
+      score: this.model.escape("rating"),
+      click: callback,
+      path: 'images',
+      readOnly: function() {
+        return GoodInvests.session.isLoggedIn == false;
+      }
+    });
+  },
+
   tagName: "article"
 })

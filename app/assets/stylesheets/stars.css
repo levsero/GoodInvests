@@ -1,0 +1,17 @@
+.star-on-png:before {
+  content: "\f005";
+}
+
+.star-off-png:before {
+  content: "\f006";
+}
+
+.star-half-png:before {
+  content: "\f123";
+}
+
+.raty img {
+  height: 18px;
+  width: 18px;
+  float: left;
+}

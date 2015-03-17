@@ -9,6 +9,11 @@ Ticker: <%= company.escape("ticker")%>
 <li>
 Price: <%= company.escape("price")%>
 </li>
+<li>
+<strong>Rating: <%= company.escape("rating") %></strong>
+<div class="raty"></div>
+</li>
+
 </ul>
 
 <% if (GoodInvests.session.isLoggedIn && company.get("following") == true) { %>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy, :update]
     resource :session, only: [:create, :destroy]
     resources :follows, only: [:create]
+    resources :ratings, only: [:create]
 
     delete "follows/:id/:followable_id/:followable_type", to: "follows#destroy"
     get 'logged_in', :to => 'users#logged_in'
