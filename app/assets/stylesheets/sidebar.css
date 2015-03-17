@@ -89,3 +89,7 @@ li.list-nav {
   padding: 5px;
   line-height: 20px;
 }
+
+content.sidebar {
+  min-height: 530px;
+}

@@ -17,7 +17,7 @@ GoodInvests.Views.CollectionList = Backbone.View.extend ({
       var view = new GoodInvests.Views.CollectionListItem({
         collection: this.collection, model: item
       })
-      this.$el.prepend(view.render().$el)
+      this.$el.append(view.render().$el)
     }.bind(this))
     return this;
   },
