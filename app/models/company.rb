@@ -3,6 +3,8 @@ class Company < ActiveRecord::Base
   before_validation :ensure_price
 
   has_many :comments, as: :commentable
+  has_many :follows, as: :followable, dependent: :destroy
+  has_many :followers, through: :follows, source: :follower
 
   has_many :ratings, as: :rateable
 

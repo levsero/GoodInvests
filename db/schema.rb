@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316192028) do
+ActiveRecord::Schema.define(version: 20150318150957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 20150316192028) do
 
   add_index "follows", ["followable_id", "follower_id"], name: "index_follows_on_followable_id_and_follower_id", using: :btree
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id",         null: false
+    t.integer  "notifiable_id",   null: false
+    t.string   "notifiable_type", null: false
+    t.integer  "event_id",        null: false
+    t.boolean  "is_read",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pg_search_documents", force: :cascade do |t|
     t.text     "content"
     t.integer  "searchable_id"
@@ -81,6 +91,7 @@ ActiveRecord::Schema.define(version: 20150316192028) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.integer  "notifications_count"
   end
 
   add_index "users", ["email", "session_token"], name: "index_users_on_email_and_session_token", unique: true, using: :btree

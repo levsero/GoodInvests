@@ -8,10 +8,15 @@
   </li>
 
   <% if ( user.isLoggedIn ) { %>
+    <li>
+      Noitfications <notification><% %><notification>
+    </li>
+
     <li class="profile none">
       <a href="#users/<%= user.current_user.id %>"> Profile
       <img class="nav-profile-image" src="<%= user.current_user.get("picture_url") %>" alt="profile" />
-  </a></li>
+      </a>
+    </li>
   <% }%>
 
   <li id="signs" class="signs"></li>

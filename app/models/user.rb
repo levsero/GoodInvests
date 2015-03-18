@@ -10,40 +10,44 @@ class User < ActiveRecord::Base
   include PgSearch
   multisearchable :against => [:first_name, :last_name]
 
-  has_many :comments, as: :commentable
+  has_many :notifications, inverse_of: :user, dependent: :destroy
+
+  has_many :comments, as: :commentable, dependent: :destroy
   has_many(
     :authored_comments,
     class_name: "Comment",
     foreign_key: :author_id,
     primary_key: :id,
-    inverse_of: :author
+    inverse_of: :author,
+    dependent: :destroy
   )
 
-  # allows other users to follow current user
-  has_many :followings, as: :followable
-
+  # other users which are following current user
+  has_many :follows, as: :followable, dependent: :destroy
   # returns all follow objects which belong to user
   has_many(
-    :follows,
+    :followings,
     class_name: "Follow",
     foreign_key: :follower_id,
     primary_key: :id,
-    inverse_of: :follower
+    inverse_of: :follower,
+    dependent: :destroy
   )
 
-  has_many :ratings, as: :rateable
+  has_many :ratings, as: :rateable, dependent: :destroy
   has_many(
     :rated_objects,
     class_name: "Rating",
     foreign_key: :rater_id,
     primary_key: :id,
-    inverse_of: :rater
+    inverse_of: :rater,
+    dependent: :destroy
   )
 
   # gets all companies through follows relation with source type Company
   has_many(
     :followed_companies,
-    through: :follows,
+    through: :followings,
     source: :followable,
     source_type: "Company"
   )
@@ -51,10 +55,15 @@ class User < ActiveRecord::Base
   # gets all users through follows realtion with source type User
   has_many(
     :followed_users,
-    through: :follows,
+    through: :followings,
     source: :followable,
     source_type: "User"
   )
+
+  # def notifications_count
+  #   self.notifications_count = notifications.unread.count
+  #   notifications_count
+  # end
 
   def first_name
     read_attribute(:first_name).split().map(&:capitalize).join(" ")
@@ -62,6 +71,10 @@ class User < ActiveRecord::Base
 
   def last_name
     read_attribute(:last_name).split().map(&:capitalize).join(" ")
+  end
+
+  def name
+    "#{first_name} #{last_name}"
   end
 
   def rating

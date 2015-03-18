@@ -1,0 +1,19 @@
+.footer > .footer-copy {
+  float: left;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.footer > .footer-links {
+  float: right;
+}
+
+.footer > .footer-links > li {
+  float: left;
+}
+
+
+.footer-links li  a {
+  float: left;
+  padding: 10px 20px;
+}
