@@ -15,6 +15,8 @@ GoodInvests.Collections.Companies = Backbone.Collection.extend ({
   comparator: function (company) {
     if (this.comparator) {
       return company.get(this.comparator)
+    } else {
+      return this.escape("name")
     }
   },
 
