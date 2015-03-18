@@ -65,6 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def rating
+    return 0 if ratings.empty?
     (ratings.pluck(:rating).inject(:+) / ratings.count).to_f.round(2)
   end
 
