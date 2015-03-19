@@ -27,10 +27,10 @@ gem 'kaminari'
 gem 'backbone-on-rails'
 
 gem 'faker'
-gem 'better_errors'
-gem 'binding_of_caller'
+
 gem 'sinatra'
 gem "omniauth-google-oauth2"
+gem 'omniauth-github', '~> 1.1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

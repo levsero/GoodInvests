@@ -64,7 +64,7 @@ ul.header-nav > li:hover {
   top: 100px;
   left: 50%;
   margin-left: -220px;
-  width: 450px;
+  width: 500px;
   padding: 20px;
   background: #2196F3;
   z-index: 3;
@@ -181,6 +181,10 @@ ul.header-nav > li:hover {
   padding: 10px 0;
 }
 
+.modal p{
+  line-height: 24px;
+}
+
 .modal .none {
   display: none;
 }
@@ -269,16 +273,16 @@ li.notification-li .read-all {
 auth {
   float:left;
   display:block;
-  width: 150px;
+  width: 149px;
   margin: 0 auto;
   padding: 32px 25px;
-
+  border-left: 1px solid #fff;
 }
 
 non-auth {
   float:left;
   display:block;
-  width: 250px;
+  width: 300px;
 }
 /*
 #2196F3 - 500

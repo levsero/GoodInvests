@@ -29,7 +29,7 @@ GoodInvests.Views.LogInForm = Backbone.View.extend ({
     debugger
     GoodInvests.session.login(attrs, _, function (response) {
       this.$el.find("#errors").append(response.responseText);
-      var errorHeight = $("#errors").height() + 20;
+      var errorHeight = $("#errors").height() + 30;
       $(".modal-form").height(166 + errorHeight)
     }.bind(this));
   },
