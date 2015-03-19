@@ -1,7 +1,7 @@
 json.(@user, :first_name, :last_name, :job_title, :description, :email)
 json.rating @user.rating
 
-json.partial! 'api/comments/comments', comments: @user.comments
+json.partial! 'api/comments/comments', comments: @user.comments.includes(:author)
 
 json.portfolio @user.followed_companies do |company|
   json.(company, :name, :ticker, :id)

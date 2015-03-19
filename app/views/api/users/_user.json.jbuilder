@@ -4,7 +4,7 @@ if user.picture.url(:thumb)
 end
 json.notifications_count user.notifications.unread.count
 
-json.notifications user.notifications.unread do |notification|
+json.notifications user.notifications.unread.includes(:notifiable) do |notification|
   json.text notification.text
   notify = notification.notifiable
   toggle = notify.class == Comment ? notify.commentable : notify.rateable

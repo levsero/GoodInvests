@@ -108,6 +108,26 @@ class User < ActiveRecord::Base
     user.try(:is_password?, user_params[:password]) ? user : nil
   end
 
+  def self.find_or_create_by_auth(auth_hash)
+    user = User.find_by(
+            provider: auth_hash[:provider],
+            uid: auth_hash[:uid])
+
+    unless user
+      info = auth_hash{:info}
+      user = User.create!(
+            provider: auth_hash[:provider],
+            uid: auth_hash[:uid],
+            first_name: info[:first_name],
+            last_name: info[:last_name],
+            email: info[:email],
+            password: SecureRandom::urlsafe_base64,
+            picture: info[:image])
+    end
+
+    user
+  end
+
   private
 
   def ensure_session_token
