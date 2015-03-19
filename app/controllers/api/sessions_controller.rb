@@ -17,15 +17,17 @@ module Api
     end
 
     def omniauth
-      
-      fail
-      render json: params
+      render json: auth_hash
     end
 
     private
 
     def user_params
       params.require(:user).permit(:email, :password)
+    end
+
+    def auth_hash
+      request.env['omniauth.auth']
     end
   end
 end
