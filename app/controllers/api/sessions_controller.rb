@@ -17,7 +17,7 @@ module Api
     end
 
     def omniauth
-        render json: auth_hash
+      render json: params
     end
 
     private
