@@ -17,6 +17,7 @@ module Api
     end
 
     def omniauth
+      byebug
       render json: params
     end
 
