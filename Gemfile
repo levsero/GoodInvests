@@ -61,4 +61,9 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'byebug'
+  gem 'pry-rails'
+  gem 'quiet_assets'
 end
