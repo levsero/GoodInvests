@@ -343,14 +343,19 @@ errors {
 }
 
 message.flash {
-  background: #81C784;
-  position: absolute;
-  width: 150px;
-  top: -40px;
-  right: 0;
-  opacity: .7;
+  background: #64B5F6;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: white;
 }
 
 .holder {
+  position: absolute;
+  top: -30px;
+
+  /*position: relative;*/
+}
+
+.relative {
   position: relative;
 }

@@ -71,12 +71,14 @@ GoodInvests.Views.CompanyShow = Backbone.View.extend ({
   },
 
   message: function(message) {
-    this.$el.find(".flash").html(message);
+    var name = message.split(" ").join("")
+
+    var elem = $('<message class='+ "flash "+  name  + '> </message>')
+    elem.html(message)
+    this.$el.find("ul.holder").append(elem);
     var that = this;
-
-
-    setTimeout( function(){that.$el.find(".flash").hide("blind", 500)}, 3000);
-
+    setTimeout( function(){that.$el.find("." + name).hide("blind", 500)}, 3000);
+    console.log(  this.$el.find(".holder").html())
   },
 
   followCompany: function (event) {
@@ -90,7 +92,7 @@ GoodInvests.Views.CompanyShow = Backbone.View.extend ({
 
     follow.save({}, { success: function () {
       this.model.set({following: true});
-      // this.model.trigger("sync");
+      this.message(this.model.get("name") + " has been added to your portfolio")
       }.bind(this)
     })
   },
@@ -105,7 +107,7 @@ GoodInvests.Views.CompanyShow = Backbone.View.extend ({
       type: "delete",
       success: function () {
         this.model.set({following: false});
-        // this.model.trigger("sync");
+        this.message(this.model.get("name") + " has been removed from your portfolio")
       }.bind(this)
     });
   },

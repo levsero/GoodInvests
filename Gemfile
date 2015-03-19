@@ -28,6 +28,7 @@ gem 'backbone-on-rails'
 
 gem 'faker'
 
+gem 'sinatra'
 gem "omniauth-google-oauth2"
 
 group :development, :test do

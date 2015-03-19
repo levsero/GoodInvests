@@ -17,5 +17,5 @@ Rails.application.routes.draw do
     get 'most_followed', :to => 'companies#most_followed'
   end
 
-  get "/auth/:provider/callback", to: "api/sessions#omniauth"
+  get "/auth/:provider/:callback", to: "api/session#omniauth"
 end
