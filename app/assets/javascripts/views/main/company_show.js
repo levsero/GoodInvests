@@ -71,14 +71,14 @@ GoodInvests.Views.CompanyShow = Backbone.View.extend ({
   },
 
   message: function(message) {
-    var name = message.split(" ").join("")
+    var name = message.split(" ").join("").toLowerCase()
 
-    var elem = $('<message class='+ "flash "+  name  + '> </message>')
+    var elem = $('<message class="flash"> </message>')
+    elem.addClass(name)
     elem.html(message)
-    this.$el.find("ul.holder").append(elem);
+    this.$el.find(".holder").append(elem);
     var that = this;
     setTimeout( function(){that.$el.find("." + name).hide("blind", 500)}, 3000);
-    console.log(  this.$el.find(".holder").html())
   },
 
   followCompany: function (event) {
