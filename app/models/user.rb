@@ -22,8 +22,11 @@ class User < ActiveRecord::Base
     dependent: :destroy
   )
 
-  # other users which are following current user
+  # follow objects from other users which are following current user
   has_many :follows, as: :followable, dependent: :destroy
+  # user objects for users who are following current user
+  has_many :followers, through: :follows, source: :follower
+
   # returns all follow objects which belong to user
   has_many(
     :followings,

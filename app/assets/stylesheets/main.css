@@ -259,8 +259,8 @@ ul.most-commented {
 
 .comment-article .comment-body {
   float: left;
-  width: 375px;
-  padding: 0 20px 20px 20px;
+  width: 395px;
+  padding: 0 0 20px 20px;
 }
 
 .comments ul li.comment-article  {

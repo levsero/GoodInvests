@@ -1,9 +1,9 @@
 module Api
   class FollowsController < ApplicationController
     # ensuring sign-in and correct user is implicit in the methods
-    
+
     def create
-      @follow = current_user.follows.new(follows_params)
+      @follow = current_user.followings.new(follows_params)
 
       if @follow.save
         render json: @follow
@@ -13,7 +13,7 @@ module Api
     end
 
     def destroy
-      @follow = current_user.follows.
+      @follow = current_user.followings.
         where("followable_id = ? AND followable_type = ?", params[:followable_id],
         params[:followable_type]).first
 

@@ -10,9 +10,18 @@ GoodInvests.Models.Session = Backbone.Model.extend ({
         if(!data){
           this.isLoggedIn = false;
         } else {
-          this.current_user.set(data)
+
           this.isLoggedIn = true;
           this.trigger("loggedIn");
+
+          if(data.notifications){
+            this.current_user.notifications().set(data.notifications)
+            delete data.notifications
+          }
+
+          this.current_user.set(data)
+          this.trigger("loggedIn");
+
         }
       }.bind(this)
     });

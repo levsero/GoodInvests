@@ -28,9 +28,13 @@ img.nav-profile-image {
   padding-left: 40px;
 }
 
-.navbar ul.nav-list {
+.navbar ul.header-nav {
   float: right;
   height: inherit;
+}
+
+ul.header-nav > li:hover {
+  background: #1976D2;
 }
 
 .modal {
@@ -184,6 +188,86 @@ img.nav-profile-image {
 
 .close:hover { background: #00d9ff; }
 
+.badge {
+  display: inline;
+  font-size: 14px;
+  padding: 3px 7px;
+  background: #000;
+  border-radius: 50%;
+  font-weight: bold;
+  color:
+}
+
+li:hover .badge {
+  background: #f00;
+}
+
+.header {
+  position: relative;
+  z-index: 1;
+}
+
+.header-list > li {
+  position: relative;
+}
+
+.header-notifications {
+  /*display: none;*/
+  position: absolute;
+  left: -1px;
+  top: 33px;
+  font-size: 14px;
+  white-space: nowrap;
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  overflow: hidden;
+  color: #333;
+}
+
+.navbar .header-list .none {
+  display: none;
+}
+
+li:hover .header-notifications {
+  display: block;
+}
+
+li:hover .header-notifications li {
+  /*width: inherit;*/
+}
+
+li.notification-li {
+  position: relative;
+  cursor: pointer;
+}
+
+li.notification-li .read {
+  float: right;
+  color: #1976D2;
+  padding: 5px 10px;
+  background: #64B5F6;
+  font-size: 14px;
+}
+
+li.notification-li .read-all {
+  display: block;
+  font-size: 13px;
+  color: #1976D2;
+  width: inherit;
+}
+
+.header-notifications > li {
+  border-top: 1px solid #ccc;
+  color: #000;
+}
+
+.header-notifications > li:hover {
+  background: #eee;
+}
 /*
 #2196F3 - 500
 #1976D2 - 700

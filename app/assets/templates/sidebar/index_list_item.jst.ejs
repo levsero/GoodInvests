@@ -1,13 +1,18 @@
-<% if (item && item.type == "Company") {%>
-  <a class="company" href="#companies/<%=item.id%>"><%= item.escape("ticker") + ": " + item.escape("name") %></a>
+<% if (item && item instanceof GoodInvests.Models.Notification ) { %>
+
+  <a href="#<%= item.get("url") %>"><%= item.get("text") %></a>
+  <button class="read">read</button>
+<% } else if (item && item.type == "Company") { %>
+
+  <a class="company" href="#companies/<%= item.id%>"><%= item.escape("ticker") + ": " + item.escape("name") %></a>
 
   <% if (false) { %>
-  <% if (GoodInvests.session.isLoggedIn  && item.get("following") == true) { %>
-    <!-- <tick class="following"></tick> -->
-    <!-- <button class="unfollow" data-id="<%= item.id %>">Remove</button> -->
-  <% } else if ( GoodInvests.session.isLoggedIn  && item.get("following") != "none") { %>
-    <!-- <button class="follow" data-id="<%= item.id %>">Add</button> -->
-  <% } %>
+    <% if (GoodInvests.session.isLoggedIn  && item.get("following") == true) { %>
+      <!-- <tick class="following"></tick> -->
+      <!-- <button class="unfollow" data-id="<%= item.id %>">Remove</button> -->
+    <% } else if ( GoodInvests.session.isLoggedIn  && item.get("following") != "none") { %>
+      <!-- <button class="follow" data-id="<%= item.id %>">Add</button> -->
+    <% } %>
   <% } %>
 
 <%} else {%>

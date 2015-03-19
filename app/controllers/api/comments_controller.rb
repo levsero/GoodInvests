@@ -1,7 +1,6 @@
 module Api
   class CommentsController < ApplicationController
     before_action :require_signed_in!, only: [:create]
-    before_action :owns_comment, only: [:update, :destroy]
 
     def create
       @comment = current_user.authored_comments.new(comment_params)
@@ -32,7 +31,7 @@ module Api
     end
 
     def owns_comment
-      if !current_user.comments.include(comment)
+      if !current_user.comments.include(@comment)
         render json: "User does not match", status: 404
       end
     end

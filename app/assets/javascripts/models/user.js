@@ -9,6 +9,7 @@ GoodInvests.Models.User = Backbone.Model.extend ({
       this.companies().set(payload.portfolio)
       delete payload.portfolio
     }
+  
     return payload;
   },
 
@@ -30,6 +31,13 @@ GoodInvests.Models.User = Backbone.Model.extend ({
       this._companies = new GoodInvests.Collections.Companies();
     }
     return this._companies;
+  },
+
+  notifications: function () {
+    if (!this._notifications) {
+      this._notifications = new GoodInvests.Collections.Notifications();
+    }
+    return this._notifications;
   },
 
   initialize: function () {
