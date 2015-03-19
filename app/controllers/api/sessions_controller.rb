@@ -17,6 +17,8 @@ module Api
     end
 
     def omniauth
+      
+      fail
       render json: params
     end
 
