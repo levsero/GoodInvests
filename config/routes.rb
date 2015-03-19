@@ -16,4 +16,6 @@ Rails.application.routes.draw do
     get "/search", to: "searches#search"
     get 'most_followed', :to => 'companies#most_followed'
   end
+
+  get "/auth/:provider/callback", to: "api/sessions#omniauth"
 end

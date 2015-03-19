@@ -16,6 +16,10 @@ module Api
       render json: { message: 'delete completed' }
     end
 
+    def omniauth
+      fail
+    end
+
     private
 
     def user_params
