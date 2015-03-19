@@ -12,12 +12,12 @@ module Api
     end
 
     def destroy
-      sign_out!
+
       render json: { message: 'delete completed' }
     end
 
     def omniauth
-      fail
+        render json: auth_hash
     end
 
     private
