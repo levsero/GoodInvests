@@ -114,7 +114,7 @@ class User < ActiveRecord::Base
             uid: auth_hash[:uid])
 
     unless user
-      info = auth_hash{:info}
+      info = auth_hash[:info]
       user = User.create!(
             provider: auth_hash[:provider],
             uid: auth_hash[:uid],
