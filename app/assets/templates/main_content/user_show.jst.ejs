@@ -1,5 +1,5 @@
 <content class="profile">
-<% if ( user.escape("current_user") ) { %>
+<% if ( user.id == GoodInvests.session.current_user.id ) { %>
   <header class="header">
     Profile
   </header>
@@ -14,7 +14,7 @@
     <strong class="name"> <%= user.escape("first_name") + " " + user.escape("last_name") %></strong>
   </li>
 
-  <% if ( user.escape("current_user") ) { %>
+  <% if ( user.id == GoodInvests.session.current_user.id ) { %>
     <li>
       <strong>Email: </strong><%= user.escape("email") %>
     </li>
@@ -32,7 +32,7 @@
     <strong>Rating <div class="raty"></div></strong>
   </li>
 
-    <% if ( user.escape("current_user") ) { %>
+    <% if ( user.id == GoodInvests.session.current_user.id ) { %>
       <li>
         <form id="img">
           <strong>Upload new Picture</strong>

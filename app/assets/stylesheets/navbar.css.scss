@@ -9,6 +9,7 @@
 
 .navbar .flash {
   background: #F44336;
+  // position: absolute;
 }
 
 header.logo {
@@ -38,7 +39,7 @@ img.nav-profile-image {
 }
 
 ul.header-nav > li:hover {
-  background: #1976D2;
+  background: $brand-strong;
 }
 
 .modal {
@@ -107,7 +108,7 @@ ul.header-nav > li:hover {
   border-radius: 5px;
 }
 .modal-form p  a:hover {
-  background: #1976D2;
+  background: $brand-strong;
 }
 
 .modal-form a:hover {
@@ -263,16 +264,16 @@ li.notification-li {
 
 li.notification-li .read {
   float: right;
-  color: #1976D2;
+  color: $brand-strong;
   padding: 5px 10px;
-  background: #64B5F6;
+  background: $brand-light;
   font-size: 14px;
 }
 
 li.notification-li .read-all {
   display: block;
   font-size: 13px;
-  color: #1976D2;
+  color: $brand-strong;
   width: inherit;
 }
 
@@ -305,10 +306,3 @@ a.password{
   display: block;
   padding: 10px 5px;
 }
-
-/*
-#2196F3 - 500
-#1976D2 - 700
-#64b5f6 - 300
-#ff8a65 - deep orange 300
-*/

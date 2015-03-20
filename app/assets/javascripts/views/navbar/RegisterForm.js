@@ -27,20 +27,28 @@ GoodInvests.Views.RegisterForm = Backbone.View.extend ({
     var form = $(event.currentTarget).parent().parent().parent()
     var attrs = form.serializeJSON();
     var user = new GoodInvests.Models.User();
-    debugger
     user.save(attrs.user, {
       success: function () {
         GoodInvests.session.login(attrs, GoodInvests.session.newUser.bind(GoodInvests.session) );
       }.bind(this),
 
       error: function (model, response, options) {
+        var elem = $('<content>')
         _.each(response.responseJSON, function(error) {
-          that.$el.find("#errors").append(error + "<br>" );
-          var errorHeight = $("#errors").height() + 20;
-          $(".modal-form").height(366 + errorHeight);
+          elem.append("<p>" + error + "</p>" );
         })
+        that.message(elem.html())
       }
     })
+  },
+
+  message: function(message) {
+    var elem = $('<message class="flash"> </message>')
+    elem.append(message)
+    console.log(elem)
+    this.$el.find("#holder").append(elem);
+    var that = this;
+    setTimeout( function(){that.$el.find(".flash").hide("blind", 500)}, 3000);
   },
 
   tagName: "div"

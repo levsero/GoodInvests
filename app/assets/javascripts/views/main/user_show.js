@@ -4,19 +4,19 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
   initialize: function (options) {
     this.session = options.session
     this.listenTo( this.model, "sync", this.render);
-    this.listenTo( GoodInvests.session, "loggedIn", this.raty);
-    this.listenTo( GoodInvests.session, "signedOut", this.raty);
+    this.listenTo( GoodInvests.session, "loggedIn", this.render);
+    this.listenTo( GoodInvests.session, "signedOut", this.render);
     this.$el.addClass("user-article");
     this.$el.addClass("group");
   },
 
   render: function () {
-    this.$el.html(this.template({ user: this.model}));
+    this.$el.html(this.template({ user: this.model }));
 
     var portfolio = new GoodInvests.Views.CollectionList({
       model: this.model,
       collection: this.model.companies()}
-      );
+    );
     this.$el.find(".portfolio").append(portfolio.render().$el);
 
     var commentsView = new GoodInvests.Views.CommentsShow({ model: this.model, session: this.session })
@@ -46,7 +46,7 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
   },
 
   editField: function (event) {
-    if (!this.model.get("current_user")) {
+    if (!this.model.id == GoodInvests.session.current_user.id) {
       return
     }
 

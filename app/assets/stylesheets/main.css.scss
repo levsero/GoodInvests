@@ -77,19 +77,19 @@ form > button:active {
 }
 
 .user-article form > button:active {
-  background: #FF5722;
+  background: $company-primary;
 }
 
 .user-article form > button {
-  background: #ff8a65;
+  background: $company-light;
 }
 
 .company-article form > button:active {
-  background: #4CAF50;
+  background: $user-primary;
 }
 
 .company-article form > button {
-  background: #81C784;
+  background: $user-light;
 }
 
 form > label {
@@ -119,11 +119,11 @@ form > label {
 }
 
 .user-article ul.search-list {
-  border: 1px solid #81C784;
+  border: 1px solid $user-light;
 }
 
 .user-article li.list-item a:hover {
-  background: #81C784;
+  background: $user-light;
 }
 
 .user-article li a{
@@ -161,7 +161,7 @@ form > label {
   display: block;
   background: white;
   padding: 5px 10px;
-  border: 1px solid #81C784;
+  border: 1px solid $user-light;
   margin-top: 20px;
 }
 
@@ -173,11 +173,11 @@ form > label {
 }
 
 .main button.follow:hover, .main button.unfollow:hover {
-  background: #81C784;
+  background: $user-light;
 }
 
 .main .image {
-  border: 2px solid #FF8A65;
+  border: 2px solid $company-light;
   border-radius: 20px;
 }
 
@@ -253,7 +253,7 @@ ul.most-commented {
 .comment-thumb {
   width: 60px;
   height: 60px;
-  border: 1px solid #FF8A65;
+  border: 1px solid $company-light;
   float: left;
 }
 
@@ -322,7 +322,7 @@ div.comment-form-body label {
 }
 
 .comment-form button {
-  background: #2196F3;
+  background: $brand-primary;
   padding: 5px 10px;
   font-weight: bold;
   box-shadow: 2px 2px 0px #000;
@@ -332,7 +332,7 @@ div.comment-form-body label {
 }
 
 .comment-form button:active {
-  background: #1976D2;
+  background: $brand-strong;
   box-shadow: 0 0 0 #000;
   margin-top: 2px;
   margin-left: 2px;
@@ -343,7 +343,7 @@ errors {
 }
 
 message.flash {
-  background: #64B5F6;
+  background: $brand-light;
   padding: 5px 10px;
   font-size: 14px;
   color: white;

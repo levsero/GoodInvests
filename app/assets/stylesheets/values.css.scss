@@ -1,0 +1,25 @@
+$brand-primary: #2196F3;
+$brand-strong: #1976D2;
+$brand-light: #64B5F6;
+
+$user-primary: #4CAF50;
+$user-strong: #388E3C;
+$user-light: #81C784;
+
+$company-primary: #FF5722;
+$company-strong: #E64A19;
+$company-light: #FF8A65;
+
+@media (min-width: 1000px) {
+  $brand-primary: #F44336;
+  $brand-strong: #D32F2F;
+  $brand-light: #E57373;
+
+  $user-primary: #4CAF50;
+  $user-strong: #388E3C;
+  $user-light: #81C784;
+
+  $company-primary: #FF5722;
+  $company-strong: #E64A19;
+  $company-light: #FF8A65;
+}
