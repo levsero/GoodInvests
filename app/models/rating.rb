@@ -18,8 +18,16 @@ class Rating < ActiveRecord::Base
 
   def set_notification
     event = :rated
+
+    if self.rateable.class == User
+      event_name = :rated_you
+      notification = rater.notifications.unread.event(event).new
+      notification.notifiable_id = self.id
+      notification.notifiable_type = "Rating"
+      notification.save!
+    end
+
     self.rateable.followers.each do |user|
-      event_name = :rated_you if user == self.rateable
       next if user == self.rater
       notification = user.notifications.unread.event(event).new
       notification.notifiable_id = self.id

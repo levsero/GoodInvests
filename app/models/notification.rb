@@ -38,7 +38,7 @@ class Notification < ActiveRecord::Base
         "#{author.name} commented on your profile"
       when :rated
         rater = notifiable.rater
-        reated = notifiable.rateable
+        rated = notifiable.rateable.name
         "#{rater.name} rated #{rated} #{notifiable.rating} stars"
       when :rated_you
         rater = notifiable.rater

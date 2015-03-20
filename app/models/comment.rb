@@ -18,6 +18,13 @@ class Comment < ActiveRecord::Base
   def set_notification
     event_name = self.commentable.class == User ? :comment_on_user : :comment_on_company
 
+    if event_name == :comment_on_you
+      notification = commentable.notifications.unread.event(event_name).new
+      notification.notifiable_id = self.id
+      notification.notifiable_type = "Comment"
+      notification.save!
+    end
+
     self.commentable.followers.each do |user|
       event_name = :commented_on_you if user == self.commentable
       next if user == self.author

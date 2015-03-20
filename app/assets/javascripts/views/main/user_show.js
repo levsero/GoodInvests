@@ -40,7 +40,7 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
     var elem = $('<message class="flash"> </message>')
     elem.addClass(name)
     elem.html(message)
-    this.$el.find("ul.holder").append(elem);
+    this.$el.find("div.holder").append(elem);
     var that = this;
     setTimeout( function(){that.$el.find("." + name).hide("blind", 500)}, 3000);
   },
