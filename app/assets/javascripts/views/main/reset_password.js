@@ -4,6 +4,7 @@ GoodInvests.Views.ResetPassword = Backbone.View.extend ({
   initialize: function (options) {
     this.id = options.id
     this.token = options.token
+    this.$el.addClass("reset")
   },
 
   render: function () {
@@ -18,7 +19,6 @@ GoodInvests.Views.ResetPassword = Backbone.View.extend ({
   submitReset: function (event) {
     event.preventDefault();
     var password = $(event.currentTarget).serializeJSON();
-    console.log(password["password"])
     $.ajax({
       url: "/api/password_reset",
       type: "get",
@@ -27,8 +27,8 @@ GoodInvests.Views.ResetPassword = Backbone.View.extend ({
         this.message("Password successfully reset.")
       }.bind(this),
       error: function (data) {
-        this.message(data)
-      }
+        this.message("Error while reseting password, please try again")
+      }.bind(this)
     });
   },
 

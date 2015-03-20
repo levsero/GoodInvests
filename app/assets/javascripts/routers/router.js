@@ -60,7 +60,6 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
   },
 
   passwordReset: function (token, id) {
-    console.log("reset")
     var view = new GoodInvests.Views.ResetPassword( {token: token, id: id})
     this._swapViews(view)
   },

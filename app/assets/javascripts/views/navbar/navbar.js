@@ -71,7 +71,6 @@ GoodInvests.Views.Navbar = Backbone.CompositeView.extend ({
   },
 
   readAll: function (event) {
-    console.log("test")
     event.preventDefault();
     $.ajax({
       url: "api/notifications/read",

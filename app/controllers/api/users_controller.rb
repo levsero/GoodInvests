@@ -50,6 +50,7 @@ module Api
         msg = UserMailer.password_reset(user)
         msg.deliver
         render json: {}, status: :ok
+        user.reset_session_token!
       else
         render json: {}, status: :ok
       end

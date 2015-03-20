@@ -347,15 +347,36 @@ message.flash {
   padding: 5px 10px;
   font-size: 14px;
   color: white;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
 .holder {
   position: absolute;
   top: -28px;
-
   /*position: relative;*/
 }
 
 .relative {
   position: relative;
+}
+
+form.reset button {
+  background: #4FC3F7;
+}
+form.reset button:active {
+  background: #03A9F4;
+}
+form.reset {
+  margin: 0 auto;
+  text-align: center;
+  width: 350px;
+  background: #eee;
+  padding: 20px;
+  position: relative;
+}
+
+form.reset input{
+  text-align: left;
 }
