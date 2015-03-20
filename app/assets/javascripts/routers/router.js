@@ -40,7 +40,7 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
     "users/profile": "profileShow",
     "users/:id": "userShow",
     "companies/:id": "companyShow",
-    "/:id/password/reset/:token"
+    "/:id/password/reset/:token": "passwordReset"
   },
 
   index: function () {
