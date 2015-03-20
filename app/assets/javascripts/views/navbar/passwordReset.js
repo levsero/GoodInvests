@@ -39,9 +39,7 @@ GoodInvests.Views.PasswordReset = Backbone.View.extend ({
   message: function(message) {
     var elem = $('<message class="flash"> </message>')
     elem.html(message)
-
     this.$el.find("#holder").append(elem);
-
     var that = this;
     setTimeout( function(){that.$el.find(".flash").hide("blind", 500)}, 3000);
   },

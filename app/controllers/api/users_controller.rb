@@ -50,7 +50,6 @@ module Api
         msg = UserMailer.password_reset(user)
         msg.deliver
         render json: {}, status: :ok
-        user.reset_session_token!
       else
         render json: {}, status: :ok
       end
@@ -74,6 +73,7 @@ module Api
           render json: "password too short, minimum 6 characters", status: :unprocessable_entity
         elsif  user.save
           render json: {}, status: :ok
+          user.reset_session_token!
         else
           render json: user.errors.full_messages, status: :unprocessable_entity
         end
