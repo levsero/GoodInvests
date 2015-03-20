@@ -4,19 +4,19 @@ GoodInvests.Views.CompanyShow = Backbone.View.extend ({
   initialize: function (options) {
     this.session = options.session;
     this.listenTo( this.model, "sync change", this.render);
-    this.listenTo( GoodInvests.session, "loggedIn", this.raty);
-    this.listenTo( GoodInvests.session, "signedOut", this.raty);
+    this.listenTo( GoodInvests.session, "loggedIn", this.render);
+    this.listenTo( GoodInvests.session, "signedOut", this.render);
     this.$el.addClass("company-article");
     this.$el.addClass("group");
   },
 
   render: function () {
+    console.log("render")
     this.$el.html(this.template({ company: this.model }));
     var view = new GoodInvests.Views.CommentsShow({ model: this.model, session: this.session })
     this.$el.append( view.render().$el )
 
     this.raty();
-
     return this;
   },
 
