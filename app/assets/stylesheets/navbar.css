@@ -7,6 +7,10 @@
 .navbar li.signs{
 }
 
+.navbar .flash {
+  background: #F44336;
+}
+
 header.logo {
   float: left;
   padding: 10px 10px;
@@ -91,8 +95,19 @@ ul.header-nav > li:hover {
   font-weight: 300;
 }
 
-.modal-form > p {
-  margin: 0 0 20px 0;
+.modal-form  p:last-child {
+  display: block;
+  padding-top: 10px;
+}
+
+.modal-form p  a {
+  display: block;
+  padding-top: 15px 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+.modal-form p  a:hover {
+  background: #1976D2;
 }
 
 .modal-form a:hover {
@@ -273,17 +288,24 @@ li.notification-li .read-all {
 auth {
   float:left;
   display:block;
-  width: 149px;
+  width: 159px;
   margin: 0 auto;
   padding: 32px 25px;
-  border-left: 1px solid #fff;
+
 }
 
 non-auth {
+  border-right: 1px solid #fff;
   float:left;
   display:block;
-  width: 300px;
+  width: 290px;
 }
+
+a.password{
+  display: block;
+  padding: 10px 5px;
+}
+
 /*
 #2196F3 - 500
 #1976D2 - 700

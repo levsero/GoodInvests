@@ -15,6 +15,11 @@ Rails.application.routes.draw do
     get 'logged_in', :to => 'users#logged_in'
     get "/search", to: "searches#search"
     get 'most_followed', :to => 'companies#most_followed'
+
+    # post 'password_reset_request', :to => 'users#password_reset_request'
+    get 'password_reset_request', :to => 'users#password_reset_request'
+    get 'password_reset', :to => 'users#password_reset'
+
   end
 
   get "/auth/:provider/callback", to: "api/sessions#omniauth"

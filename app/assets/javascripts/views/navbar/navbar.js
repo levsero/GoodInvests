@@ -18,7 +18,6 @@ GoodInvests.Views.Navbar = Backbone.CompositeView.extend ({
 
   badge: function () {
     this.$el.find(".badge").html(this.collection.length);
-    console.log(this.collection.length)
   },
 
   isLoggedIn: function () {

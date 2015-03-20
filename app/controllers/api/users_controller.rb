@@ -44,6 +44,27 @@ module Api
       end
     end
 
+    def password_reset_request
+      user = User.find_by_email(params[:email])
+
+      if user
+        msg = UserMailer.password_reset(user)
+        msg.deliver
+        render json: {user: user.name}, status: :ok
+      else
+        render json: {}, status: :unprocessable_entity
+      end
+    end
+
+    def password_reset
+      user = User.find_by_email(params[:email])
+      if user.session_token == params[:token]
+        redirect_to "#/#{user.id}/password_reset/#{params[:token]}"
+      else
+        render json: {}
+      end
+    end
+
     private
 
     def user_params
