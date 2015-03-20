@@ -11,7 +11,7 @@ GoodInvests.Views.PasswordReset = Backbone.View.extend ({
   },
 
   events: {
-    "click #reset-button": "login"
+    "click #reset-button": "reset"
   },
 
   toggleModal: function (event) {
@@ -19,7 +19,7 @@ GoodInvests.Views.PasswordReset = Backbone.View.extend ({
     $(".modal").toggleClass("is-open");
   },
 
-  login: function (event) {
+  reset: function (event) {
     event.preventDefault();
     this.$el.find("#errors").empty();
 
@@ -31,10 +31,7 @@ GoodInvests.Views.PasswordReset = Backbone.View.extend ({
       data: {email: attrs["email"]},
       method: "get",
       success: function () {
-        this.message("A password reset link will be emailed to you shortly.")
-      }.bind(this),
-      error: function () {
-        this.message("Please ensure you are entering correct email address.")
+        this.message("If the email address is valid a reset link will be emailed to you shortly.")
       }.bind(this)
     })
   },

@@ -37,10 +37,9 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
 
   routes: {
     "": "index",
-    "users/profile": "profileShow",
     "users/:id": "userShow",
     "companies/:id": "companyShow",
-    "/:id/password/reset/:token": "passwordReset"
+    "password_reset/:token/:id": "passwordReset"
   },
 
   index: function () {
@@ -60,8 +59,10 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
     this._swapViews(view);
   },
 
-  profileShow: function () {
-
+  passwordReset: function (token, id) {
+    console.log("reset")
+    var view = new GoodInvests.Views.ResetPassword( {token: token, id: id})
+    this._swapViews(view)
   },
 
   _swapViews: function (view) {

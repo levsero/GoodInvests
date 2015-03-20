@@ -11,7 +11,6 @@ module Api
 
     def create
       @user = User.new(user_params)
-
       if @user.save
         # AuthMailer.signup_email(@user).deliver
         # sign_in!(@user)
@@ -50,18 +49,35 @@ module Api
       if user
         msg = UserMailer.password_reset(user)
         msg.deliver
-        render json: {user: user.name}, status: :ok
+        render json: {}, status: :ok
       else
-        render json: {}, status: :unprocessable_entity
+        render json: {}, status: :ok
+      end
+    end
+
+    def password_reset_url
+      user = User.find_by_email(params[:email])
+      if user && user.session_token == params[:token]
+        redirect_to "/#password_reset/#{params[:token]}/#{user.id}"
+      else
+        render json: params, status: :unprocessable_entity
       end
     end
 
     def password_reset
-      user = User.find_by_email(params[:email])
+      user = User.find(params[:id])
+
       if user.session_token == params[:token]
-        redirect_to "#/#{user.id}/password_reset/#{params[:token]}"
+        user.password = params[:password]
+        if params[:password].length < 6
+          render json: "password too short, minimum 6 characters", status: :unprocessable_entity
+        elsif  user.save
+          render json: {}, status: :ok
+        else
+          render json: user.errors.full_messages, status: :unprocessable_entity
+        end
       else
-        render json: {}
+        render json: params, status: 404
       end
     end
 

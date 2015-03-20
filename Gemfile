@@ -51,8 +51,7 @@ end
 group :test do
   gem "shoulda-matchers"
   gem 'guard-rspec'
-  gem 'better_errors'
-  gem 'binding_of_caller'
+
 end
 
 # Add to Gemfile

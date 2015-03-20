@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
   end
 
   def reset_session_token!
-    self.session_token = SecureRandom.base64
+    self.session_token = SecureRandom.urlsafe_base64
     self.save!
     self.session_token
   end
@@ -131,7 +131,7 @@ class User < ActiveRecord::Base
   private
 
   def ensure_session_token
-    self.session_token ||= SecureRandom.base64
+    self.session_token ||= SecureRandom.urlsafe_base64
   end
 
   def email_validation

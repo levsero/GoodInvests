@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
     # post 'password_reset_request', :to => 'users#password_reset_request'
     get 'password_reset_request', :to => 'users#password_reset_request'
+    get 'password_reset_url', :to => 'users#password_reset_url'
     get 'password_reset', :to => 'users#password_reset'
 
   end
