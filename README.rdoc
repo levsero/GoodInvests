@@ -1,28 +1,41 @@
-== README
+##GoodInvests
+GoodInvests is a website designed to help people research and discover the best investments on the market. The backend is built using Ruby on Rails for an API, with the frontend developed in backbone.js
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+GoodInvests [live link](goodinvests.co)
 
-Things you may want to cover:
+### Features
+Users can
 
-* Ruby version
+* register and login with an email address, or with Facebook or Google accounts.
+* add companies to their portfolio.
+* Rate and comment on comapnies or other users.
+* Receive a notification when someone rates or comments on them or a company in their portfolio.
+* Mark individual notifications or mark all as read.
+* View User and company profiles
+* Reset password via email reset link
+* Upload profile pictures
 
-* System dependencies
+Search for
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Companies by name or ticker symbol.
+* Users by first or last name.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+### Technical Details
+* Facebook and Google login enabled through OmniAuth.
+* Password reset emails sent through ActionMailer.
+* Picture upload handled by Paperclip.
+* Pictures stored on AWS
+* All api keys are hidden using Figaro
+* Pagination enabled in search results with Kaminari gem
+* Consumes Quandl’s API for stock prices.
+* Bootstraps user and company data on page load to avoid extra AJAX requests.
+* Comments, Ratings, Follows, Notification, Search tables are all polymorphic associations shared between [Company](app/models/company.rb) and [User](app/models/user.rb) to keep the database normalized and the code DRY.
+
+### TODO
+
+* Allow searching for partial words.
+* Update search results as the user types.
+* Allow users to follow other users.
+* Allow users to create collections of companies other than portfolio
+* Make input errors when signing in inline instead of absolute.
