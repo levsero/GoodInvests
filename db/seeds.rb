@@ -106,5 +106,5 @@ end
   random = Company.all.sample.id
   type = "Company"
 
-  User.find(id).follows.create({followable_id: random, followable_type: type})
+  User.find(id).followings.create({followable_id: random, followable_type: type})
 end
