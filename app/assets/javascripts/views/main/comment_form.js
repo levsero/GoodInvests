@@ -37,6 +37,7 @@ GoodInvests.Views.CommentForm = Backbone.View.extend ({
 
     var comment = new GoodInvests.Models.Comment()
     comment.save(attrs, { success: function () {
+        console.log("add comment")
         this.model.comments().add(comment, {merge: true})
       }.bind(this),
 

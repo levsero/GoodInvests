@@ -10,6 +10,7 @@ Company.delete_all
 Comment.delete_all
 Rating.delete_all
 Follow.delete_all
+Notification.delete_all
 
 PgSearch::Document.delete_all
 
