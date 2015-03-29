@@ -4,6 +4,12 @@ module Api
       @user = User.find_by_credentials(params[:user])
 
       if @user
+        # make sure guest user always has 5 unread emails
+        if @user == User.find_by_email("testing@gmail.com")
+          if @user.notifications.unread.count < 5
+            @user.notifications.read.order("Random()").limit(5).update_all(is_read: false)
+          end
+        end
         sign_in!(@user)
         render :current
       else

@@ -6,18 +6,19 @@
 
 <div class="input">
   <label for="form-email">Email</label>
-  <input type="text" name="user[email]" id="form-email" value="testing@gmail.com"
+  <input type="text" name="user[email]" id="form-email" value=""
     placeholder="email">
 </div>
 
 <div class="input">
   <label for="form-password">Password</label>
-  <input type="password" name="user[password]" id="form-password" value="password"
+  <input type="password" name="user[password]" id="form-password" value=""
   placeholder="password">
 </div>
 
 <button id="login-button">Log In</button>
 </span>or <a><strong id="register">Register</strong></a>
+<button id="login-guest">Guest Log In</button>
 
 <a class="password"><strong>Forgot Password</strong></a>
 
@@ -25,9 +26,14 @@
 
 <auth>
   <p>
-    <a href="/auth/google_oauth2">Sign in with Google</a>
+    <a href="/auth/google_oauth2">
+      <img src="/images/google-sign-in.png" alt="google sign in" />
+    </a>
   </p>
+
   <p>
-    <a href="/auth/facebook">Sign in with facebook</a>
+    <a href="/auth/facebook">
+      <img src="/images/sign-in-facebook.png" alt="vacebook sign in" />
+    </a>
   </p>
 </auth>

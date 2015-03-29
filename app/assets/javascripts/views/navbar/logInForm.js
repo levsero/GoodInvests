@@ -11,7 +11,8 @@ GoodInvests.Views.LogInForm = Backbone.View.extend ({
   },
 
   events: {
-    "click #login-button": "login"
+    "click #login-button": "login",
+    "click #login-guest": "guestLogin"
   },
 
   toggleModal: function (event) {
@@ -31,6 +32,14 @@ GoodInvests.Views.LogInForm = Backbone.View.extend ({
       var errorHeight = $("#errors").height() + 30;
       $(".modal-form").height(166 + errorHeight)
     }.bind(this));
+  },
+
+  guestLogin: function (event){
+    event.preventDefault();
+    var form = $(event.currentTarget).parent().parent().parent();
+    form.find("#form-email").val("testing@gmail.com");
+    form.find("#form-password").val("password");
+    form.find("#login-button").click();
   },
 
   register: function (event) {

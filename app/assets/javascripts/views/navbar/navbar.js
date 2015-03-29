@@ -7,7 +7,7 @@ GoodInvests.Views.Navbar = Backbone.CompositeView.extend ({
     this.listenTo(GoodInvests.session, "loggedIn", this.render);
     this.listenTo(GoodInvests.session, "signedOut", this.render);
     this.listenTo(this.collection, "add remove change reset", this.render);
-    this.listenTo(this.collection, "sync", this.badge);
+    this.listenTo(this.collection, "sync reset", this.badge);
   },
 
   render: function () {
