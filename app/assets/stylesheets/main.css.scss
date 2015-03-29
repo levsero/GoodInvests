@@ -356,7 +356,11 @@ message.flash {
   width: 250px;
   position: absolute;
   top: -28px;
-  /*position: relative;*/
+}
+
+#holder {
+  position: relative;
+  top: -20px;
 }
 
 .relative {

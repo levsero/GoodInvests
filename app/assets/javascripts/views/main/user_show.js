@@ -35,16 +35,6 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
     "click div.raty": "setStars"
   },
 
-  message: function(message) {
-    var name = message.split(" ").join("").toLowerCase()
-    var elem = $('<message class="flash"> </message>')
-    elem.addClass(name)
-    elem.html(message)
-    this.$el.find("div.holder").append(elem);
-    var that = this;
-    setTimeout( function(){that.$el.find("." + name).hide("blind", 500)}, 3000);
-  },
-
   editField: function (event) {
     if (!this.model.id == GoodInvests.session.current_user.id) {
       return
@@ -116,3 +106,5 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
 
   tagName: "article"
 })
+
+_.extend(GoodInvests.Views.UserShow.prototype, GoodInvests.Views.HelperMethods)

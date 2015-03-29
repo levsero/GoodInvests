@@ -6,7 +6,6 @@ GoodInvests.Views.RegisterForm = Backbone.View.extend ({
 
   render: function () {
     this.$el.html(this.template());
-
     return this;
   },
 
@@ -45,7 +44,6 @@ GoodInvests.Views.RegisterForm = Backbone.View.extend ({
   message: function(message) {
     var elem = $('<message class="flash"> </message>')
     elem.append(message)
-    console.log(elem)
     this.$el.find("#holder").append(elem);
     var that = this;
     setTimeout( function(){that.$el.find(".flash").hide("blind", 500)}, 3000);

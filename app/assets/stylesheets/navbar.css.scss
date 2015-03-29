@@ -191,11 +191,11 @@ ul.header-nav > li:hover {
   margin-bottom: 10px;
 }
 
-.modal #errors{
-  display: block;
-  color: #FFEB3B;
-  padding: 10px 0;
-}
+// .modal #errors{
+//   display: block;
+//   color: #FFEB3B;
+//   padding: 10px 0;
+// }
 
 .modal p{
   line-height: 24px;
@@ -292,7 +292,6 @@ auth {
   width: 159px;
   margin: 0 auto;
   padding: 32px 25px;
-
 }
 
 non-auth {
@@ -302,7 +301,11 @@ non-auth {
   width: 290px;
 }
 
-a.password{
+a.password {
   display: block;
   padding: 10px 5px;
+}
+
+div.buttons {
+  padding: 10px 0;
 }

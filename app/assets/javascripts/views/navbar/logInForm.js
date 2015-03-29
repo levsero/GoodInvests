@@ -22,15 +22,12 @@ GoodInvests.Views.LogInForm = Backbone.View.extend ({
 
   login: function (event) {
     event.preventDefault();
-    this.$el.find("#errors").empty();
 
     // TODO refactor to remove parents
     var form = $(event.currentTarget).parent().parent().parent()
     var attrs = form.serializeJSON();
     GoodInvests.session.login(attrs, _, function (response) {
-      this.$el.find("#errors").append(response.responseText);
-      var errorHeight = $("#errors").height() + 30;
-      $(".modal-form").height(166 + errorHeight)
+      this.message(response.responseText);
     }.bind(this));
   },
 
@@ -44,6 +41,14 @@ GoodInvests.Views.LogInForm = Backbone.View.extend ({
 
   register: function (event) {
     event.preventDefault();
+  },
+
+  message: function(message) {
+    var elem = $('<message class="flash"> </message>')
+    elem.append(message)
+    this.$el.find("#holder").append(elem);
+    var that = this;
+    setTimeout( function(){that.$el.find(".flash").hide("blind", 500)}, 3000);
   },
 
   tagName: "div"
