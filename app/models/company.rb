@@ -44,7 +44,7 @@ class Company < ActiveRecord::Base
       query_values: {
         trim_start: "2015-03-03",
         column: "4",
-        auth_token: "umr2yxGY6KM1QVWex3Jj"
+        auth_token: ENV["QUANDL_API"]
       }
     ).to_s
     url

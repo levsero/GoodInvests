@@ -51,7 +51,6 @@ end
 group :test do
   gem "shoulda-matchers"
   gem 'guard-rspec'
-
 end
 
 # Add to Gemfile

@@ -1,5 +1,5 @@
 ##GoodInvests
-GoodInvests is a website designed to help people research and discover the best investments on the market. The backend is built using Ruby on Rails for an API, with the frontend developed in backbone.js
+GoodInvests is a website designed to help people research and discover the best investments on the market. The backend is built using Ruby on Rails for an API, with the frontend developed in backbone.js.
 
 GoodInvests [live link](goodinvests.co)
 
@@ -7,8 +7,8 @@ GoodInvests [live link](goodinvests.co)
 Users can
 
 * register and login with an email address, or with Facebook or Google accounts.
-* add companies to their portfolio.
-* Rate and comment on comapnies or other users.
+* Add companies to their portfolio.
+* Rate and comment on companies or other users.
 * Receive a notification when someone rates or comments on them or a company in their portfolio.
 * Mark individual notifications or mark all as read.
 * View User and company profiles
@@ -20,8 +20,8 @@ Search for
 * Companies by name or ticker symbol.
 * Users by first or last name.
 
-
 ### Technical Details
+* Makes extensive use of Backbone models, collections with some custom Ajax requests and routes.
 * Facebook and Google login enabled through OmniAuth.
 * Password reset emails sent through ActionMailer.
 * Picture upload handled by Paperclip.

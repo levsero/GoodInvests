@@ -66,7 +66,7 @@ end
   random = User.all.sample.id
   type = "User"
 
-  User.find(id).authored_comments.create({title: title, body: body,
+  User.find(id).authored_comments.create!({title: title, body: body,
     commentable_id: random, commentable_type: type})
 end
 
@@ -77,7 +77,7 @@ end
   random = Company.all.sample.id
   type = "Company"
 
-  User.find(id).authored_comments.create({title: title, body: body,
+  User.find(id).authored_comments.create!({title: title, body: body,
     commentable_id: random, commentable_type: type})
 end
 
@@ -87,7 +87,7 @@ end
   random = Company.all.sample.id
   type = "Company"
 
-  User.find(id).rated_objects.create({rateable_id: random,
+  User.find(id).rated_objects.create!({rateable_id: random,
     rateable_type: type, rating: rating})
 end
 
@@ -97,7 +97,7 @@ end
   random = User.all.sample.id
   type = "User"
 
-  User.find(id).rated_objects.create({rateable_id: random,
+  User.find(id).rated_objects.create!({rateable_id: random,
     rateable_type: type, rating: rating})
 end
 
@@ -106,5 +106,5 @@ end
   random = Company.all.sample.id
   type = "Company"
 
-  User.find(id).followings.create({followable_id: random, followable_type: type})
+  User.find(id).followings.create!({followable_id: random, followable_type: type})
 end
