@@ -3,7 +3,7 @@ GoodInvests.Models.Company = Backbone.Model.extend ({
 
   parse: function (payload) {
     if(payload.prev_price){
-      this.change = (payload.price - payload.prev_price).toFixed(2);
+      this.attributes.change = (payload.price - payload.prev_price).toFixed(2);
     }
     if(payload.comments){
       this.comments().set(payload.comments)

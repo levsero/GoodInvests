@@ -14,12 +14,13 @@
     </li>
     <% var symbol = "";
     var color = "";
-    if(company.change != 0 && company.change != null ) {
-      symbol = company.change > 0 ? "+" : ""
-      color = company.change < 0 ? "red" : company.change != 0 ? "green" : "black"
+    var change = company.escape("change");
+    if(change != 0 && change != null ) {
+      symbol = change > 0 ? "+" : ""
+      color = change < 0 ? "red" : change != 0 ? "green" : "black"
     } %>
     <li class="<%= color %>">
-      Price: <%= company.escape("price")%> (<%= symbol + company.change %>)
+      Price: <%= company.escape("price")%> (<%= symbol + change %>)
     </li>
   </ul>
 
