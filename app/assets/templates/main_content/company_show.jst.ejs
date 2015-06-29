@@ -20,7 +20,11 @@
       color = change < 0 ? "red" : change != 0 ? "green" : "black"
     } %>
     <li class="<%= color %>">
-      Price: <%= company.escape("price")%> (<%= symbol + change %>)
+      Price: <% if(company.escape("price") != "") {%>
+        <%= company.escape("price")%> (<%= symbol + change %>)
+        <% } else {%>
+          one moment...
+        <% } %>
     </li>
   </ul>
 
