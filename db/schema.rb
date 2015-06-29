@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319162351) do
+ActiveRecord::Schema.define(version: 20150629162115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150319162351) do
     t.decimal  "price",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "prev_price"
   end
 
   add_index "companies", ["ticker", "name"], name: "index_companies_on_ticker_and_name", unique: true, using: :btree

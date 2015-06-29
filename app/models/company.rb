@@ -5,7 +5,6 @@ class Company < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :follows, as: :followable, dependent: :destroy
   has_many :followers, through: :follows, source: :follower
-
   has_many :ratings, as: :rateable
 
   include PgSearch
@@ -15,13 +14,12 @@ class Company < ActiveRecord::Base
     read_attribute(:price).to_f.round(2)
   end
 
-  def name
-    read_attribute(:name).split().map(&:capitalize).join(" ")
+  def prev_price
+    read_attribute(:prev_price).to_f.round(2)
   end
 
-  def latest_price
-    update if updated_at < 1.day.ago
-    price
+  def name
+    read_attribute(:name).split().map(&:capitalize).join(" ")
   end
 
   def rating
@@ -29,11 +27,14 @@ class Company < ActiveRecord::Base
     (ratings.pluck(:rating).inject(:+) / ratings.count).to_f.round(2)
   end
 
-  def update_price
-    # update prices
-    last_day = RestClient.get(get_updates(ticker)).split()[1]
+  def update_prices
+    return if updated_at > 1.day.ago || prev_price.nil?
+    data = RestClient.get(get_updates(ticker)).split()
+    last_day = data[1]
+    prev_day = data[2]
     self.price = last_day.split(",")[-1]
-    price
+    self.prev_price = prev_day.split(",")[-1]
+    save!
   end
 
   def get_updates(sym)
@@ -53,6 +54,6 @@ class Company < ActiveRecord::Base
   private
 
   def ensure_price
-    self.price || update_price
+    self.price || update_prices
   end
 end

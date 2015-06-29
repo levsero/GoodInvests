@@ -69,11 +69,11 @@ class User < ActiveRecord::Base
   # end
 
   def first_name
-    read_attribute(:first_name).split().map(&:capitalize).join(" ")
+    read_attribute(:first_name).split.map(&:capitalize).join(" ")
   end
 
   def last_name
-    read_attribute(:last_name).split().map(&:capitalize).join(" ")
+    read_attribute(:last_name).split.map(&:capitalize).join(" ")
   end
 
   def name
@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
 
   def rating
     return 0 if ratings.empty?
-    (ratings.pluck(:rating).inject(:+) / ratings.count).to_f.round(2)
+    (ratings.pluck(:rating).inject(:+).to_f / ratings.count).round(2)
   end
 
   attr_reader :password

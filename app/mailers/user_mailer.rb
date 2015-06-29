@@ -1,9 +1,9 @@
 class UserMailer < ApplicationMailer
-  default from: 'password_reset@goodinvests.com'
+  default from: 'password_reset@goodinvests.co'
 
   def welcome_email(user)
     @user = user
-    @url  = 'http://goodinvests.herokuapp.com'
+    @url  = 'http://goodinvests.co'
     mail(to: user.email, subject: 'Welcome to GoodInvests')
   end
 

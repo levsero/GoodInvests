@@ -80,6 +80,7 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
   raty: function () {
     var that = this;
     var id = this.model.id;
+    console.log(typeof this.model)
 
     var callback = function(score) {
       // custom route to update current users rating of model

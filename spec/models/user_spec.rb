@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  # having custom return values breaks these tests
+  # The split method in the custom return values breaks these tests
   # it { should validate_presence_of(:email) }
   # it { should validate_presence_of(:first_name) }
   # it { should validate_presence_of(:last_name) }
@@ -21,10 +21,9 @@ RSpec.describe User, :type => :model do
     it { should have_many(:followed_users)}
   end
 
-  describe "custom attr display" do
-    user = User.new({email: "test@gmail.com", first_name: "lev", last_name: "ser",
-      password: "testing"})
+  let(:user) { FactoryGirl.create(:user, first_name: "lev", last_name: "ser")}
 
+  describe "custom attr display" do
     it "returns names as capitalized" do
       expect("#{user.first_name}").to eq("Lev")
       expect("#{user.last_name}").to eq("Ser")
@@ -37,9 +36,8 @@ RSpec.describe User, :type => :model do
   end
 
   describe "email validation" do
-    user = User.new({email: "test@", first_name: "lev", last_name: "ser",
-      password: "testing"})
     it "checks for valid email address" do
+      user.email = "test@"
       user.valid?
       expect(user.errors[:email]).to include("is not a valid email address")
     end
@@ -47,19 +45,31 @@ RSpec.describe User, :type => :model do
 
   describe "find_by_credentials" do
     it "finds user with correct email password" do
-      User.create!({email: "testing@gmail.com", first_name: "lev", last_name: "ser",
-        password: "testing"})
-      user = User.find_by_credentials({email: "testing@gmail.com", password: "testing"})
+      user = User.find_by_credentials({email: "test@gmail.com", password: "testing"})
       expect("#{user.first_name} #{user.last_name}").to eq("Lev Ser")
     end
 
     it "doesn't finds user without correct email password" do
-      User.create!({email: "testing2@gmail.com", first_name: "lev", last_name: "ser",
-        password: "testing"})
-      user = User.find_by_credentials({email: "testing2@gmail.com", password: nil})
-      expect(user).to eq(nil)
-      ser = User.find_by_credentials({email: "incorrect@gmail.com", password: "testing"})
-      expect(user).to eq(nil)
+      find = User.find_by_credentials({email: "test@gmail.com", password: nil})
+      expect(find).to eq(nil)
+      find = User.find_by_credentials({email: "incorrect@gmail.com", password: "testing"})
+      expect(find).to eq(nil)
+    end
+  end
+
+  describe "rating" do
+    it "calculates rating" do
+      nums = []
+      5.times do
+        num = rand(5) + 1
+        nums << num
+        users = FactoryGirl.create(:user, email: Faker::Internet.email)
+        # TODO do this with stubbing if possible. Shouldn't rely on rating class
+        rating = FactoryGirl.create(:rating, rater_id: users.id, rateable_id: user.id,
+          rating: num)
+      end
+      average = ( nums.inject(:+).to_f / nums.length).round(2)
+      expect(user.rating).to eq(average)
     end
   end
 end

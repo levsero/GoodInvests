@@ -1,7 +1,7 @@
 <profile class="profile group">
   <div class="relative">
   <ul class="holder">
-  
+
   </ul>
   </div>
   </div>
@@ -12,8 +12,14 @@
     <li>
       Ticker: <%= company.escape("ticker")%>
     </li>
-    <li>
-      Price: <%= company.escape("price")%>
+    <% var symbol = "";
+    var color = "";
+    if(company.change != 0 && company.change != null ) {
+      symbol = company.change > 0 ? "+" : ""
+      color = company.change < 0 ? "red" : company.change != 0 ? "green" : "black"
+    } %>
+    <li class="<%= color %>">
+      Price: <%= company.escape("price")%> (<%= symbol + company.change %>)
     </li>
   </ul>
 

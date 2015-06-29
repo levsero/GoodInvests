@@ -14,6 +14,7 @@ module Api
     def show
       @user = current_user
       @company = Company.find(params[:id])
+      @company.update_prices
     end
 
     def most_followed
