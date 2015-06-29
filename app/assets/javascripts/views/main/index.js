@@ -6,6 +6,13 @@ GoodInvests.Views.Index = Backbone.View.extend ({
     // this.$el.addClass("group");
     this.followedCompanies = new GoodInvests.Collections.Companies({comparator: "count"});
     this.commentedCompanies = new GoodInvests.Collections.Companies({comparator: "count"});
+
+    // fill the company lists while loading
+    for (var i=0; i < 10; i++) {
+      this.followedCompanies.add(new GoodInvests.Models.Company({}));
+      this.commentedCompanies.add(new GoodInvests.Models.Company({}));
+    }
+    // debugger
     $.ajax({
       url: "/api/most_followed",
       type: "get",
