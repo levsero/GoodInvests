@@ -28,6 +28,7 @@ GoodInvests.Models.Session = Backbone.Model.extend ({
   },
 
   login: function (attrs, callback, errorCallback) {
+    
     $.ajax({
       url: "/api/session",
       type: "post",

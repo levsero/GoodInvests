@@ -1,6 +1,8 @@
 module Api
   class SessionsController < ApplicationController
     def create
+      puts "========"
+      puts params[:user]
       @user = User.find_by_credentials(params[:user])
 
       if @user

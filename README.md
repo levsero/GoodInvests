@@ -38,4 +38,5 @@ Search for
 * Update search results as the user types.
 * Allow users to follow other users.
 * Allow users to create collections of companies other than portfolio
+* Display more company data
 * Make input errors when signing in inline instead of absolute.
