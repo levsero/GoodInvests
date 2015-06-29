@@ -26,8 +26,6 @@ GoodInvests.Views.LogInForm = Backbone.View.extend ({
     // TODO refactor to remove parents
     var form = $(event.currentTarget).parent().parent().parent().parent()
     var attrs = form.serializeJSON();
-    debugger
-    console.log("test: " + attrs)
     GoodInvests.session.login(attrs, _, function (response) {
       this.message(response.responseText);
     }.bind(this));
