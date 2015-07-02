@@ -3,7 +3,7 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
 
   initialize: function (options) {
     this.session = options.session
-    this.listenTo( this.model, "sync", this.render);
+    this.listenTo( this.model, "sync change", this.render);
     this.listenTo( GoodInvests.session, "loggedIn", this.render);
     this.listenTo( GoodInvests.session, "signedOut", this.render);
     this.$el.addClass("user-article");
@@ -32,7 +32,9 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
     "blur .edit input": "saveProfile",
     "submit form#img": "savePicture",
     "change #input-picture-file": "changePicture",
-    "click div.raty": "setStars"
+    "click div.raty": "setStars",
+    "click button.follow": "followUser",
+    "click button.unfollow": "unfollowUser"
   },
 
   editField: function (event) {
@@ -80,7 +82,6 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
   raty: function () {
     var that = this;
     var id = this.model.id;
-    console.log(typeof this.model)
 
     var callback = function(score) {
       // custom route to update current users rating of model
@@ -102,6 +103,39 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
       readOnly: function() {
         return GoodInvests.session.isLoggedIn == false;
       }
+    });
+  },
+
+  followUser: function (event) {
+    event.preventDefault();
+    var id = this.model.id;
+
+    var follow = new GoodInvests.Models.Follow({
+      followable_id: id,
+      followable_type: "User",
+      follower_id: GoodInvests.session.current_user.id })
+
+    follow.save({}, { success: function () {
+      this.model.set({following: true});
+      this.message("You are now following " + this.model.get("first_name") +
+          this.model.get("first_name") + ".")
+      }.bind(this)
+    })
+  },
+
+  unfollowUser: function (event) {
+    event.preventDefault();
+    var followable_id = this.model.id;
+    var id = GoodInvests.session.current_user.id
+
+    $.ajax({
+      url: "api/follows/" + id + "/" + followable_id + "/User" ,
+      type: "delete",
+      success: function () {
+        this.model.set({following: false});
+        this.message("You are no longer following " + this.model.get("first_name") +
+            this.model.get("first_name") + ".")
+      }.bind(this)
     });
   },
 

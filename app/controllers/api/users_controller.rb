@@ -3,6 +3,7 @@ module Api
     before_action :require_signed_in!, only: [:update]
 
     def index
+      @current_user = current_user
       page = User.page(params[:page])
       @page_info = {num_pages: page.total_pages, current: params[:page].to_i,
         num_items: page.total_count}
@@ -21,6 +22,7 @@ module Api
     end
 
     def show
+      @current_user = current_user
       @user = User.find(params[:id])
     end
 

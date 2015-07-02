@@ -28,6 +28,12 @@ article.user-article, article.main-article {
   font-weight: bold;
 }
 
+.user-article .follow, .user-article .unfollow {
+  float: left;
+  margin-left: 75px;
+  transform: translateX(-50%);
+}
+
 strong.name {
   font-size: 24px;
 }

@@ -30,15 +30,15 @@
     <strong>Rating <div class="raty"></div></strong>
   </li>
 
-    <% if ( user.id == GoodInvests.session.current_user.id ) { %>
-      <li>
-        <form id="img">
-          <strong>Upload new Picture</strong>
-          <input id="input-picture-file" type="file" name="picture">
-          <button id="update-pic">Save</button>
-        </form>
-      </li>
-    <% } %>
+  <% if ( user.id == GoodInvests.session.current_user.id ) { %>
+    <li>
+      <form id="img">
+        <strong>Upload new Picture</strong>
+        <input id="input-picture-file" type="file" name="picture">
+        <button id="update-pic">Save</button>
+      </form>
+    </li>
+  <% } %>
 
   <li class="portfolio">
     <strong>Portfolio</strong>
@@ -48,3 +48,9 @@
 </content>
 
 <img class="image" src="<%= user.escape("picture_url") %>" alt="profile" />
+
+<% if (GoodInvests.session.isLoggedIn && user.get("following") == true) { %>
+  <button class="unfollow" data-id="<%= user.id %>">Unfollow</button>
+<% } else if ( GoodInvests.session.isLoggedIn && user.get("following") != "none") { %>
+  <button class="follow" data-id="<%= user.id %>">Follow</button>
+<% } %>
