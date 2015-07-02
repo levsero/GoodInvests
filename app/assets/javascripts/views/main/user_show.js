@@ -113,7 +113,8 @@ GoodInvests.Views.UserShow = Backbone.View.extend ({
     var follow = new GoodInvests.Models.Follow({
       followable_id: id,
       followable_type: "User",
-      follower_id: GoodInvests.session.current_user.id })
+      follower_id: GoodInvests.session.current_user.id
+    })
 
     follow.save({}, { success: function () {
       this.model.set({following: true});

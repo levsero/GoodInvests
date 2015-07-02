@@ -10,8 +10,10 @@
     <a class="company" href="#companies/<%= item.id%>"><%= item.escape("ticker") + ": " + item.escape("name") %></a>
   <% } %>
 
-<%} else {%>
-
-  <a class="user" href="#users/<%= item.id%>"><%= item.escape("first_name") + " " + item.escape("last_name") %></a>
-
+<%} else { %>
+  <% if (item.escape("first_name") === "") { %>
+    <a class="user"> ... </a>
+  <% } else { %>
+    <a class="user" href="#users/<%= item.id%>"><%= item.escape("first_name") + " " + item.escape("last_name") %></a>
+  <% } %>
 <% } %>

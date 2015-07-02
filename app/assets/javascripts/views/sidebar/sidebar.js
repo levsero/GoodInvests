@@ -4,6 +4,7 @@ GoodInvests.Views.Sidebar = Backbone.CompositeView.extend ({
   render: function () {
     this.$el.html(this.template());
     var view = new GoodInvests.Views.CollectionList({ collection: this.users })
+
     if (this.current_view) {
       this.removeSubview(this.current_view)
     }

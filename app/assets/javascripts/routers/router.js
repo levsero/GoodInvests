@@ -22,6 +22,12 @@ GoodInvests.Routers.Router = Backbone.Router.extend({
 
   fetchCollections: function () {
     this.users = new GoodInvests.Collections.Users()
+    // fill the user lists while loading
+    for (var i=0; i < 15; i++) {
+      this.users.add(new GoodInvests.Models.User({}));
+    }
+    this.users.pageInfo = { current: 0, num_pages: 0, num_items: 0}
+
     this.companies = new GoodInvests.Collections.Companies()
     this.users.fetch({
       data: {
