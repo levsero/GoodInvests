@@ -1,5 +1,5 @@
 class Company < ActiveRecord::Base
-  validates :ticker, :name, :price, presence: true
+  validates :ticker, :name, :price, :prev_price, presence: true
   before_validation :ensure_price
 
   has_many :comments, as: :commentable
@@ -11,11 +11,11 @@ class Company < ActiveRecord::Base
   multisearchable :against => [:ticker, :name]
 
   def price
-    read_attribute(:price).round(2)
+    read_attribute(:price).to_f.round(2)
   end
 
   def prev_price
-    read_attribute(:prev_price).round(2)
+    read_attribute(:prev_price).to_f.round(2)
   end
 
   def name
@@ -28,9 +28,8 @@ class Company < ActiveRecord::Base
   end
 
   def update_prices
-    p "price:#{price}"
-    return if updated_at > 1.day.ago || prev_price.nil?
-    data = RestClient.get(get_updates(ticker)).split()
+    return if updated_at > 1.day.ago
+    data = get_updates.split
     last_day = data[1]
     prev_day = data[2]
     self.price = last_day.split(",")[-1]
@@ -38,23 +37,24 @@ class Company < ActiveRecord::Base
     save!
   end
 
-  def get_updates(sym)
+  def get_updates
     url = Addressable::URI.new(
       scheme: "https",
       host: "quandl.com",
-      path: "/api/v1/datasets/WIKI/#{sym}.csv",
+      path: "/api/v1/datasets/WIKI/#{ticker}.csv",
       query_values: {
         trim_start: "2015-03-03",
         column: "4",
         auth_token: ENV["QUANDL_API"]
       }
     ).to_s
-    url
+    RestClient.get(url)
   end
 
   private
 
   def ensure_price
     self.price || update_prices
+    self.prev_price || update_prices
   end
 end

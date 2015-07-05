@@ -3,5 +3,6 @@ FactoryGirl.define do
     ticker Faker::Lorem.characters(3)
     name Faker::Name.name
     price Random.rand(100)
+    prev_price Random.rand(100)
   end
 end

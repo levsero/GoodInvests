@@ -22,7 +22,7 @@ RSpec.describe Company, :type => :model do
   end
 
   describe "price attr display" do
-      let(:company) { FactoryGirl.create(:company, prev_price: 32.234)}
+    let(:company) { FactoryGirl.create(:company, prev_price: 32.234)}
     it "will display maximum 2 decimal places" do
       expect(company.prev_price).to eq(32.23)
     end
@@ -33,7 +33,7 @@ RSpec.describe Company, :type => :model do
   end
 
   describe "prev_price attr display" do
-      let(:company) { FactoryGirl.create(:company, prev_price: 32.234)}
+    let(:company) { FactoryGirl.create(:company, prev_price: 32.234)}
     it "will display maximum 2 decimal places" do
       expect(company.prev_price).to eq(32.23)
     end
@@ -56,6 +56,37 @@ RSpec.describe Company, :type => :model do
       end
       average = ( nums.inject(:+).to_f / nums.length).round(2)
       expect(company.rating).to eq(average)
+    end
+  end
+
+  describe "update_prices" do
+    before(:each) do
+      response = "asd asdf,13.1 adf,12.23"
+      allow(company).to receive(:get_updates).and_return(response)
+    end
+
+    it "does not call get_updates if updated less then 1 day ago" do
+      company.updated_at = 1.hour.ago
+      expect(company).to_not receive(:get_updates)
+      company.update_prices
+    end
+
+    it "calls get_updates if updated more then 1 day ago" do
+      company.updated_at = 2.days.ago
+      expect(company).to receive(:get_updates)
+      company.update_prices
+    end
+
+    it "updates price eq second line" do
+      company.updated_at = 2.days.ago
+      company.update_prices
+      expect(company.price).to eq(13.1)
+    end
+
+    it "updates prev_price eq third line" do
+      company.updated_at = 2.days.ago
+      company.update_prices
+      expect(company.prev_price).to eq(12.23)
     end
   end
 end
