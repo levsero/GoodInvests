@@ -11,11 +11,11 @@ class Company < ActiveRecord::Base
   multisearchable :against => [:ticker, :name]
 
   def price
-    read_attribute(:price).to_f.round(2)
+    read_attribute(:price).round(2)
   end
 
   def prev_price
-    read_attribute(:prev_price).to_f.round(2)
+    read_attribute(:prev_price).round(2)
   end
 
   def name
@@ -24,10 +24,11 @@ class Company < ActiveRecord::Base
 
   def rating
     return 0 if ratings.count == 0
-    (ratings.pluck(:rating).inject(:+) / ratings.count).to_f.round(2)
+    (ratings.pluck(:rating).inject(:+).to_f / ratings.count).round(2)
   end
 
   def update_prices
+    p "price:#{price}"
     return if updated_at > 1.day.ago || prev_price.nil?
     data = RestClient.get(get_updates(ticker)).split()
     last_day = data[1]

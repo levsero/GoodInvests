@@ -1,14 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  # The split method in the custom return values breaks these tests
-  # it { should validate_presence_of(:email) }
-  # it { should validate_presence_of(:first_name) }
-  # it { should validate_presence_of(:last_name) }
-  # it { should validate_presence_of(:password_digest) }
-  # it { should validate_presence_of(:session_token) }
-  # it { should validate_uniqueness_of(:email) }
-
   describe "associations" do
     it { should have_many(:notifications)}
     it { should have_many(:comments)}
@@ -21,16 +13,16 @@ RSpec.describe User, :type => :model do
     it { should have_many(:followed_users)}
   end
 
-  let(:user) { FactoryGirl.create(:user, first_name: "lev", last_name: "ser")}
+  let(:user) { FactoryGirl.create(:user, email: "test@gmail.com")}
 
   describe "custom attr display" do
     it "returns names as capitalized" do
-      expect("#{user.first_name}").to eq("Lev")
-      expect("#{user.last_name}").to eq("Ser")
+      expect(user.first_name).to eq("Lev")
+      expect(user.last_name).to eq("Ser")
     end
 
     it "name returns both names joined and capitalized" do
-      expect("#{user.name}").to eq("Lev Ser")
+      expect(user.name).to eq("Lev Ser")
     end
 
   end
@@ -45,15 +37,19 @@ RSpec.describe User, :type => :model do
 
   describe "find_by_credentials" do
     it "finds user with correct email password" do
-      user = User.find_by_credentials({email: "test@gmail.com", password: "testing"})
-      expect("#{user.first_name} #{user.last_name}").to eq("Lev Ser")
+      user
+      # need to mention user for user to be used in the it
+      find = User.find_by_credentials({email: "test@gmail.com", password: "testing"})
+      expect(find).to be
+      expect(find.name).to eq("Lev Ser")
     end
 
     it "doesn't finds user without correct email password" do
+      user
       find = User.find_by_credentials({email: "test@gmail.com", password: nil})
-      expect(find).to eq(nil)
+      expect(find).to_not be
       find = User.find_by_credentials({email: "incorrect@gmail.com", password: "testing"})
-      expect(find).to eq(nil)
+      expect(find).to_not be
     end
   end
 
