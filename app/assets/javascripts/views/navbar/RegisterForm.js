@@ -21,9 +21,10 @@ GoodInvests.Views.RegisterForm = Backbone.View.extend ({
   register: function (event) {
     event.preventDefault();
     var that = this;
+    debugger
 
-    // TODO refactor to remove parents
-    var form = $(event.currentTarget).parent().parent().parent()
+    var form = $(".modal-form")
+    
     var attrs = form.serializeJSON();
     var user = new GoodInvests.Models.User();
     user.save(attrs.user, {
