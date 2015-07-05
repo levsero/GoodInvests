@@ -4,7 +4,7 @@ module Api
 
     def index
       @current_user = current_user
-      page = User.page(params[:page])
+      page = User.order("last_name").page(params[:page])
       @page_info = {num_pages: page.total_pages, current: params[:page].to_i,
         num_items: page.total_count}
       @users = page
