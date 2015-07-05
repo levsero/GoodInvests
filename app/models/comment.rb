@@ -16,11 +16,12 @@ class Comment < ActiveRecord::Base
   has_many :notifications, as: :notifiable, dependent: :destroy
 
   def set_notification
-    event_name = self.commentable.class == User ? :commented_on_you : :comment_on_company
-    if event_name == :commented_on_you
-      notification = commentable.notifications.unread.event(event_name).new
-      notification.notifiable_id = self.id
-      notification.notifiable_type = "Comment"
+    event_name = self.commentable.class == User ? :comment_on_user : :comment_on_company
+
+    # creates a notification for the commented on user
+    if event_name == :comment_on_user && author != commentable
+      notification = notifications.unread.event(:commented_on_you).new
+      notification.user_id = commentable.id
       notification.save!
     end
 

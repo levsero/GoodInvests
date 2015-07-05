@@ -17,19 +17,15 @@ class Rating < ActiveRecord::Base
   has_many :notifications, as: :notifiable, dependent: :destroy
 
   def set_notification
-    event_name = :rated
-
-    if self.rateable.class == User
-      event_name = :rated_you
-      notification = rateable.notifications.unread.event(event_name).new
-      notification.notifiable_id = self.id
-      notification.notifiable_type = "Rating"
+    if self.rateable.class == User && rater != rateable
+      notification = notifications.unread.event(:rated_you).new
+      notification.user_id = rateable.id
       notification.save!
     end
 
     self.rateable.followers.each do |user|
       next if user == self.rater
-      notification = user.notifications.unread.event(event_name).new
+      notification = user.notifications.unread.event(:rated).new
       notification.notifiable_id = self.id
       notification.notifiable_type = "Rating"
       notification.save!

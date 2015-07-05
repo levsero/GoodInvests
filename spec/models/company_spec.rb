@@ -4,6 +4,7 @@ RSpec.describe Company, :type => :model do
   describe "associations" do
     it { should have_many(:comments)}
     it { should have_many(:followers)}
+    it { should have_many(:follows)}
     it { should have_many(:ratings)}
   end
 
@@ -65,28 +66,32 @@ RSpec.describe Company, :type => :model do
       allow(company).to receive(:get_updates).and_return(response)
     end
 
-    it "does not call get_updates if updated less then 1 day ago" do
-      company.updated_at = 1.hour.ago
-      expect(company).to_not receive(:get_updates)
-      company.update_prices
+    context "updated less than one day ago" do
+      it "does not call get_updates" do
+        company.updated_at = 1.hour.ago
+        expect(company).to_not receive(:get_updates)
+        company.update_prices
+      end
     end
 
-    it "calls get_updates if updated more then 1 day ago" do
-      company.updated_at = 2.days.ago
-      expect(company).to receive(:get_updates)
-      company.update_prices
-    end
+    context "updated less more one day ago" do
+      it "calls get_updates" do
+        company.updated_at = 2.days.ago
+        expect(company).to receive(:get_updates)
+        company.update_prices
+      end
 
-    it "updates price eq second line" do
-      company.updated_at = 2.days.ago
-      company.update_prices
-      expect(company.price).to eq(13.1)
-    end
+      it "updates price eq second line" do
+        company.updated_at = 2.days.ago
+        company.update_prices
+        expect(company.price).to eq(13.1)
+      end
 
-    it "updates prev_price eq third line" do
-      company.updated_at = 2.days.ago
-      company.update_prices
-      expect(company.prev_price).to eq(12.23)
+      it "updates prev_price eq third line" do
+        company.updated_at = 2.days.ago
+        company.update_prices
+        expect(company.prev_price).to eq(12.23)
+      end
     end
   end
 end
