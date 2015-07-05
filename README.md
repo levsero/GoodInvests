@@ -40,3 +40,4 @@ Search for
 * Allow users to create collections of companies other than portfolio
 * Display more company data
 * Make input errors when signing in inline instead of absolute.
+* eager_load comments and rating on index (not working with kaminari/pg_search)
