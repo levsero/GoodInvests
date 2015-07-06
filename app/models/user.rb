@@ -62,12 +62,7 @@ class User < ActiveRecord::Base
     source: :followable,
     source_type: "User"
   )
-
-  # def notifications_count
-  #   self.notifications_count = notifications.unread.count
-  #   notifications_count
-  # end
-
+  
   def first_name
     read_attribute(:first_name).split.map(&:capitalize).join(" ")
   end
@@ -129,7 +124,6 @@ class User < ActiveRecord::Base
   end
 
   private
-
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64
   end

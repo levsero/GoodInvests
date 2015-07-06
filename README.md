@@ -41,3 +41,4 @@ Search for
 * Display more company data
 * Make input errors when signing in inline instead of absolute.
 * eager_load comments and rating on index (not working with kaminari/pg_search)
+* Add a rating row to Company and User which gets updated each time a rating is created (more efficient as don't need to make a query every time to get rating)

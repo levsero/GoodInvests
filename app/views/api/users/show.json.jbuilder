@@ -9,10 +9,6 @@ json.portfolio @user.followed_companies do |company|
   json.following "none"
 end
 
-if signed_in?
-  json.logged_in true
-end
-
 json.picture_url image_url(@user.picture.url(:medium))
 
 if @user == current_user

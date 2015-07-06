@@ -21,7 +21,7 @@ class Notification < ActiveRecord::Base
 
   scope :read, -> { where(is_read: true) }
   scope :unread, -> { where(is_read: false) }
-  scope :event, ->(event_name) { where(event_id: EVENT_IDS[event_name]) }
+  scope :event, -> (event_name) { where(event_id: EVENT_IDS[event_name]) }
 
   def text
     case self.event_name
@@ -39,10 +39,10 @@ class Notification < ActiveRecord::Base
       when :rated
         rater = notifiable.rater
         rated = notifiable.rateable.name
-        "#{rater.name} rated #{rated} #{notifiable.rating} stars"
+        "#{rater.name} rated #{rated} #{notifiable.rating} #{"star".pluralize(notifiable.rating)}"
       when :rated_you
         rater = notifiable.rater
-        "#{rater.name} gave you a #{notifiable.rating} stars rating"
+        "#{rater.name} rated you #{notifiable.rating} #{"star".pluralize(notifiable.rating)}"
     end
   end
 
