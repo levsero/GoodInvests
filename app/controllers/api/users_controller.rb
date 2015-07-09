@@ -78,7 +78,7 @@ module Api
           render json: user.errors.full_messages, status: :unprocessable_entity
         end
       else
-        render json: params, status: 404
+        render json: params, status: :unprocessable_entity
       end
     end
 

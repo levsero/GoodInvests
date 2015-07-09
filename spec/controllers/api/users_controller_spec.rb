@@ -35,17 +35,15 @@ RSpec.describe Api::UsersController do
         expect(json["page"]["num_items"]).to eq(20)
       end
 
-      it "users includes last_name, job_title, description, rating, id, comments, following" do
+      it "users include name, job_title, description, rating, id, comments, following" do
+        user = FactoryGirl.create(:user, last_name: "Abc")
         get :index, format: :json
-        user = FactoryGirl.create(:user)
-        expect(json["users"][0]["last_name"]).to eq(user.last_name)
-        expect(json["users"][0]["first_name"]).to eq(user.first_name)
-        expect(json["users"][0]["job_title"]).to eq(user.job_title)
-        expect(json["users"][0]["description"]).to eq(user.description)
-        expect(json["users"][0].key?("rating")).to be
-        expect(json["users"][0].key?("id")).to be
-        expect(json["users"][0]["comments"]).to eq([])
-        expect(json["users"][0].key?("following")).to be
+
+        expected = {"first_name"=>user.first_name, "last_name"=> user.last_name,
+          "job_title"=> user.job_title, "description"=>user.description,
+          "rating"=>0, "comments"=>[], "following"=>false, "id"=> user.id}
+
+        expect(json["users"][0]).to eq(expected)
       end
     end
 
@@ -74,7 +72,7 @@ RSpec.describe Api::UsersController do
       expect(response).to be_success
     end
 
-    it "additionally returns 'current_user: true' if user == current_user" do
+    it "returns 'current_user: true' if user == current_user" do
       allow(controller).to receive(:current_user) { user }
       get :show, format: :json, id: user.id
 
@@ -84,28 +82,78 @@ RSpec.describe Api::UsersController do
   end
 
   describe "#update" do
-    it "returns user show with updated data" do
-      allow(controller).to receive(:current_user) { user }
+    context "current_user == :user_id" do
+      it "returns user show with updated data" do
+        allow(controller).to receive(:current_user) { user }
 
-      patch :update, format: :json, id: user.id, :user => {first_name: "updated"}
+        patch :update, format: :json, id: user.id, :user => {first_name: "updated"}
 
-      expected = {"first_name"=>"Updated", "last_name"=> user.last_name,
-        "job_title"=> user.job_title, "description"=>user.description,
-        "email"=>user.email, "rating"=>0, "comments"=>[], "following"=>false,
-        "portfolio"=>[], "picture_url"=>"http://test.host/images/medium/missing.png",
-        "current_user"=>true}
+        expected = {"first_name"=>"Updated", "last_name"=> user.last_name,
+          "job_title"=> user.job_title, "description"=>user.description,
+          "email"=>user.email, "rating"=>0, "comments"=>[], "following"=>false,
+          "portfolio"=>[], "picture_url"=>"http://test.host/images/medium/missing.png",
+          "current_user"=>true}
 
-      expect(json).to eq(expected)
-      expect(response).to be_success
+        expect(json).to eq(expected)
+        expect(response).to be_success
+      end
     end
 
-    it "does not update if id is not the current_user" do
-      user2 = FactoryGirl.create(:user)
-      allow(controller).to receive(:current_user) { user }
+    context "current_user != :user_id" do
+      it "returns unprocessable" do
+        user2 = FactoryGirl.create(:user)
+        allow(controller).to receive(:current_user) { user }
 
-      patch :update, format: :json, id: user2.id, :user => {first_name: "updated"}
-      expect(response.body).to eq("[]")
+        patch :update, format: :json, id: user2.id, :user => {first_name: "updated"}
+        expect(response.body).to eq("[]")
+        expect(response).to be_unprocessable
+      end
+    end
+  end
+
+  describe "#logged_in" do
+    context "user is signed in" do
+      it "returns current_users data" do
+        allow(controller).to receive(:current_user) { user }
+
+        get :logged_in, format: :json
+
+        expected = {"first_name"=>user.first_name, "last_name"=> user.last_name,
+          "job_title"=> user.job_title, "description"=>user.description,
+          "id"=> user.id, "notifications"=>[], "notifications_count" => 0,
+          "picture_url" => "http://test.host/images/thumb/missing.png"}
+
+        expect(json).to eq(expected)
+        expect(response).to be_success
+      end
+    end
+  end
+
+  describe "#password_reset" do
+    context "matching token and id" do
+      it "resets users password if valid password" do
+        get :password_reset, format: :json, token: user.session_token, id: user.id,
+            password: "new_password"
+
+        expect(response).to be_success
+      end
+
+      it "returns unprocessable and password too short" do
+        get :password_reset, format: :json, token: user.session_token, id: user.id,
+            password: "new_"
+
+        expect(response.body).to eq("password too short, minimum 6 characters")
+        expect(response).to be_unprocessable
+      end
+    end
+
+    it "returns unprocessable if token doesn't match id" do
+      user2 = FactoryGirl.create(:user)
+      get :password_reset, format: :json, token: user2.session_token, id: user.id,
+          password: "new_password"
+
       expect(response).to be_unprocessable
     end
+
   end
 end
