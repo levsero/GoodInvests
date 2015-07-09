@@ -23,7 +23,7 @@ RSpec.describe Api::UsersController do
         FactoryGirl.create(:user, last_name: "Abc")
         get :index, format: :json
 
-        # created last but returned first
+        # created last but return first
         expect(json["users"][0]["last_name"]).to eq("Abc")
       end
 
@@ -52,6 +52,41 @@ RSpec.describe Api::UsersController do
         get :index, format: :json, page: 2
         expect(json["users"].count).to eq(5)
         expect(response).to be_success
+      end
+    end
+  end
+
+  describe "#create" do
+    context "valid data passed in" do
+      before { post :create, format: :json, user: {first_name: "What", last_name: "Ever",
+        password: "testing", email: "test@gmail.com"} }
+
+      it "creates a user if all required fields passed" do
+        expect(User.last.email).to eq("test@gmail.com")
+      end
+
+      it "returns users data" do
+        expected = {"first_name"=>"What", "last_name"=> "Ever","job_title"=> nil,
+          "email"=> "test@gmail.com", "rating"=>0, "comments"=>[], "following"=>false,
+          "portfolio"=>[], "picture_url"=>"http://test.host/images/medium/missing.png",
+          "description"=> nil}
+
+        expect(json).to eq(expected)
+        expect(response).to be_success
+      end
+    end
+
+    context "invalid data passed in" do
+      before { post :create, format: :json, user: {first_name: "What", last_name: "Ever",
+          password: "testing", email: ""} }
+
+      it "does not create user " do
+        expect(User.last).to_not be
+      end
+
+      it "returns unprocessable with error messages" do
+        expect(response).to be_unprocessable
+        expect(json).to include("Email is not a valid email address")
       end
     end
   end
@@ -135,6 +170,7 @@ RSpec.describe Api::UsersController do
         get :password_reset, format: :json, token: user.session_token, id: user.id,
             password: "new_password"
 
+        expect(User.find(user.id).is_password?("new_password")).to be true
         expect(response).to be_success
       end
 
@@ -154,6 +190,5 @@ RSpec.describe Api::UsersController do
 
       expect(response).to be_unprocessable
     end
-
   end
 end
