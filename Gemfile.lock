@@ -377,6 +377,7 @@ DEPENDENCIES
   paperclip (~> 4.2)
   pg
   pg_search
+  puma
   rails (= 4.2.0)
   rails_12factor
   rest-client
