@@ -19,7 +19,7 @@ gem 'rest-client', require: 'rest-client'
 
 gem "figaro"
 gem "paperclip", "~> 4.2"
-gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk'
 
 gem 'pg_search'
 gem 'kaminari'
@@ -41,26 +41,24 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem "factory_girl_rails", "~> 4.0"
 
+  gem 'capybara'
   gem "jasmine"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem 'spring'
 end
 
-group :development, :test do
+group :development do
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
   gem 'rspec-rails'
 end
 
 group :test do
   gem "shoulda-matchers"
   gem 'guard-rspec'
-end
-
-# Add to Gemfile
-group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'pry-rails'
-  gem 'quiet_assets'
 end
 
 group :production do

@@ -74,7 +74,7 @@ RSpec.describe Company, :type => :model do
       end
     end
 
-    context "updated less more one day ago" do
+    context "updated more than one day ago" do
       it "calls get_updates" do
         company.updated_at = 2.days.ago
         expect(company).to receive(:get_updates)
